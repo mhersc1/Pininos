@@ -9,5 +9,7 @@ package Prueba;
  * @author carlos
  */
 public class hola {
-    
+    public hola(){
+        System.out.println("pepe");
+    }
 }
