@@ -10,6 +10,6 @@ package Prueba;
  */
 public class hola {
     public hola(){
-        System.out.println("pepe");
+        System.out.println("pepe alamos");
     }
 }
