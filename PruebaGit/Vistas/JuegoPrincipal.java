@@ -2,19 +2,30 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Prueba;
+package Vistas;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import javax.swing.JPanel;
 
 /**
  *
  * @author carlos
  */
-public class ventana extends javax.swing.JFrame {
+public class JuegoPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form ventana
+     * Creates new form JuegoPrincipal
      */
-    public ventana() {
+    private MenuJuego panelMenuJuego;
+    public JuegoPrincipal() {
         initComponents();
+        this.setLayout(new FlowLayout());
+        panelMenuJuego=new MenuJuego(this);//Se crea nueva instancia
+        this.add(panelMenuJuego,BorderLayout.CENTER);//Agregamos la instancia del panel con un layout al centro
+        this.pack();//Hacemos que el JFrame tenga el tamaño de todos sus elementos
+        setLocationRelativeTo(null);
+        //panelMenuJuego.setVisible(true);
     }
 
     /**
@@ -27,17 +38,7 @@ public class ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
-        );
+        getContentPane().setLayout(null);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -59,20 +60,20 @@ public class ventana extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JuegoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JuegoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JuegoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ventana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JuegoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ventana().setVisible(true);
+                new JuegoPrincipal().setVisible(true);
             }
         });
     }
