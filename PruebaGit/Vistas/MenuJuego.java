@@ -62,6 +62,11 @@ public class MenuJuego extends javax.swing.JPanel {
         });
 
         jButton3.setText("Opciones");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -94,16 +99,23 @@ public class MenuJuego extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         juegoPrincipal.remove(this);
         juegoPrincipal.setLayout(new FlowLayout());
-        juegoPrincipal.add(new Juego(),BorderLayout.CENTER);
+        juegoPrincipal.add(new Juego(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         juegoPrincipal.remove(this);
         juegoPrincipal.setLayout(new FlowLayout());
-        juegoPrincipal.add(new Niveles(),BorderLayout.CENTER);
+        juegoPrincipal.add(new Niveles(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       juegoPrincipal.remove(this);
+        juegoPrincipal.setLayout(new FlowLayout());
+        juegoPrincipal.add(new Opciones(juegoPrincipal),BorderLayout.CENTER);
+        juegoPrincipal.pack();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

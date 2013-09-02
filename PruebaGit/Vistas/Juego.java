@@ -9,12 +9,18 @@ package Vistas;
  * @author OMAR
  */
 public class Juego extends javax.swing.JPanel {
+    private JuegoPrincipal juegoPrincipal;
 
     /**
      * Creates new form Juego
      */
     public Juego() {
         initComponents();
+    }
+
+    public Juego(JuegoPrincipal juegoPrincipal) {
+        initComponents();
+        this.juegoPrincipal=juegoPrincipal;
     }
 
     /**

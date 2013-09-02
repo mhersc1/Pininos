@@ -9,12 +9,18 @@ package Vistas;
  * @author OMAR
  */
 public class Niveles extends javax.swing.JPanel {
+    private JuegoPrincipal juegoPrincipal;
 
     /**
      * Creates new form Niveles
      */
     public Niveles() {
         initComponents();
+    }
+
+    public Niveles(JuegoPrincipal juegoPrincipal) {
+        initComponents();
+        this.juegoPrincipal=juegoPrincipal;
     }
 
     /**
