@@ -105,7 +105,6 @@ public class Juego extends javax.swing.JPanel {
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
         juegoPrincipal.remove(this);
-        System.out.println("Entra aca maldito!");
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new MenuJuego(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();    }//GEN-LAST:event_jLabel7MousePressed
