@@ -47,6 +47,8 @@ public class Opciones extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 153));
+        setForeground(new java.awt.Color(153, 153, 0));
+        setFont(new java.awt.Font("Copperplate Gothic Bold", 0, 18)); // NOI18N
 
         jLabel1.setText("Nro de Cajas:");
 
