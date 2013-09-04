@@ -7,22 +7,29 @@ package Vistas;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author OMAR
  */
 public class MenuJuego extends javax.swing.JPanel {
-
+    private Image imagen;
+    private final String ruta="/imagenes/fondoMenu.jpg";
     /**
      * Creates new form MenuJuego
      */
    public JuegoPrincipal juegoPrincipal;
     public MenuJuego() {
+        this.imagen = new ImageIcon(getClass().getResource(ruta)).getImage();
         initComponents();
+       
     }
 
     MenuJuego(JuegoPrincipal juegoPrincipal) {
+        this.imagen = new ImageIcon(getClass().getResource(ruta)).getImage();
         this.juegoPrincipal=juegoPrincipal;
         initComponents();
     }
@@ -47,7 +54,7 @@ public class MenuJuego extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 255, 153));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BIENVENIDO AL JUEGO POR SUPERVIVENCIA");
 
         jButton1.setBackground(new java.awt.Color(0, 255, 153));
@@ -152,7 +159,17 @@ public class MenuJuego extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         juegoPrincipal.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    public void paint(Graphics g){
+        if(imagen!=null){
+            g.drawImage(imagen, 0, 0, this);
+            setOpaque(false);
+        }
+        else{
+            setOpaque(true);
+        }
+        super.paint(g);
+    }
+            
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
