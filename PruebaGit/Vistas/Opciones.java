@@ -132,6 +132,7 @@ public class Opciones extends javax.swing.JPanel {
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new MenuJuego(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
+        juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_jLabel7MousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -25,6 +25,7 @@ public class JuegoPrincipal extends javax.swing.JFrame {
         this.add(panelMenuJuego,BorderLayout.CENTER);//Agregamos la instancia del panel con un layout al centro
         this.pack();//Hacemos que el JFrame tenga el tamaño de todos sus elementos
         setLocationRelativeTo(null);
+        setResizable(false);
         //panelMenuJuego.setVisible(true);
     }
 

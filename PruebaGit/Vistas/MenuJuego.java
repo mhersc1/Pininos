@@ -140,6 +140,7 @@ public class MenuJuego extends javax.swing.JPanel {
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new Juego(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
+        juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -147,6 +148,7 @@ public class MenuJuego extends javax.swing.JPanel {
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new Niveles(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
+        juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -154,6 +156,7 @@ public class MenuJuego extends javax.swing.JPanel {
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new Opciones(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
+        juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
