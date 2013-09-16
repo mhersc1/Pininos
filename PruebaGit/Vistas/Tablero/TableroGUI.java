@@ -4,6 +4,7 @@
  */
 package Vistas.Tablero;
 
+import LogicGame.Equipo;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -20,33 +21,50 @@ public class TableroGUI extends javax.swing.JPanel {
     private boolean tipoTablero;
     private CasillasGUI [][] casillas ;
     private int filas,columnas;
-    private final int anchoCasilla=34,alturaCasilla=34;
+    private final int anchoCasilla=70,alturaCasilla=70;
+    Equipo equipoHumano,equipoMaquina;
     public TableroGUI() {
         initComponents();
-
     }
 
     public TableroGUI(int filas,int columnas, boolean tipo) {
         initComponents();
-        int x,y;
+        
         setLayout(new java.awt.GridLayout(filas, columnas));
         this.tipoTablero = tipo;
         cargarImagenes();
         casillas = new CasillasGUI[filas][columnas];
         this.filas=filas;
         this.columnas=columnas;
+        //Cargar equipos!!!!
+        equipoHumano=new Equipo();
+        equipoMaquina=new Equipo();
+        inicializarCampo();
+        inicializarEquipoHumano();
+        inicializarEquipoMaquina();
+        
+    }
+    public void inicializarCampo(){
+        int x,y;
         for (int i = 0; i < filas; i++){
             for (int j = 0; j < columnas; j++){
                 casillas[i][j] = new CasillasGUI(this); 
                 casillas[i][j].setFondo(agua);
-                x = (i * 35)+1;
-                y = (j * 35)+1;
+                y = (i * (anchoCasilla+1))+1;
+                x = (j * (alturaCasilla+1))+1;
                 casillas[i][j].setBounds(x, y, anchoCasilla, alturaCasilla);
                 this.add(casillas[i][j]);
             }
         }
     }
-    
+    public void inicializarEquipoHumano(){
+        casillas[2][0]=new CasillasGUI(this);
+        casillas[2][0].setFondo(equipoHumano.godzilla.getImagen());
+        
+    }
+    public void inicializarEquipoMaquina(){
+        
+    }
     public boolean getTipoTablero(){
         return this.isTipoTablero();
     }

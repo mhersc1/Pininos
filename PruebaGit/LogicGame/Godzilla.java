@@ -1,5 +1,7 @@
 package LogicGame;
 
+import javax.swing.ImageIcon;
+
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.147FEAC2-35B2-46DD-2880-B81F3D332961]
@@ -10,10 +12,26 @@ public class Godzilla extends Personaje {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.36568848-2E61-C435-0815-F1C9D93F8DCC]
     // </editor-fold> 
+    public Godzilla(){
+        cargarImagen();
+    }
     public Godzilla (int PosX, int PosY, int Equipo) {
         super(PosX,PosY,Equipo);
     }
-
+    @Override
+    public ImageIcon cargarImagen(){
+        
+        return cargarFondo("../imagenes/jugadores/godzilla.jpg");
+    }
+    public ImageIcon cargarFondo(String ruta){
+        java.net.URL localizacion = Godzilla.class.getResource(ruta);
+        if (localizacion != null) {
+            return new ImageIcon(localizacion);
+        } else {
+            System.out.println("No se ha encontrado el archivo: " + ruta);
+            return null;
+        }
+    }
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.250415B5-B9E5-1460-BEAA-DC2BDA50C667]
     // </editor-fold> 

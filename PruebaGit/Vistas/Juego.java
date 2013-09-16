@@ -7,7 +7,9 @@ package Vistas;
 import Vistas.Tablero.TableroGUI;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import javax.swing.GroupLayout;
+import javax.swing.JLabel;
 
 /**
  *
@@ -28,7 +30,7 @@ public class Juego extends javax.swing.JPanel {
     public Juego(JuegoPrincipal juegoPrincipal) {
         //initComponents();
         this.juegoPrincipal=juegoPrincipal;
-    tableroGUI=new TableroGUI(5,8,true);
+        tableroGUI=new TableroGUI(5,8,true);
         myInitComponents();
     }
     /**
@@ -40,17 +42,14 @@ public class Juego extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
+        labelAtras = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 153));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.jpg"))); // NOI18N
-        jLabel7.setToolTipText("Volver atras");
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+        labelAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.jpg"))); // NOI18N
+        labelAtras.setToolTipText("Volver atras");
+        labelAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 Juego.this.mousePressed(evt);
             }
@@ -58,53 +57,37 @@ public class Juego extends javax.swing.JPanel {
 
         jLabel6.setText("VIDA SALVAJE");
 
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
-
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(127, 127, 127)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(63, 63, 63)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addGap(177, 177, 177))))
+                .addComponent(jLabel6)
+                .addGap(123, 123, 123)
+                .addComponent(labelAtras)
+                .addContainerGap(273, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(285, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel6))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(labelAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void mousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mousePressed
+        
+        juegoPrincipal.remove(jLabel6);
+        juegoPrincipal.remove(labelAtras);
         juegoPrincipal.remove(this);
+        juegoPrincipal.remove(tableroGUI);
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new MenuJuego(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
@@ -112,41 +95,68 @@ public class Juego extends javax.swing.JPanel {
     }//GEN-LAST:event_mousePressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel labelAtras;
     // End of variables declaration//GEN-END:variables
 
     private void myInitComponents() {
-
+        jLabel6=new JLabel();
+        labelAtras=new JLabel();
+        jLabel6.setText("Vida Salvaje");
+        setBackground(new java.awt.Color(0, 255, 153));
         javax.swing.GroupLayout tableroGUILayout = new javax.swing.GroupLayout(tableroGUI);
         tableroGUI.setLayout(tableroGUILayout);
         tableroGUILayout.setHorizontalGroup(
             tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0,700, Short.MAX_VALUE)
         );
         tableroGUILayout.setVerticalGroup(
             tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
+        
+        
 
+        labelAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.jpg"))); // NOI18N
+        labelAtras.setToolTipText("Volver atras");
+        labelAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Juego.this.mousePressed(evt);
+            }
+        });
+
+        
+        
+        
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(juegoPrincipal.getContentPane());
         juegoPrincipal.getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel6)
+                .addContainerGap(30, Short.MAX_VALUE))
+             
+             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(176, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(labelAtras)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel6)//Definimos tamaño del Label
+                .addGap(20)
                 .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(labelAtras)
+                .addGap(30)
+                )
         );
-        juegoPrincipal.pack();
+        //juegoPrincipal.pack();
+        
+        
     }
 }

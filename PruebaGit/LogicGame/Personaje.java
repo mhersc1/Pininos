@@ -1,5 +1,7 @@
 package LogicGame;
 
+import javax.swing.ImageIcon;
+
 
 // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
 // #[regen=yes,id=DCE.E8C27A59-5758-3C9A-6B4D-97FA012B1013]
@@ -10,7 +12,7 @@ public class Personaje {
     // #[regen=yes,id=DCE.887FEA6C-1C3B-AC79-0073-37B8085CFCB9]
     // </editor-fold> 
     private int Tipo;
-
+    private ImageIcon imagen;
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.1A9692EB-3967-DD67-1A85-CB4595DC9C5E]
     // </editor-fold> 
@@ -25,16 +27,20 @@ public class Personaje {
     // #[regen=yes,id=DCE.640F87B7-716A-3BE8-9D4A-638643CACA63]
     // </editor-fold> 
     public int Equipo;
-
+    public Personaje(){
+        
+    }
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.96602F46-9234-483B-B813-31C2E765ACAF]
     // </editor-fold> 
-    public Personaje (int PosX, int PosY, int Equipo) {
+    public Personaje (int PosX, int PosY,int Equipo) {
         this.PosX=PosX;
         this.PosY=PosY;
-        this.Equipo=Equipo;
     }
-
+    public ImageIcon cargarImagen(){
+        return imagen;
+    }
+    
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.E80109C0-B862-EF77-F72A-B96459D9AFA7]
     // </editor-fold> 
@@ -80,6 +86,14 @@ public class Personaje {
     // </editor-fold> 
     public void setTipo (int val) {
         this.Tipo = val;
+    }
+
+    public ImageIcon getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(ImageIcon imagen) {
+        this.imagen = imagen;
     }
 
 }
