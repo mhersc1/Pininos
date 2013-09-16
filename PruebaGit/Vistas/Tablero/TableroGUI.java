@@ -19,26 +19,29 @@ public class TableroGUI extends javax.swing.JPanel {
     private ImageIcon agua, tocado;
     private boolean tipoTablero;
     private CasillasGUI [][] casillas ;
-        
+    private int filas,columnas;
+    private final int anchoCasilla=34,alturaCasilla=34;
     public TableroGUI() {
         initComponents();
 
     }
 
-    public TableroGUI(int size, boolean tipo) {
+    public TableroGUI(int filas,int columnas, boolean tipo) {
         initComponents();
         int x,y;
-        setLayout(new java.awt.GridLayout(size, size));
+        setLayout(new java.awt.GridLayout(filas, columnas));
         this.tipoTablero = tipo;
         cargarImagenes();
-        casillas = new CasillasGUI[size][size];
-        for (int i = 0; i < size; i++){
-            for (int j = 0; j < size; j++){
+        casillas = new CasillasGUI[filas][columnas];
+        this.filas=filas;
+        this.columnas=columnas;
+        for (int i = 0; i < filas; i++){
+            for (int j = 0; j < columnas; j++){
                 casillas[i][j] = new CasillasGUI(this); 
                 casillas[i][j].setFondo(agua);
                 x = (i * 35)+1;
                 y = (j * 35)+1;
-                casillas[i][j].setBounds(x, y, 34, 34);
+                casillas[i][j].setBounds(x, y, anchoCasilla, alturaCasilla);
                 this.add(casillas[i][j]);
             }
         }
@@ -54,8 +57,9 @@ public class TableroGUI extends javax.swing.JPanel {
     }
     
     private void cargarImagenes() {
-        this.agua = this.cargarFondo("agua.jpg");
-        this.tocado = this.cargarFondo("tocado.jpg");
+        
+        this.agua = this.cargarFondo("../../imagenes/agua.jpg");
+        this.tocado = this.cargarFondo("../../imagenes/tocado.jpg");
     }
     
     protected static ImageIcon cargarFondo(String ruta) {
@@ -63,15 +67,15 @@ public class TableroGUI extends javax.swing.JPanel {
         if (localizacion != null) {
             return new ImageIcon(localizacion);
         } else {
-            System.err.println("No se ha encontrado el archivo: " + ruta);
+            System.out.println("No se ha encontrado el archivo: " + ruta);
             return null;
         }
     }
     
     public int[] getCoordenadas(CasillasGUI casilla) {
         int [] coordenadas = new int[2];
-        for (int i=0; i < this.casillas.length; i++) {
-            for (int j=0; j < this.casillas.length; j++) {
+        for (int i=0; i < filas; i++) {
+            for (int j=0; j < columnas; j++) {
                 if (this.casillas[i][j] == casilla) {
                     coordenadas[0] = i;
                     coordenadas[1] = j;
@@ -102,8 +106,7 @@ public class TableroGUI extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(0, 0, 0));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        setPreferredSize(new java.awt.Dimension(351, 351));
-   
+
     }                      
                      
 }

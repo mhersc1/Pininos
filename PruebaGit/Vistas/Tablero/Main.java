@@ -16,18 +16,18 @@ public class Main extends javax.swing.JFrame {
     }
                           
     private void initComponents() {
-        tableroGUI1 = new TableroGUI(10,true);
+        tableroGUI1 = new TableroGUI(5,8,true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         javax.swing.GroupLayout tableroGUI1Layout = new javax.swing.GroupLayout(tableroGUI1);
         tableroGUI1.setLayout(tableroGUI1Layout);
         tableroGUI1Layout.setHorizontalGroup(
             tableroGUI1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
         tableroGUI1Layout.setVerticalGroup(
             tableroGUI1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
+            .addGap(0, 200, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
