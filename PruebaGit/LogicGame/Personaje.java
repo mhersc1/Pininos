@@ -54,7 +54,7 @@ public class Personaje {
         
         return 0;
     }
-
+    //////////////hola que  hace
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.DDE6646D-6986-47BE-69D9-0FC402302F2E]
     // </editor-fold> 
