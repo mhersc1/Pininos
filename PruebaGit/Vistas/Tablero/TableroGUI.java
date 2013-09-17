@@ -33,6 +33,25 @@ public class TableroGUI extends javax.swing.JPanel {
 
     public TableroGUI(int filas,int columnas, boolean tipo) {
         initComponents();
+        tablero=new int[5][8];
+        for(int i =0;i <5;i++){
+            for(int j =0;j <8;j++){
+                tablero[i][j]=0;
+            }
+        }
+        //Equipo A:
+        tablero[0][0]=2;tablero[0][1]=1;
+        tablero[1][0]=3;tablero[1][1]=1;
+        tablero[2][0]=4;tablero[2][1]=1;
+        tablero[3][0]=3;tablero[3][1]=1;
+        tablero[4][0]=2;tablero[4][1]=1;
+        
+        //Equipo B:
+        tablero[0][6]=-1;tablero[0][7]=-2;
+        tablero[1][6]=-1;tablero[1][7]=-3;
+        tablero[2][6]=-1;tablero[2][7]=-4;
+        tablero[3][6]=-1;tablero[3][7]=-3;
+        tablero[4][6]=-1;tablero[4][7]=-2;
         
         setLayout(new java.awt.GridLayout(filas, columnas));
         this.tipoTablero = tipo;
@@ -62,9 +81,10 @@ public class TableroGUI extends javax.swing.JPanel {
         }
     }
     public void inicializarEquipoHumano(){
-        casillas[2][0]=new CasillasGUI(this);
-        casillas[2][0].setFondo(equipoHumano.godzilla.getImagen());
+        //casillas[2][0]=new CasillasGUI(this);
+        //casillas[2][0].setFondo(equipoHumano.godzilla.getImagen());
         
+    
     }
     public void inicializarEquipoMaquina(){
         
@@ -102,7 +122,7 @@ public class TableroGUI extends javax.swing.JPanel {
                     coordenadas[0] = i;
                     coordenadas[1] = j;
                     System.out.println("coordenada (i: "+i+" , "+ j+ ")");
-                    System.out.println("coordenada (i: "+i+" , "+ j+ ")");
+                    
                     
                 }
             }
