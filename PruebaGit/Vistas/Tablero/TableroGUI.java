@@ -17,6 +17,8 @@ import javax.swing.ImageIcon;
  * @author OMAR
  */
 public class TableroGUI extends javax.swing.JPanel {
+    private ImageIcon cocodriloA,gozillaA,hombreA,polloA;
+    private ImageIcon cocodriloB,gozillaB,hombreB,polloB;
     private ImageIcon agua, tocado;
     private boolean tipoTablero;
     private CasillasGUI [][] casillas ;
@@ -25,7 +27,38 @@ public class TableroGUI extends javax.swing.JPanel {
     private final int anchoCasilla=70,alturaCasilla=70;
     Equipo equipoHumano,equipoMaquina;
     
-    private int[][] tablero;
+    int turno_actual=100;//turnoA=100 ,turnoB=-100
+    int fila_actual,columna_actual;
+    
+    public int getTurno_actual() {
+        return turno_actual;
+    }
+
+    public void setTurno_actual(int turno_actual) {
+        this.turno_actual = turno_actual;
+    }
+    
+
+    public int getFila_actual() {
+        return fila_actual;
+    }
+
+    public void setFila_actual(int fila_actual) {
+        this.fila_actual = fila_actual;
+    }
+
+    public int getColumna_actual() {
+        return columna_actual;
+    }
+
+    public void setColumna_actual(int columna_actual) {
+        this.columna_actual = columna_actual;
+    }
+    private int[][] tabla;
+
+    public int[][] getTabla() {
+        return tabla;
+    }
     
     public TableroGUI() {
         initComponents();
@@ -33,25 +66,25 @@ public class TableroGUI extends javax.swing.JPanel {
 
     public TableroGUI(int filas,int columnas, boolean tipo) {
         initComponents();
-        tablero=new int[5][8];
+        tabla=new int[5][8];
         for(int i =0;i <5;i++){
             for(int j =0;j <8;j++){
-                tablero[i][j]=0;
+                tabla[i][j]=0;
             }
         }
         //Equipo A:
-        tablero[0][0]=2;tablero[0][1]=1;
-        tablero[1][0]=3;tablero[1][1]=1;
-        tablero[2][0]=4;tablero[2][1]=1;
-        tablero[3][0]=3;tablero[3][1]=1;
-        tablero[4][0]=2;tablero[4][1]=1;
+        tabla[0][0]=2;tabla[0][1]=1;
+        tabla[1][0]=3;tabla[1][1]=1;
+        tabla[2][0]=4;tabla[2][1]=1;
+        tabla[3][0]=3;tabla[3][1]=1;
+        tabla[4][0]=2;tabla[4][1]=1;
         
         //Equipo B:
-        tablero[0][6]=-1;tablero[0][7]=-2;
-        tablero[1][6]=-1;tablero[1][7]=-3;
-        tablero[2][6]=-1;tablero[2][7]=-4;
-        tablero[3][6]=-1;tablero[3][7]=-3;
-        tablero[4][6]=-1;tablero[4][7]=-2;
+        tabla[0][6]=-1;tabla[0][7]=-2;
+        tabla[1][6]=-1;tabla[1][7]=-3;
+        tabla[2][6]=-1;tabla[2][7]=-4;
+        tabla[3][6]=-1;tabla[3][7]=-3;
+        tabla[4][6]=-1;tabla[4][7]=-2;
         
         setLayout(new java.awt.GridLayout(filas, columnas));
         this.tipoTablero = tipo;
@@ -65,14 +98,38 @@ public class TableroGUI extends javax.swing.JPanel {
         inicializarCampo();
         inicializarEquipoHumano();
         inicializarEquipoMaquina();
+        pintar_tablero();
         
     }
+    void pintar_tablero(){
+        for(int i =0;i <5;i++){
+            for(int j =0;j <8;j++){
+                System.out.print(" "+tabla[i][j]+" ");
+            }
+            System.out.println(" ");
+        }
+    }
+    
     public void inicializarCampo(){
-        int x,y;
+        int x,y,valor=0;
+        
         for (int i = 0; i < filas; i++){
             for (int j = 0; j < columnas; j++){
                 casillas[i][j] = new CasillasGUI(this); 
                 casillas[i][j].setFondo(agua);
+                valor=tabla[i][j];
+                switch( valor){
+                    case -1: casillas[i][j].setFondo(polloB); break;
+                    case -2: casillas[i][j].setFondo(cocodriloB);break;
+                    case -3: casillas[i][j].setFondo(hombreB);break;
+                    case -4: casillas[i][j].setFondo(gozillaB);break;
+                    case 1: casillas[i][j].setFondo(polloA);break; 
+                    case 2: casillas[i][j].setFondo(cocodriloA);break;
+                    case 3: casillas[i][j].setFondo(hombreA);break;
+                    case 4: casillas[i][j].setFondo(gozillaA);break;
+                    default : casillas[i][j].setFondo(agua);  
+                    
+                }
                 y = (i * (anchoCasilla+1))+1;
                 x = (j * (alturaCasilla+1))+1;
                 casillas[i][j].setBounds(x, y, anchoCasilla, alturaCasilla);
@@ -80,6 +137,21 @@ public class TableroGUI extends javax.swing.JPanel {
             }
         }
     }
+    
+    boolean validarTuno(){
+        int fila=this.fila_actual;
+        int columna=this.columna_actual;
+        boolean suTurno=false;
+        if((tabla[fila][columna]>0 && turno_actual==100)||(tabla[fila][columna]<0 && turno_actual==-100)){
+            suTurno=true;
+            System.out.println("Es su turno");
+        }
+        return suTurno;
+    }
+    public int devolverValorFichaSeleccionada(){
+        return tabla[this.fila_actual][this.columna_actual];
+    }
+    
     public void inicializarEquipoHumano(){
         //casillas[2][0]=new CasillasGUI(this);
         //casillas[2][0].setFondo(equipoHumano.godzilla.getImagen());
@@ -102,6 +174,17 @@ public class TableroGUI extends javax.swing.JPanel {
         
         this.agua = this.cargarFondo("../../imagenes/agua.jpg");
         this.tocado = this.cargarFondo("../../imagenes/tocado.jpg");
+        
+        this.gozillaA=this.cargarFondo("../../imagenes_jugadores/godzillaA.jpg");
+        this.hombreA=this.cargarFondo("../../imagenes_jugadores/hombreA.gif");
+        this.cocodriloA=this.cargarFondo("../../imagenes_jugadores/cocodriloA.gif");
+        this.polloA=this.cargarFondo("../../imagenes_jugadores/polloA.gif");
+        
+        this.gozillaB=this.cargarFondo("../../imagenes_jugadores/godzillaA.jpg");
+        this.hombreB=this.cargarFondo("../../imagenes_jugadores/hombreA.gif");
+        this.cocodriloB=this.cargarFondo("../../imagenes_jugadores/cocodriloA.gif");
+        this.polloB=this.cargarFondo("../../imagenes_jugadores/polloA.gif");
+        
     }
     
     protected static ImageIcon cargarFondo(String ruta) {
@@ -122,7 +205,8 @@ public class TableroGUI extends javax.swing.JPanel {
                     coordenadas[0] = i;
                     coordenadas[1] = j;
                     System.out.println("coordenada (i: "+i+" , "+ j+ ")");
-                    
+                    this.columna_actual=j;
+                    this.fila_actual=i;
                     
                 }
             }

@@ -65,9 +65,22 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
     public void mouseEntered(MouseEvent e){}
     public void mouseExited(MouseEvent e){}
     public void mousePressed(MouseEvent e){
+            int valor=0;
             this.setCasillaMarcada(tablero.getCoordenadas((CasillasGUI)e.getComponent())); 
-            this.tablero.pintar(this.getCasillaMarcada()[0],this.getCasillaMarcada()[1]);
-            
+            if(tablero.validarTuno()){/*si has escogido una  ficha que corresponde al equipo con turno */
+               /*movimiento valido*/ 
+                valor=tablero.devolverValorFichaSeleccionada();
+                if(tablero.getTurno_actual()==100){
+                    
+                    
+                }
+                
+                if(tablero.getTurno_actual()==-100){
+                    /*juega Equipo B*/
+                }
+            }
+            //this.tablero.pintar(this.getCasillaMarcada()[0],this.getCasillaMarcada()[1]);
+            /******mas eventos*****/
     }
     public void mouseReleased(MouseEvent e){}
     
