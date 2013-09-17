@@ -7,7 +7,8 @@ import javax.swing.ImageIcon;
 // #[regen=yes,id=DCE.E8C27A59-5758-3C9A-6B4D-97FA012B1013]
 // </editor-fold> 
 public class Personaje {
-
+    
+    //OLA K ASE?
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.887FEA6C-1C3B-AC79-0073-37B8085CFCB9]
     // </editor-fold> 
