@@ -102,6 +102,7 @@ public class TableroGUI extends javax.swing.JPanel {
                     coordenadas[0] = i;
                     coordenadas[1] = j;
                     System.out.println("coordenada (i: "+i+" , "+ j+ ")");
+                    System.out.println("coordenada (i: "+i+" , "+ j+ ")");
                     
                 }
             }
