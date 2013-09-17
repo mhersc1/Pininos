@@ -20,9 +20,13 @@ public class TableroGUI extends javax.swing.JPanel {
     private ImageIcon agua, tocado;
     private boolean tipoTablero;
     private CasillasGUI [][] casillas ;
+    
     private int filas,columnas;
     private final int anchoCasilla=70,alturaCasilla=70;
     Equipo equipoHumano,equipoMaquina;
+    
+    private int[][] tablero;
+    
     public TableroGUI() {
         initComponents();
     }
@@ -97,6 +101,8 @@ public class TableroGUI extends javax.swing.JPanel {
                 if (this.casillas[i][j] == casilla) {
                     coordenadas[0] = i;
                     coordenadas[1] = j;
+                    System.out.println("coordenada (i: "+i+" , "+ j+ ")");
+                    
                 }
             }
         }

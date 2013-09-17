@@ -67,6 +67,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
     public void mousePressed(MouseEvent e){
             this.setCasillaMarcada(tablero.getCoordenadas((CasillasGUI)e.getComponent())); 
             this.tablero.pintar(this.getCasillaMarcada()[0],this.getCasillaMarcada()[1]);
+            System.out.println("ya presionaste");
     }
     public void mouseReleased(MouseEvent e){}
     
