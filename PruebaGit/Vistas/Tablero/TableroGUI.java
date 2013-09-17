@@ -17,9 +17,10 @@ import javax.swing.ImageIcon;
  * @author OMAR
  */
 public class TableroGUI extends javax.swing.JPanel {
+    public  int seleccionar=1;
     private ImageIcon cocodriloA,gozillaA,hombreA,polloA;
     private ImageIcon cocodriloB,gozillaB,hombreB,polloB;
-    private ImageIcon agua, tocado;
+    private ImageIcon agua, tocado, seleccion;
     private boolean tipoTablero;
     private CasillasGUI [][] casillas ;
     
@@ -29,6 +30,10 @@ public class TableroGUI extends javax.swing.JPanel {
     
     int turno_actual=100;//turnoA=100 ,turnoB=-100
     int fila_actual,columna_actual;
+    
+    
+    private int[][] tabla;
+    private int [][] tablaPosibilidades;
     
     public int getTurno_actual() {
         return turno_actual;
@@ -54,7 +59,7 @@ public class TableroGUI extends javax.swing.JPanel {
     public void setColumna_actual(int columna_actual) {
         this.columna_actual = columna_actual;
     }
-    private int[][] tabla;
+    
 
     public int[][] getTabla() {
         return tabla;
@@ -67,6 +72,28 @@ public class TableroGUI extends javax.swing.JPanel {
     public TableroGUI(int filas,int columnas, boolean tipo) {
         initComponents();
         tabla=new int[5][8];
+        tablaPosibilidades=new int[5][8];
+        inicializarTabla();
+        actualizaMat(true);
+        setLayout(new java.awt.GridLayout(filas, columnas));
+        this.tipoTablero = tipo;
+        cargarImagenes();
+        casillas = new CasillasGUI[filas][columnas];
+        this.filas=filas;
+        this.columnas=columnas;
+        //Cargar equipos!!!!
+        equipoHumano=new Equipo();
+        equipoMaquina=new Equipo();
+        inicializarCampo();//inicializar las casillas con  imagenes
+        inicializarEquipoHumano();
+        inicializarEquipoMaquina();
+        pintar_tablero(true);
+        
+    }
+    
+    
+    
+    void  inicializarTabla(){
         for(int i =0;i <5;i++){
             for(int j =0;j <8;j++){
                 tabla[i][j]=0;
@@ -85,27 +112,18 @@ public class TableroGUI extends javax.swing.JPanel {
         tabla[2][6]=-1;tabla[2][7]=-4;
         tabla[3][6]=-1;tabla[3][7]=-3;
         tabla[4][6]=-1;tabla[4][7]=-2;
-        
-        setLayout(new java.awt.GridLayout(filas, columnas));
-        this.tipoTablero = tipo;
-        cargarImagenes();
-        casillas = new CasillasGUI[filas][columnas];
-        this.filas=filas;
-        this.columnas=columnas;
-        //Cargar equipos!!!!
-        equipoHumano=new Equipo();
-        equipoMaquina=new Equipo();
-        inicializarCampo();
-        inicializarEquipoHumano();
-        inicializarEquipoMaquina();
-        pintar_tablero();
-        
     }
-    void pintar_tablero(){
+    
+    void pintar_tablero(boolean original){
         for(int i =0;i <5;i++){
             for(int j =0;j <8;j++){
-                System.out.print(" "+tabla[i][j]+" ");
+                if(original){
+                    System.out.print(" "+tabla[i][j]+" ");
+                }else{
+                    System.out.print(" "+tablaPosibilidades[i][j]+" ");
+                }
             }
+            
             System.out.println(" ");
         }
     }
@@ -137,6 +155,16 @@ public class TableroGUI extends javax.swing.JPanel {
             }
         }
     }
+    public void actualizaMat(boolean copiar){
+        for(int i=0;i<5;i++){
+            for(int j=0;j<8;j++){
+                if (copiar==true)
+                    tablaPosibilidades[i][j]=tabla[i][j];
+                else
+                    tabla[i][j]=tablaPosibilidades[i][j];
+            } 
+        } 
+    }	
     
     boolean validarTuno(){
         int fila=this.fila_actual;
@@ -151,6 +179,180 @@ public class TableroGUI extends javax.swing.JPanel {
     public int devolverValorFichaSeleccionada(){
         return tabla[this.fila_actual][this.columna_actual];
     }
+    /*public int devolverValorFichaSeleccionada(int f , int c){
+        return tabla[f][c];
+    }*/
+    
+    void marcarPosibilidades(int  tipoFicha,int fila,int colu){
+        switch(tipoFicha){
+            case  1:  posibilidad_PolloA(fila,colu);break;
+            case  2:  posibilidad_cocodriloA(fila,colu);break;
+            case  3:  posibilidad_humanoA(fila,colu);break;
+            case  4:  posibilidad_godzilla(fila,colu);break;   
+             /* equipo B, faltan metodos
+            case  -1:  posibilidad_PolloA(fila,colu);break;
+            case  -2:  posibilidad_cocodriloA(fila,colu);break;
+            case  -3:  posibilidad_humanoA(fila,colu);break;
+            case  -4:  posibilidad_godzilla(fila,colu);break;  */    
+        }
+    }
+    void  posibilidad_PolloA(int x,int y){
+        //this.tablaPosibilidades[a][b]=10;
+        for(int a=0;a<5;a++){
+            for(int b=0;b<8;b++){
+                if((b-y==0 && Math.abs(a-x)==1)||(a-x==0 && b-y==1)){
+                    if(tablaPosibilidades[a][b]<=0){
+                        tablaPosibilidades[a][b]=10;
+                    }
+                    
+                }
+            }
+        }
+       
+    }
+    
+    void  posibilidad_cocodriloA(int x,int y){//se  mueve  1  o dos casillas
+        
+        for(int a=0;a<5;a++){
+            for(int b=0;b<8;b++){
+                double  distancia=Math.hypot(Math.abs(a-x), Math.abs(b-y));
+                System.out.println("distancia: "+distancia);
+                if(distancia==1){
+                    System.out.println("(a,b)="+a+" ,"+b);
+                }
+                if((Math.abs(b-y)==0 || Math.abs(a-x)==0) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2)){
+                    if(tablaPosibilidades[a][b]<=0){
+                        tablaPosibilidades[a][b]=10;
+                    }
+                    
+                }
+            }
+        }
+    }
+    
+    void  posibilidad_humanoA(int x,int y){
+        for(int a=0;a<5;a++){
+            for(int b=0;b<8;b++){
+                if((a-x)!=0){
+                    if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
+                        if(tablaPosibilidades[a][b]<=0){
+                            tablaPosibilidades[a][b]=10;
+                        }
+                    
+                    }
+                }
+            }
+        }
+    }
+    
+    void posibilidad_godzilla(int x,int y){
+        for(int a=0;a<5;a++){
+            for(int b=0;b<8;b++){
+                double  distancia=Math.hypot(Math.abs(a-x), Math.abs(b-y));
+                System.out.println("distancia: "+distancia);
+                if(distancia==1){
+                    System.out.println("(a,b)="+a+" ,"+b);
+                }
+                if((Math.abs(b-y)==0 || Math.abs(a-x)==0) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2)){
+                    if(tablaPosibilidades[a][b]<=0){
+                        tablaPosibilidades[a][b]=10;
+                    }
+                    
+                }
+            }
+        }
+        for(int a=0;a<5;a++){
+            for(int b=0;b<8;b++){
+                if((a-x)!=0){
+                    if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
+                        if(tablaPosibilidades[a][b]<=0){
+                            tablaPosibilidades[a][b]=10;
+                        }
+                    
+                    }
+                }
+                
+            }
+        }
+        
+        
+        
+    }
+    void dibujarPosibilidades(){
+        int x,y,valor=0;
+        for(int i=0;i<5;i++){
+            for(int j=0;j<8;j++){
+                if (tablaPosibilidades[i][j]==10){
+                    System.out.println("se tiene que  pintar");    
+                    //casillas[i][j] = new CasillasGUI(this); 
+                    casillas[i][j].setFondo(seleccion);
+                    valor=tablaPosibilidades[i][j];
+                        switch( valor){
+                        case -1: casillas[i][j].setFondo(polloB); break;
+                        case -2: casillas[i][j].setFondo(cocodriloB);break;
+                        case -3: casillas[i][j].setFondo(hombreB);break;
+                        case -4: casillas[i][j].setFondo(gozillaB);break;
+                        case 1: casillas[i][j].setFondo(polloA);break; 
+                        case 2: casillas[i][j].setFondo(cocodriloA);break;
+                        case 3: casillas[i][j].setFondo(hombreA);break;
+                        case 4: casillas[i][j].setFondo(gozillaA);break;
+                        case 10: casillas[i][j].setFondo(seleccion);break;    
+                        default : casillas[i][j].setFondo(agua);  
+                    
+                    }
+                    /*y = (i * (anchoCasilla+1))+1;
+                    x = (j * (alturaCasilla+1))+1;
+                    casillas[i][j].setBounds(x, y, anchoCasilla, alturaCasilla);
+                    this.add(casillas[i][j]);*/
+                }
+                
+                } 
+            }
+        } 
+        
+        public boolean evaluarMovimiento(int f,int c){
+            boolean correcto=false;
+            for(int i=0;i<5;i++){
+                for(int j=0;j<8;j++){
+                    if (tablaPosibilidades[i][j]==10 && i==f && j==c){
+                        System.out.println("Movimiento Correcto");
+                        correcto=true;
+                    }
+                }
+            }
+            return correcto;
+        }
+        
+        void  establecer_nueva_posicion(int x,int y , int a , int  b){//a y b fila  y columna actuales
+            this.tabla[a][b]=this.tabla[x][y];
+            this.tabla[x][y]=0;
+            
+        }
+        void redibujarTablero(){
+            int x,y,valor=0;
+            System.out.println("se tiene que redibujar");   
+            for(int i=0;i<5;i++){
+                for(int j=0;j<8;j++){
+                        //casillas[i][j] = new CasillasGUI(this);  
+                        valor=tabla[i][j];
+                            switch( valor){
+                            case -1: casillas[i][j].setFondo(polloB); break;
+                            case -2: casillas[i][j].setFondo(cocodriloB);break;
+                            case -3: casillas[i][j].setFondo(hombreB);break;
+                            case -4: casillas[i][j].setFondo(gozillaB);break;
+                            case 1: casillas[i][j].setFondo(polloA);break; 
+                            case 2: casillas[i][j].setFondo(cocodriloA);break;
+                            case 3: casillas[i][j].setFondo(hombreA);break;
+                            case 4: casillas[i][j].setFondo(gozillaA);break;
+                            case 10: casillas[i][j].setFondo(seleccion);break;    
+                            default : casillas[i][j].setFondo(agua);  
+                    
+                        }                            
+                } 
+            }
+        }
+    
+    
     
     public void inicializarEquipoHumano(){
         //casillas[2][0]=new CasillasGUI(this);
@@ -184,6 +386,7 @@ public class TableroGUI extends javax.swing.JPanel {
         this.hombreB=this.cargarFondo("../../imagenes_jugadores/hombreA.gif");
         this.cocodriloB=this.cargarFondo("../../imagenes_jugadores/cocodriloA.gif");
         this.polloB=this.cargarFondo("../../imagenes_jugadores/polloA.gif");
+        this.seleccion=this.cargarFondo("../../imagenes_jugadores/seleccion.jpg");
         
     }
     
@@ -205,7 +408,7 @@ public class TableroGUI extends javax.swing.JPanel {
                     coordenadas[0] = i;
                     coordenadas[1] = j;
                     System.out.println("coordenada (i: "+i+" , "+ j+ ")");
-                    this.columna_actual=j;
+                    this.columna_actual=j;//por las puras?
                     this.fila_actual=i;
                     
                 }
