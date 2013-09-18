@@ -72,36 +72,73 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
     public void mousePressed(MouseEvent e){
             System.out.println("selecciona="+tablero.seleccionar);
             int valor=0;
-            this.setCasillaMarcada(tablero.getCoordenadas((CasillasGUI)e.getComponent())); 
-            switch(tablero.seleccionar){
+            ///////////
+            
+            int Equipo=0;//Equipo A:0 inicializa las blancas
+                         //Equipo B:1
+            this.setCasillaMarcada(tablero.getCoordenadas((CasillasGUI)e.getComponent()));
+                        
+            switch(tablero.seleccionar){//Casilla Selecta       : 0
+                                        //Casilla a seleccionar : 1
                 case 1:
                         System.out.println("selecciona una  ficha ***********************");
-                        if(tablero.validarTuno()){/*si has escogido una  ficha que corresponde al equipo con turno */
+                        //Por convencion empieza equipo humano
+                        /*si has escogido una  ficha que corresponde al equipo con turno */
                         /*movimiento valido*/ 
+                            
                             valor=tablero.devolverValorFichaSeleccionada();
-                            if(tablero.getTurno_actual()==100){
+                            if(tablero.restriccionA){
+                            if(valor<0){tablero.Equipo=1;
+                                        tablero.restriccionA=false;
+                                        tablero.restriccionB=true;
+                                }//clave!!
+                            }else{
+                            JOptionPane.showMessageDialog(null,"Movimiento ilegal");
+                            tablero.actualizaMat(true);
+                            tablero.redibujarTablero();
+                            tablero.repaint();         
+                            }
+                            
+                            System.out.println("rest"+tablero.restriccionA);
+                            System.out.println("res"+tablero.restriccionB);
+                            if(tablero.restriccionB){
+                            if(valor>0){tablero.Equipo=0;
+                                        tablero.restriccionB=false;
+                                        tablero.restriccionA=true;
+                                }//clave!!   
+                            }else{
+                            JOptionPane.showMessageDialog(null,"Movimiento ilegal");
+                            tablero.actualizaMat(true);
+                            tablero.redibujarTablero();
+                            tablero.repaint();         
+                            }
+                            
+                            System.out.println("rest"+tablero.restriccionA);
+                            System.out.println("rest"+tablero.restriccionA);
+                            ///
+                            System.out.println("Equipo"+tablero.Equipo);
+                            System.out.println("valor"+valor);
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
                                 casillaMarcadaAnterior[0]=casillaMarcada[0];
                                 casillaMarcadaAnterior[1]=casillaMarcada[1];
                                 tablero.dibujarPosibilidades();
                                 tablero.repaint();
-                                //System.out.println("seleccionar=2");
                                 tablero.seleccionar=2;//tiene que elegir sgte posicion
-                                
-                            }
-        
-                            if(tablero.getTurno_actual()==-100){
-                            /*juega Equipo B*/
-                            }
-                            System.out.println("selecciona="+tablero.seleccionar);
-                         };break;
+                            
+                         System.out.println("selecciona="+tablero.seleccionar);
+                         ;break;
                     
                 case 2:  
                     
-                        System.out.println("muever una  ficha **************************");                         
-                        if(tablero.evaluarMovimiento(casillaMarcada[0],casillaMarcada[1])){
+                        System.out.println("muever una  ficha **************************");        
+                        System.out.println("equipo"+tablero.Equipo);        
+                        if(tablero.evaluarMovimiento(casillaMarcada[0],casillaMarcada[1],tablero.Equipo)){
                             tablero.establecer_nueva_posicion(casillaMarcadaAnterior[0],casillaMarcadaAnterior[1], casillaMarcada[0],casillaMarcada[1]);
+                            System.out.println("anteriorx"+casillaMarcadaAnterior[0]);
+                            System.out.println("anteriorx"+casillaMarcadaAnterior[1]);
+                            System.out.println("anteriorx"+casillaMarcada[0]);
+                            System.out.println("anteriorx"+casillaMarcada[1]);
                             tablero.redibujarTablero();
                             tablero.repaint();                         
                             tablero.actualizaMat(true);//copiar a la posibilidades
@@ -109,6 +146,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             tablero.pintar_tablero(true);
                             System.out.println("matriz tablaposibles actualizada");
                             tablero.pintar_tablero(false);
+                            
                             tablero.seleccionar=1;//vuelve a seleccionar;
                         }else{
                             JOptionPane.showMessageDialog(null,"Movimiento ilegal");
@@ -119,9 +157,11 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                              tablero.seleccionar=1;
                         }       
                         ;break;
-                default: System.out.println("que fue default");   
+                default: System.out.println("ola k ase?");   
                       
         }
+        
+            
             //this.tablero.pintar(this.getCasillaMarcada()[0],this.getCasillaMarcada()[1]);
             /******mas eventos*****/
     }
