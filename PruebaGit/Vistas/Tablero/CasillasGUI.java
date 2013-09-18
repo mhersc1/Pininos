@@ -87,31 +87,20 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                         /*movimiento valido*/ 
                             
                             valor=tablero.devolverValorFichaSeleccionada();
-                            if(tablero.restriccionA){
+                            
                             if(valor<0){tablero.Equipo=1;
                                         tablero.restriccionA=false;
                                         tablero.restriccionB=true;
                                 }//clave!!
-                            }else{
-                            JOptionPane.showMessageDialog(null,"Movimiento ilegal");
-                            tablero.actualizaMat(true);
-                            tablero.redibujarTablero();
-                            tablero.repaint();         
-                            }
                             
                             System.out.println("rest"+tablero.restriccionA);
                             System.out.println("res"+tablero.restriccionB);
-                            if(tablero.restriccionB){
+                            
                             if(valor>0){tablero.Equipo=0;
                                         tablero.restriccionB=false;
                                         tablero.restriccionA=true;
                                 }//clave!!   
-                            }else{
-                            JOptionPane.showMessageDialog(null,"Movimiento ilegal");
-                            tablero.actualizaMat(true);
-                            tablero.redibujarTablero();
-                            tablero.repaint();         
-                            }
+                            
                             
                             System.out.println("rest"+tablero.restriccionA);
                             System.out.println("rest"+tablero.restriccionA);
