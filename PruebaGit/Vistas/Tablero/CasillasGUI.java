@@ -23,6 +23,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
     private static int [] casillaMarcada = new int[2];
     //private int seleccionar=1;
     private static int [] casillaMarcadaAnterior = new int[2];
+    private  int  turno= 100 ;// -100 equipo  B
     
     public CasillasGUI() {        
         // este constructor no se usar&aacute;, se deja para poder crear el bean.        
@@ -76,8 +77,11 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
             
             int Equipo=0;//Equipo A:0 inicializa las blancas
                          //Equipo B:1
+            
             this.setCasillaMarcada(tablero.getCoordenadas((CasillasGUI)e.getComponent()));
-                        
+             
+            if(tablero.hayGanador()==0){
+            
             switch(tablero.seleccionar){//Casilla Selecta       : 0
                                         //Casilla a seleccionar : 1
                 case 1:
@@ -99,7 +103,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             if(valor>0){tablero.Equipo=0;
                                         tablero.restriccionB=false;
                                         tablero.restriccionA=true;
-                                }//clave!!   
+                                }
                             
                             
                             System.out.println("rest"+tablero.restriccionA);
@@ -149,7 +153,13 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                 default: System.out.println("ola k ase?");   
                       
         }
-        
+        }else{
+                if(tablero.hayGanador()==4){
+                    JOptionPane.showMessageDialog(null,"Gana  Jugador A");
+                }else{
+                    JOptionPane.showMessageDialog(null,"Gana  Jugador B");
+                }
+            }
             
             //this.tablero.pintar(this.getCasillaMarcada()[0],this.getCasillaMarcada()[1]);
             /******mas eventos*****/

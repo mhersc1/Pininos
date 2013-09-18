@@ -377,6 +377,25 @@ public class TableroGUI extends javax.swing.JPanel {
         }
     
     
+    public int   hayGanador(){
+        int  ganador = 0;
+        int jugadorA=  0;
+        int jugadorB=  0;        
+        int  valor=0;
+        for(int i=0;i<5;i++){
+                for(int j=0;j<8;j++){                     
+                        valor=tabla[i][j];
+                        if(valor==-4 ){
+                            jugadorB=valor;//gana
+                        }   
+                        if(valor==4){
+                            jugadorA=valor;
+                        }   
+                } 
+         }
+        ganador=jugadorA +jugadorB;
+        return  ganador;
+    }
     
     public void inicializarEquipoHumano(){
         //casillas[2][0]=new CasillasGUI(this);
