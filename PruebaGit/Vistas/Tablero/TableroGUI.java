@@ -75,19 +75,17 @@ public class TableroGUI extends javax.swing.JPanel {
 
     public TableroGUI(int filas,int columnas, boolean tipo) {
         initComponents();
-        tabla=new int[5][8];
-        tablaPosibilidades=new int[5][8];
+        tabla=new int[5][8];//El tablero actual!!
+        tablaPosibilidades=new int[5][8];//indica las posibilidaddes de movimiento
         inicializarTabla();
         actualizaMat(true);
         setLayout(new java.awt.GridLayout(filas, columnas));
         this.tipoTablero = tipo;
         cargarImagenes();
-        casillas = new CasillasGUI[filas][columnas];
+        casillas = new CasillasGUI[filas][columnas];//Tablero de jpanels
         this.filas=filas;
         this.columnas=columnas;
         //Cargar equipos!!!!
-        equipoHumano=new Equipo();
-        equipoMaquina=new Equipo();
         inicializarCampo();//inicializar las casillas con  imagenes
         inicializarEquipoHumano();
         inicializarEquipoMaquina();
@@ -417,18 +415,18 @@ public class TableroGUI extends javax.swing.JPanel {
     
     private void cargarImagenes() {
         
-        this.agua = this.cargarFondo("../../imagenes/agua.jpg");
+        this.agua = this.cargarFondo("../../imagenes/fondo.jpg");
         this.tocado = this.cargarFondo("../../imagenes/tocado.jpg");
         
         this.gozillaA=this.cargarFondo("../../imagenes_jugadores/godzillaA.jpg");
-        this.hombreA=this.cargarFondo("../../imagenes_jugadores/hombreA.gif");
-        this.cocodriloA=this.cargarFondo("../../imagenes_jugadores/cocodriloA.gif");
-        this.polloA=this.cargarFondo("../../imagenes_jugadores/polloA.gif");
+        this.hombreA=this.cargarFondo("../../imagenes_jugadores/hombreA.jpg");
+        this.cocodriloA=this.cargarFondo("../../imagenes_jugadores/cocodriloA.jpg");
+        this.polloA=this.cargarFondo("../../imagenes_jugadores/polloA.jpg");
         
-        this.gozillaB=this.cargarFondo("../../imagenes_jugadores/godzillaA.jpg");
-        this.hombreB=this.cargarFondo("../../imagenes_jugadores/hombreA.gif");
-        this.cocodriloB=this.cargarFondo("../../imagenes_jugadores/cocodriloA.gif");
-        this.polloB=this.cargarFondo("../../imagenes_jugadores/polloA.gif");
+        this.gozillaB=this.cargarFondo("../../imagenes_jugadores/godzillaB.jpg");
+        this.hombreB=this.cargarFondo("../../imagenes_jugadores/hombreB.jpg");
+        this.cocodriloB=this.cargarFondo("../../imagenes_jugadores/cocodriloB.jpg");
+        this.polloB=this.cargarFondo("../../imagenes_jugadores/polloB.jpg");
         this.seleccion=this.cargarFondo("../../imagenes_jugadores/seleccion.jpg");
         
     }

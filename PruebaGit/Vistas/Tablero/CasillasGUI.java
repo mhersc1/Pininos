@@ -142,7 +142,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             
                             tablero.seleccionar=1;//vuelve a seleccionar;
                         }else{
-                            JOptionPane.showMessageDialog(null,"Movimiento ilegal");
+                            System.out.println("Movimiento ilegal!!!");
                             tablero.actualizaMat(true);
                             tablero.redibujarTablero();
                             tablero.repaint();                         

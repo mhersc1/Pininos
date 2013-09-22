@@ -7,6 +7,7 @@ package Vistas;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 /**
  *
@@ -19,6 +20,7 @@ public class JuegoPrincipal extends javax.swing.JFrame {
      */
     private MenuJuego panelMenuJuego;
     public JuegoPrincipal() {
+        
         initComponents();
         this.setLayout(new FlowLayout());
         panelMenuJuego=new MenuJuego(this);//Se crea nueva instancia
@@ -70,7 +72,10 @@ public class JuegoPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(JuegoPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+         // Cambio de look
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception e) { e.printStackTrace(); System.err.println("\n WindowsLookAndFeel problem! \n"); }
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
