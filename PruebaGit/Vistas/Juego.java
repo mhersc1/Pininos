@@ -6,6 +6,7 @@ package Vistas;
 
 import Vistas.Tablero.TableroGUI;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.GroupLayout;
@@ -18,6 +19,13 @@ import javax.swing.JLabel;
 public class Juego extends javax.swing.JPanel {
     private JuegoPrincipal juegoPrincipal;
     private TableroGUI tableroGUI;
+    private int tipoJuego;
+    private int nivel;
+    public static final int HUMANOVSHUMANO=1;
+    public static final int HUMANOVSMAQUINA=2;
+    public static final int NIVELFACIL=1;
+    public static final int NIVELMEDIO=2;
+    public static final int NIVELDIFICIL=3;
     /**
      * Creates new form Juego
      */
@@ -26,12 +34,24 @@ public class Juego extends javax.swing.JPanel {
         tableroGUI=new TableroGUI(5,8,true);
         myInitComponents();
     }
-
-    public Juego(JuegoPrincipal juegoPrincipal) {
+    public Juego(JuegoPrincipal juegoPrincipal,int tipoJuego) {
         //initComponents();
+        //Entra aqui si es humano
         this.juegoPrincipal=juegoPrincipal;
+        this.tipoJuego=tipoJuego;
         tableroGUI=new TableroGUI(5,8,true);
         myInitComponents();
+        this.setBackground(new Color(0, 255, 153));
+        juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
+    }
+    public Juego(JuegoPrincipal juegoPrincipal,int tipoJuego,int nivel) {
+        //initComponents();
+        this.juegoPrincipal=juegoPrincipal;
+        this.tipoJuego=tipoJuego;
+        this.nivel=nivel;
+        tableroGUI=new TableroGUI(5,8,true);
+        myInitComponents();
+        juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -44,10 +64,14 @@ public class Juego extends javax.swing.JPanel {
 
         labelAtras = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        labelReiniciar = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 153));
 
+        labelAtras.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelAtras.setForeground(new java.awt.Color(102, 0, 102));
         labelAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.jpg"))); // NOI18N
+        labelAtras.setText("Atras");
         labelAtras.setToolTipText("Volver atras");
         labelAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -55,18 +79,28 @@ public class Juego extends javax.swing.JPanel {
             }
         });
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("VIDA SALVAJE");
+
+        labelReiniciar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        labelReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recargar.jpg"))); // NOI18N
+        labelReiniciar.setText("Reiniciar Juego");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(jLabel6)
-                .addGap(123, 123, 123)
-                .addComponent(labelAtras)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(jLabel6)
+                        .addGap(123, 123, 123)
+                        .addComponent(labelAtras))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(labelReiniciar)))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +112,9 @@ public class Juego extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(labelAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(32, 32, 32)
+                .addComponent(labelReiniciar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -86,6 +122,7 @@ public class Juego extends javax.swing.JPanel {
         
         juegoPrincipal.remove(jLabel6);
         juegoPrincipal.remove(labelAtras);
+        juegoPrincipal.remove(labelReiniciar);
         juegoPrincipal.remove(this);
         juegoPrincipal.remove(tableroGUI);
         juegoPrincipal.setLayout(new FlowLayout());
@@ -93,16 +130,26 @@ public class Juego extends javax.swing.JPanel {
         juegoPrincipal.pack();
         juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_mousePressed
-
+     private void mousePressedReiniciar(java.awt.event.MouseEvent evt) {                              
+        juegoPrincipal.remove(this);
+        juegoPrincipal.remove(tableroGUI);
+        juegoPrincipal.setLayout(new FlowLayout());
+        juegoPrincipal.add(new Juego(juegoPrincipal,tipoJuego),BorderLayout.CENTER);
+        juegoPrincipal.pack();
+        juegoPrincipal.setLocationRelativeTo(null);
+        }          
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel labelAtras;
+    private javax.swing.JLabel labelReiniciar;
     // End of variables declaration//GEN-END:variables
 
     private void myInitComponents() {
         jLabel6=new JLabel();
         labelAtras=new JLabel();
+        labelReiniciar=new JLabel(); 
         jLabel6.setText("Vida Salvaje");
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16));
         setBackground(new java.awt.Color(0, 255, 153));
         javax.swing.GroupLayout tableroGUILayout = new javax.swing.GroupLayout(tableroGUI);
         tableroGUI.setLayout(tableroGUILayout);
@@ -118,20 +165,24 @@ public class Juego extends javax.swing.JPanel {
         
 
         labelAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.jpg"))); // NOI18N
-        labelAtras.setToolTipText("Volver atras");
+        labelAtras.setText("Volver atras");
         labelAtras.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 Juego.this.mousePressed(evt);
             }
         });
-
-        
-        
-        
+        labelReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recargar.jpg"))); // NOI18N
+        labelReiniciar.setText("Reiniciar Juego");
+        labelReiniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                Juego.this.mousePressedReiniciar(evt);
+            }
+        });
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(juegoPrincipal.getContentPane());
         juegoPrincipal.getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(30)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel6)
                 .addContainerGap(30, Short.MAX_VALUE))
@@ -141,18 +192,27 @@ public class Juego extends javax.swing.JPanel {
                 .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addComponent(labelReiniciar)
+                .addContainerGap(40, Short.MAX_VALUE)
                 .addComponent(labelAtras)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(40,Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(50)
                 .addComponent(jLabel6)//Definimos tamaño del Label
-                .addGap(20)
+                .addGap(40)
                 .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(labelAtras)
-                .addGap(30)
+                .addGroup(layout.createParallelGroup()
+                    .addGap(30)
+                    .addGap(30)
+                    .addComponent(labelReiniciar)
+                    .addGap(30)
+                    .addComponent(labelAtras)
+                    .addGap(50)
+                )
                 )
         );
         //juegoPrincipal.pack();

@@ -90,7 +90,7 @@ public class TableroGUI extends javax.swing.JPanel {
         inicializarEquipoHumano();
         inicializarEquipoMaquina();
         pintar_tablero(true);
-        
+        this.setBackground(new Color(0, 255, 153));
     }
     
     
