@@ -46,10 +46,11 @@ public class MenuJuego extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BotonJuegoHumano = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        BotonJuegoMaquina = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 255, 153));
 
@@ -57,12 +58,12 @@ public class MenuJuego extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BIENVENIDO AL JUEGO POR SUPERVIVENCIA");
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 153));
-        jButton1.setFont(new java.awt.Font("Monospaced", 1, 12)); // NOI18N
-        jButton1.setText("Iniciar el juego");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        BotonJuegoHumano.setBackground(new java.awt.Color(0, 255, 153));
+        BotonJuegoHumano.setFont(new java.awt.Font("Monospaced", 1, 12)); // NOI18N
+        BotonJuegoHumano.setText("Iniciar  juego");
+        BotonJuegoHumano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                BotonJuegoHumanoActionPerformed(evt);
             }
         });
 
@@ -93,6 +94,13 @@ public class MenuJuego extends javax.swing.JPanel {
             }
         });
 
+        BotonJuegoMaquina.setText("Juego con la maquina");
+        BotonJuegoMaquina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonJuegoMaquinaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,45 +111,48 @@ public class MenuJuego extends javax.swing.JPanel {
                         .addGap(31, 31, 31)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(15, 15, 15)
-                                        .addComponent(jButton4))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jButton2))))
-                            .addComponent(jButton1))))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addGap(171, 171, 171)
+                        .addComponent(jButton4))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jButton3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(172, 172, 172)
+                        .addComponent(jButton2)))
+                .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(BotonJuegoHumano)
+                    .addComponent(BotonJuegoMaquina))
+                .addGap(138, 138, 138))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
+                .addComponent(BotonJuegoHumano)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BotonJuegoMaquina)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addComponent(jButton3)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
                 .addContainerGap(52, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void BotonJuegoHumanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonJuegoHumanoActionPerformed
         juegoPrincipal.remove(this);
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new Juego(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
         juegoPrincipal.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_BotonJuegoHumanoActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         juegoPrincipal.remove(this);
@@ -162,6 +173,10 @@ public class MenuJuego extends javax.swing.JPanel {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         juegoPrincipal.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void BotonJuegoMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonJuegoMaquinaActionPerformed
+        
+    }//GEN-LAST:event_BotonJuegoMaquinaActionPerformed
     public void paint(Graphics g){
         if(imagen!=null){
             g.drawImage(imagen, 0, 0, this);
@@ -174,7 +189,8 @@ public class MenuJuego extends javax.swing.JPanel {
     }
             
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BotonJuegoHumano;
+    private javax.swing.JButton BotonJuegoMaquina;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
