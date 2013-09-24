@@ -29,7 +29,7 @@ public class TableroGUI extends javax.swing.JPanel {
     private final int anchoCasilla=70,alturaCasilla=70;
     Equipo equipoHumano,equipoMaquina;
     //Por mientras
-    int Equipo=0;//Equipo A:0, Equipo B:1
+    int Equipo=0;//Equipo A:0, Equipo B:1 Empiezan las amarillas
     boolean restriccionA=true;
     boolean restriccionB=false;
     int turno_actual=100;//turnoA=100 ,turnoB=-100
@@ -37,7 +37,7 @@ public class TableroGUI extends javax.swing.JPanel {
     
     
     private int[][] tabla;
-    private int [][] tablaPosibilidades;
+    public int [][] tablaPosibilidades;
     
     public int getTurno_actual() {
         return turno_actual;
@@ -179,14 +179,16 @@ public class TableroGUI extends javax.swing.JPanel {
         return suTurno;
     }
     public int devolverValorFichaSeleccionada(){
+        System.out.println("Ficha seleccionada"+tabla[this.fila_actual][this.columna_actual]);
         return tabla[this.fila_actual][this.columna_actual];
+        
     }
     /*public int devolverValorFichaSeleccionada(int f , int c){
         return tabla[f][c];
     }*/
     
     void marcarPosibilidades(int  tipoFicha,int fila,int colu){
-        switch(tipoFicha){
+            switch(tipoFicha){
             case  1:  posibilidad_Pollo(fila,colu,0);break;
             case  2:  posibilidad_cocodrilo(fila,colu,0);break;
             case  3:  posibilidad_humano(fila,colu,0);break;

@@ -97,6 +97,8 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                                         tablero.restriccionA=false;
                                         tablero.restriccionB=true;
                                         
+                                        
+                              
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
                                 casillaMarcadaAnterior[0]=casillaMarcada[0];
@@ -143,19 +145,29 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             tablero.redibujarTablero();
                             tablero.repaint();                         
                             tablero.actualizaMat(true);//copiar a la posibilidades
-
+                            
                             tablero.pintar_tablero(true);
 
                             tablero.pintar_tablero(false);
                             
                             tablero.seleccionar=1;//vuelve a seleccionar;
                         }else{
-                          
+                            if(tablero.tablaPosibilidades[casillaMarcada[0]][casillaMarcada[1]]==10 && tablero.restriccionA){
                             tablero.actualizaMat(true);
                             tablero.redibujarTablero();
                             tablero.repaint();                         
-                            
-                             tablero.seleccionar=1;
+                            tablero.restriccionA=true;
+                            tablero.restriccionB=false;
+                            tablero.seleccionar=1;//vuelve a seleccionar
+                            }
+                            if(tablero.tablaPosibilidades[casillaMarcada[1]][casillaMarcada[1]]==20 && tablero.restriccionB){
+                            tablero.actualizaMat(true);
+                            tablero.redibujarTablero();
+                            tablero.repaint();                         
+                            tablero.restriccionA=false;
+                            tablero.restriccionB=true;
+                            tablero.seleccionar=1;
+                            }
                         }       
                         ;break;
                 default: System.out.println("ola k ase?");   
