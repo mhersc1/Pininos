@@ -131,6 +131,9 @@ public class Juego extends javax.swing.JPanel {
         juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_mousePressed
      private void mousePressedReiniciar(java.awt.event.MouseEvent evt) {                              
+        juegoPrincipal.remove(jLabel6);
+        juegoPrincipal.remove(labelAtras);
+        juegoPrincipal.remove(labelReiniciar);
         juegoPrincipal.remove(this);
         juegoPrincipal.remove(tableroGUI);
         juegoPrincipal.setLayout(new FlowLayout());
