@@ -174,7 +174,7 @@ public class TableroGUI extends javax.swing.JPanel {
         boolean suTurno=false;
         if((tabla[fila][columna]>0 && turno_actual==100)||(tabla[fila][columna]<0 && turno_actual==-100)){
             suTurno=true;
-            System.out.println("Es su turno");
+
         }
         return suTurno;
     }

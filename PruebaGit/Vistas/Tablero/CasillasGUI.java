@@ -66,12 +66,12 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
     }
     
     public void mouseClicked(MouseEvent e){
-        //System.out.println("segundo click");
+        
     }
     public void mouseEntered(MouseEvent e){}
     public void mouseExited(MouseEvent e){}
     public void mousePressed(MouseEvent e){
-            System.out.println("selecciona="+tablero.seleccionar);
+          
             int valor=0;
             ///////////
             
@@ -85,32 +85,35 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
             switch(tablero.seleccionar){//Casilla Selecta       : 0
                                         //Casilla a seleccionar : 1
                 case 1:
-                        System.out.println("selecciona una  ficha ***********************");
+                   
                         //Por convencion empieza equipo humano
                         /*si has escogido una  ficha que corresponde al equipo con turno */
                         /*movimiento valido*/ 
                             
                             valor=tablero.devolverValorFichaSeleccionada();
                             
-                            if(valor<0){tablero.Equipo=1;
+                            if(valor>0 && tablero.restriccionA){tablero.Equipo=0;
+                            //JOptionPane.showMessageDialog(null,"  Jugador A");
                                         tablero.restriccionA=false;
                                         tablero.restriccionB=true;
+                                        System.out.println("A"+tablero.restriccionA);
+                                        System.out.println("B"+tablero.restriccionB);
+
                                 }//clave!!
                             
-                            System.out.println("rest"+tablero.restriccionA);
-                            System.out.println("res"+tablero.restriccionB);
-                            
-                            if(valor>0){tablero.Equipo=0;
+                                  
+                            if(valor<0 && tablero.restriccionB){tablero.Equipo=1;
+                                        JOptionPane.showMessageDialog(null,"  Jugador B");
                                         tablero.restriccionB=false;
                                         tablero.restriccionA=true;
+                                        System.out.println("A"+tablero.restriccionA);
+                                        System.out.println("B"+tablero.restriccionB);
                                 }
                             
                             
-                            System.out.println("rest"+tablero.restriccionA);
-                            System.out.println("rest"+tablero.restriccionA);
+                     
                             ///
-                            System.out.println("Equipo"+tablero.Equipo);
-                            System.out.println("valor"+valor);
+
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
                                 casillaMarcadaAnterior[0]=casillaMarcada[0];
@@ -119,25 +122,21 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                                 tablero.repaint();
                                 tablero.seleccionar=2;//tiene que elegir sgte posicion
                             
-                         System.out.println("selecciona="+tablero.seleccionar);
+
                          ;break;
                     
                 case 2:  
                     
-                        System.out.println("muever una  ficha **************************");        
-                        System.out.println("equipo"+tablero.Equipo);        
+       
                         if(tablero.evaluarMovimiento(casillaMarcada[0],casillaMarcada[1],tablero.Equipo)){
                             tablero.establecer_nueva_posicion(casillaMarcadaAnterior[0],casillaMarcadaAnterior[1], casillaMarcada[0],casillaMarcada[1]);
-                            System.out.println("anteriorx"+casillaMarcadaAnterior[0]);
-                            System.out.println("anteriorx"+casillaMarcadaAnterior[1]);
-                            System.out.println("anteriorx"+casillaMarcada[0]);
-                            System.out.println("anteriorx"+casillaMarcada[1]);
+
                             tablero.redibujarTablero();
                             tablero.repaint();                         
                             tablero.actualizaMat(true);//copiar a la posibilidades
-                            System.out.println("matriz tabla");
+
                             tablero.pintar_tablero(true);
-                            System.out.println("matriz tablaposibles actualizada");
+
                             tablero.pintar_tablero(false);
                             
                             tablero.seleccionar=1;//vuelve a seleccionar;
