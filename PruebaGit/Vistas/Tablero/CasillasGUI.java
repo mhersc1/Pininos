@@ -96,24 +96,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             //JOptionPane.showMessageDialog(null,"  Jugador A");
                                         tablero.restriccionA=false;
                                         tablero.restriccionB=true;
-                                        System.out.println("A"+tablero.restriccionA);
-                                        System.out.println("B"+tablero.restriccionB);
-
-                                }//clave!!
-                            
-                                  
-                            if(valor<0 && tablero.restriccionB){tablero.Equipo=1;
-                                        JOptionPane.showMessageDialog(null,"  Jugador B");
-                                        tablero.restriccionB=false;
-                                        tablero.restriccionA=true;
-                                        System.out.println("A"+tablero.restriccionA);
-                                        System.out.println("B"+tablero.restriccionB);
-                                }
-                            
-                            
-                     
-                            ///
-
+                                        
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
                                 casillaMarcadaAnterior[0]=casillaMarcada[0];
@@ -121,13 +104,39 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                                 tablero.dibujarPosibilidades();
                                 tablero.repaint();
                                 tablero.seleccionar=2;//tiene que elegir sgte posicion
+                                        System.out.println("A"+tablero.restriccionA);
+                                        System.out.println("B"+tablero.restriccionB);
+                                }//clave!!
+                            
+                                  
+                            if(valor<0 && tablero.restriccionB){tablero.Equipo=1;
+                                       // JOptionPane.showMessageDialog(null,"  Jugador B");
+                                        tablero.restriccionB=false;
+                                        tablero.restriccionA=true;
+                                        
+                                tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
+                                tablero.pintar_tablero(false);
+                                casillaMarcadaAnterior[0]=casillaMarcada[0];
+                                casillaMarcadaAnterior[1]=casillaMarcada[1];
+                                tablero.dibujarPosibilidades();
+                                tablero.repaint();
+                                tablero.seleccionar=2;//tiene que elegir sgte posicion
+                                        System.out.println("A"+tablero.restriccionA);
+                                        System.out.println("B"+tablero.restriccionB);
+
+                                }//clave!!
+                            
+                            
+                     
+                            ///
+
+
                             
 
                          ;break;
                     
                 case 2:  
                     
-       
                         if(tablero.evaluarMovimiento(casillaMarcada[0],casillaMarcada[1],tablero.Equipo)){
                             tablero.establecer_nueva_posicion(casillaMarcadaAnterior[0],casillaMarcadaAnterior[1], casillaMarcada[0],casillaMarcada[1]);
 
@@ -141,7 +150,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             
                             tablero.seleccionar=1;//vuelve a seleccionar;
                         }else{
-                            System.out.println("Movimiento ilegal!!!");
+                          
                             tablero.actualizaMat(true);
                             tablero.redibujarTablero();
                             tablero.repaint();                         
