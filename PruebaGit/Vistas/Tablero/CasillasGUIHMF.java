@@ -82,8 +82,8 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
              
             if(tablero.hayGanador()==0){
             
-            switch(tablero.seleccionar){//Casilla Selecta       : 0
-                                        //Casilla a seleccionar : 1
+            switch(tablero.seleccionar){//Casilla Selecta       : 1
+                                        //Casilla a seleccionar : 2
                 case 1:
                    
                         //Por convencion empieza equipo humano
@@ -110,29 +110,12 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
                                         System.out.println("B"+tablero.restriccionB);
                                 }//clave!!
                             
+   
                                   
-                            if(valor<0 && tablero.restriccionB){tablero.Equipo=1;
-                                       // JOptionPane.showMessageDialog(null,"  Jugador B");
-                                        tablero.restriccionB=false;
-                                        tablero.restriccionA=true;
-                                        
-                                tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
-                                tablero.pintar_tablero(false);
-                                casillaMarcadaAnterior[0]=casillaMarcada[0];
-                                casillaMarcadaAnterior[1]=casillaMarcada[1];
-                                tablero.dibujarPosibilidades();
-                                tablero.repaint();
-                                tablero.seleccionar=2;//tiene que elegir sgte posicion
-                                        System.out.println("A"+tablero.restriccionA);
-                                        System.out.println("B"+tablero.restriccionB);
 
-                                }//clave!!
                             
                             
                      
-                            ///
-
-
                             
 
                          ;break;
@@ -160,14 +143,7 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
                             tablero.restriccionB=false;
                             tablero.seleccionar=1;//vuelve a seleccionar
                             }
-                            if(tablero.tablaPosibilidades[casillaMarcada[0]][casillaMarcada[1]]==20 && tablero.restriccionB){
-                            tablero.actualizaMat(true);
-                            tablero.redibujarTablero();
-                            tablero.repaint();                         
-                            tablero.restriccionA=false;
-                            tablero.restriccionB=true;
-                            tablero.seleccionar=1;
-                            }
+
                         }       
                         ;break;
                 default: System.out.println("ola k ase?");   
