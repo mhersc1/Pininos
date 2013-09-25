@@ -6,10 +6,7 @@ package Vistas.Tablero;
 
 import LogicGame.Equipo;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.net.URL;
-import javax.swing.BorderFactory;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -205,7 +202,7 @@ public class TableroGUIHMF extends javax.swing.JPanel {
                 if(Equipo==0){
                 if((b-y==0 && Math.abs(a-x)==1)||(a-x==0 && b-y==1)){
                 if(tablaPosibilidades[a][b]<=0){
-            tablaPosibilidades[a][b]=10;
+                tablaPosibilidades[a][b]=10;
                 }
            }
         }
@@ -217,16 +214,11 @@ public class TableroGUIHMF extends javax.swing.JPanel {
        }
        }
             
-            
-            
-            
-            
-            
-            
         }
        
     }
     }
+    
     void  posibilidad_cocodrilo(int x,int y,int Equipo){//se  mueve  1  o dos casillasHM
         
         for(int a=0;a<5;a++){
@@ -483,5 +475,97 @@ public class TableroGUIHMF extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
     }                      
+
+    public ArrayList<Casillero> obtenerPosibilidadesPollo(int x, int y, int equipo) {
+        ArrayList <Casillero> posibilidades=new ArrayList();
+        Casillero posible;
+        for (int a = 0; a < 5; a++) {
+            for (int b = 0; b < 8; b++) {
+                if (equipo == 1) {
+                    if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == -1)) {
+                        if (tablaPosibilidades[a][b] >= 0) {
+                            posible=new Casillero(a,b);
+                            posibilidades.add(posible);
+                        }
+                    }
+                }
+            }
+        }
+        
+        return posibilidades;
+    }
+
+    public ArrayList<Casillero> obtenerPosibilidadesCocodrilo(int x, int y, int equipo) {
+        ArrayList<Casillero> posibilidades = new ArrayList();
+        Casillero posible;
+        if(equipo==1){
+        for (int a = 0; a < 5; a++) {
+            for (int b = 0; b < 8; b++) {
+                double distancia = Math.hypot(Math.abs(a - x), Math.abs(b - y));
+                if ((Math.abs(b - y) == 0 || Math.abs(a - x) == 0) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2)) {
+                    if (tablaPosibilidades[a][b] >= 0) {
+                        posible=new Casillero(x,y);
+                        posibilidades.add(posible);
+                    }
+                }
+            }
+        }
+        }
+        return posibilidades;
+    }
+
+    public ArrayList obtenerPosibilidadesHumano(int x, int y, int equipo) {
+        ArrayList<Casillero> posibilidades = new ArrayList();
+        Casillero posible;
+        if (equipo == 1) {
+            for (int a = 0; a < 5; a++) {
+                for (int b = 0; b < 8; b++) {
+                    if ((a - x) != 0) {
+                        if ((Math.abs((b - y) / (a - x)) == 1) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2 * Math.sqrt(2))) {
+                            if (tablaPosibilidades[a][b] >= 0) {
+                                posible = new Casillero(x, y);
+                                posibilidades.add(posible);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return posibilidades;
+    }
+
+    public ArrayList obtenerPosibilidadesGodzilla(int x, int y, int equipo) {
+            ArrayList<Casillero> posibilidades = new ArrayList();
+            Casillero posible;
+        if(equipo==1){
+            for(int a=0;a<5;a++){
+            for(int b=0;b<8;b++){
+                double  distancia=Math.hypot(Math.abs(a-x), Math.abs(b-y));
+                
+                if((Math.abs(b-y)==0 || Math.abs(a-x)==0) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2)){
+
+                    if(tablaPosibilidades[a][b]>=0){
+                        posible=new Casillero(x,y);
+                        posibilidades.add(posible);
+                    }                    
+                }
+            }
+        }
+        for(int a=0;a<5;a++){
+            for(int b=0;b<8;b++){
+                if((a-x)!=0){
+                    if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
+                        if(tablaPosibilidades[a][b]>=0){
+                            posible=new Casillero(x,y);
+                            posibilidades.add(posible);
+                        }
+                    }
+                }
+                
+            }
+        }
+        }
+        return posibilidades;
+    }
                      
 }

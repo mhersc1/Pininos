@@ -4,9 +4,12 @@
  */
 package Vistas.Tablero;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -92,13 +95,10 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
                             
                             valor=tablero.devolverValorFichaSeleccionada();
                             //
-                            if(valor>0 && tablero.restriccionA){tablero.Equipo=0;
-                            //JOptionPane.showMessageDialog(null,"  Jugador A");
-                                        tablero.restriccionA=false;
-                                        tablero.restriccionB=true;
-                                        
-                                        
-                              
+                            if(valor>0 && tablero.restriccionA){
+                                tablero.Equipo=0;
+                                tablero.restriccionA=false;
+                                tablero.restriccionB=true;
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
                                 casillaMarcadaAnterior[0]=casillaMarcada[0];
@@ -106,41 +106,31 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
                                 tablero.dibujarPosibilidades();
                                 tablero.repaint();
                                 tablero.seleccionar=2;//tiene que elegir sgte posicion
-                                        System.out.println("A"+tablero.restriccionA);
-                                        System.out.println("B"+tablero.restriccionB);
-                                }//clave!!
-                            
-   
-                                  
-
-                            
-                            
-                     
-                            
-
+                                
+                                }//clave!
                          ;break;
                     
                 case 2:  
                     
                         if(tablero.evaluarMovimiento(casillaMarcada[0],casillaMarcada[1],tablero.Equipo)){
                             tablero.establecer_nueva_posicion(casillaMarcadaAnterior[0],casillaMarcadaAnterior[1], casillaMarcada[0],casillaMarcada[1]);
-
                             tablero.redibujarTablero();
                             tablero.repaint();                         
                             tablero.actualizaMat(true);//copiar a la posibilidades
-                            
                             tablero.pintar_tablero(true);
-
                             tablero.pintar_tablero(false);
-                            
                             tablero.seleccionar=1;//vuelve a seleccionar;
+                            //Cambia Al estado maquina
+                            tablero.Equipo=1;
+                            movimientoMaquina(tablero.Equipo);
                         }else{
+                            //Hace que se mantenga en el mismo turno
                             if(tablero.tablaPosibilidades[casillaMarcada[0]][casillaMarcada[1]]==10 && tablero.restriccionA){
                             tablero.actualizaMat(true);
                             tablero.redibujarTablero();
                             tablero.repaint();                         
                             tablero.restriccionA=true;
-                            tablero.restriccionB=false;
+                            //tablero.restriccionB=false;
                             tablero.seleccionar=1;//vuelve a seleccionar
                             }
 
@@ -159,6 +149,75 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
             
             //this.tablero.pintar(this.getCasillaMarcada()[0],this.getCasillaMarcada()[1]);
             /******mas eventos*****/
+    }
+    public void movimientoMaquina(int equipo) {
+        //Capturar todos los movimientos
+        int tabla[][] = tablero.getTabla();
+        ArrayList<Casillero> casillerosPiezasMaquinas = new ArrayList<Casillero>();
+        Casillero provisional;
+        int nroPosibilidades = 0;
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 8; j++) {
+                provisional = new Casillero(i, j);
+                if (tabla[i][j] == -1)//Pollo
+                {
+                    provisional.agregarPosibilidades(tablero.obtenerPosibilidadesPollo(i, j, equipo));
+                    casillerosPiezasMaquinas.add(provisional);
+                    nroPosibilidades++;
+                }
+                if (tabla[i][j] == -2)//Cocodrilo
+                {
+                    provisional.agregarPosibilidades(tablero.obtenerPosibilidadesCocodrilo(i, j, equipo));
+                    casillerosPiezasMaquinas.add(provisional);
+                    nroPosibilidades++;
+                }
+                if (tabla[i][j] == -3)//Humano
+                {
+                    provisional.agregarPosibilidades(tablero.obtenerPosibilidadesHumano(i, j, equipo));
+                    casillerosPiezasMaquinas.add(provisional);
+                    nroPosibilidades++;
+                }
+                if (tabla[i][j] == -4)//Godzilla
+                {
+                    provisional.agregarPosibilidades(tablero.obtenerPosibilidadesGodzilla(i, j, equipo));
+                    casillerosPiezasMaquinas.add(provisional);
+                    nroPosibilidades++;
+                }
+            }
+
+
+        }
+        System.out.println("Nro de Fichas Maquinas: " + nroPosibilidades);
+        int posibElegida = (int) (Math.random() * nroPosibilidades + 1);//Entre 1 y el nro de posibilidades
+        int nroPiezasMaquinas = casillerosPiezasMaquinas.size();
+        int posibilidades = 0;
+        int contador = 0;
+        Casillero casilleroElegido=null;
+        Casillero casilleroInicial=null;
+        for (int a = 0; a < nroPiezasMaquinas; a++) {
+            casilleroInicial = casillerosPiezasMaquinas.get(a);
+            posibilidades = casilleroInicial.tamPosibilidades();
+            for (int b = 0; b < posibilidades; b++) {
+                contador++;
+                if (contador == posibElegida) {
+                    casilleroElegido = casilleroInicial.obtenerPosibilidad(b);
+                    break;
+                }
+            }
+        }
+
+
+        tablero.establecer_nueva_posicion(casilleroInicial.getI(), casilleroInicial.getJ(), casilleroElegido.getI(), casilleroElegido.getJ());
+        tablero.redibujarTablero();
+        tablero.repaint();
+        tablero.actualizaMat(true);//copiar a la posibilidades
+
+        tablero.pintar_tablero(true);
+
+        tablero.pintar_tablero(false);
+
+        tablero.seleccionar = 1;//vuelve a seleccionar;
+        tablero.Equipo = 0;//Turno del humano!
     }
     public void mouseReleased(MouseEvent e){}
     
