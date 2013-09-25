@@ -39,7 +39,7 @@ public class Casillero {
     public void setPosibilidades(ArrayList<Casillero> posibilidades) {
         this.posibilidades = posibilidades;
     }
-    public void agregarPosibilidades(ArrayList posibilidades){
+    public void agregarPosibilidades(ArrayList<Casillero> posibilidades){
         this.posibilidades=posibilidades;
     }
     public void removerPosibilidades(){

@@ -483,7 +483,7 @@ public class TableroGUIHMF extends javax.swing.JPanel {
             for (int b = 0; b < 8; b++) {
                 if (equipo == 1) {
                     if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == -1)) {
-                        if (tablaPosibilidades[a][b] >= 0) {
+                        if (tablaPosibilidades[a][b] >= 0&&!(a==x&&b==y)) {
                             posible=new Casillero(a,b);
                             posibilidades.add(posible);
                         }
@@ -503,8 +503,8 @@ public class TableroGUIHMF extends javax.swing.JPanel {
             for (int b = 0; b < 8; b++) {
                 double distancia = Math.hypot(Math.abs(a - x), Math.abs(b - y));
                 if ((Math.abs(b - y) == 0 || Math.abs(a - x) == 0) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2)) {
-                    if (tablaPosibilidades[a][b] >= 0) {
-                        posible=new Casillero(x,y);
+                    if (tablaPosibilidades[a][b] >= 0&&!(a==x&&b==y)) {
+                        posible=new Casillero(a,b);
                         posibilidades.add(posible);
                     }
                 }
@@ -522,8 +522,8 @@ public class TableroGUIHMF extends javax.swing.JPanel {
                 for (int b = 0; b < 8; b++) {
                     if ((a - x) != 0) {
                         if ((Math.abs((b - y) / (a - x)) == 1) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2 * Math.sqrt(2))) {
-                            if (tablaPosibilidades[a][b] >= 0) {
-                                posible = new Casillero(x, y);
+                            if (tablaPosibilidades[a][b] >= 0 &&!(a==x&&b==y)) {
+                                posible = new Casillero(a, b);
                                 posibilidades.add(posible);
                             }
                         }
@@ -544,8 +544,8 @@ public class TableroGUIHMF extends javax.swing.JPanel {
                 
                 if((Math.abs(b-y)==0 || Math.abs(a-x)==0) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2)){
 
-                    if(tablaPosibilidades[a][b]>=0){
-                        posible=new Casillero(x,y);
+                    if(tablaPosibilidades[a][b]>=0 &&!(a==x&&b==y)){
+                        posible=new Casillero(a,b);
                         posibilidades.add(posible);
                     }                    
                 }
@@ -555,7 +555,7 @@ public class TableroGUIHMF extends javax.swing.JPanel {
             for(int b=0;b<8;b++){
                 if((a-x)!=0){
                     if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
-                        if(tablaPosibilidades[a][b]>=0){
+                        if(tablaPosibilidades[a][b]>=0&&!(a==x&&b==y)){
                             posible=new Casillero(x,y);
                             posibilidades.add(posible);
                         }

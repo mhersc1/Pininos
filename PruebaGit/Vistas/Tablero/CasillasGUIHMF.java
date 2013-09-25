@@ -189,29 +189,33 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
 
 
         }
-        System.out.println("Nro de Fichas Maquinas: " + nroPosibilidades);
+        System.out.println("Nro Posibilidades: " + nroPosibilidades);
         int posibElegida = (int) (Math.random() * nroPosibilidades + 1);//Entre 1 y el nro de posibilidades
         int nroPiezasMaquinas = casillerosPiezasMaquinas.size();
         int posibilidades = 0;
         int contador = 0;
         Casillero casilleroElegido=null;
         Casillero casilleroInicial=null;
-        
+        boolean bandera=false;
+        System.out.println("Nro de maquinass"+nroPiezasMaquinas);
+        System.out.println("Posibilidad Elegida"+posibElegida);
         for (int a = 0; a < nroPiezasMaquinas; a++) {
-            
+            if(!bandera){
             casilleroInicial = casillerosPiezasMaquinas.get(a);
             posibilidades = casilleroInicial.tamPosibilidades();
+                System.out.println("Nro de posibilidades "+posibilidades);
             for (int b = 0; b < posibilidades; b++) {
                 contador++;
                 if (contador == posibElegida) {
                     casilleroElegido = casilleroInicial.obtenerPosibilidad(b);
-                    a=nroPiezasMaquinas;
-                    
+                    bandera=true;
+                    System.out.println("Casillero Inicial : "+casilleroInicial.getI()+" y "+casilleroInicial.getJ());
+                    System.out.println("Casillero Elegido : "+casilleroElegido.getI()+" y "+casilleroElegido.getJ());
                     break;
                 }
             }
+            }
         }
-
 
         tablero.establecer_nueva_posicion(casilleroInicial.getI(), casilleroInicial.getJ(), casilleroElegido.getI(), casilleroElegido.getJ());
         tablero.redibujarTablero();
