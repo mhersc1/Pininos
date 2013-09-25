@@ -16,20 +16,20 @@ import javax.swing.JPanel;
  *
  * @author OMAR
  */
-public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
+public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener {
     
-    private TableroGUI tablero;
+    private TableroGUIHMF tablero;
     private ImageIcon fondo;
     private static int [] casillaMarcada = new int[2];
     //private int seleccionar=1;
     private static int [] casillaMarcadaAnterior = new int[2];
     private  int  turno= 100 ;// -100 equipo  B
     
-    public CasillasGUI() {        
+    public CasillasGUIHMF() {        
         // este constructor no se usar&aacute;, se deja para poder crear el bean.        
     }
     
-    public CasillasGUI(TableroGUI t) {
+    public CasillasGUIHMF(TableroGUIHMF t) {
         initComponents();        
         this.tablero = t;
         if(this.tablero.getTipoTablero() == true){// tablero responde a clics?
@@ -78,7 +78,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
             int Equipo=0;//Equipo A:0 inicializa las blancas
                          //Equipo B:1
             
-            this.setCasillaMarcada(tablero.getCoordenadas((CasillasGUI)e.getComponent()));
+            this.setCasillaMarcada(tablero.getCoordenadas((CasillasGUIHMF)e.getComponent()));
              
             if(tablero.hayGanador()==0){
             

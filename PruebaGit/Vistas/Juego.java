@@ -11,7 +11,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
-
+import Vistas.Tablero.TableroGUIHMF;
 /**
  *
  * @author OMAR
@@ -19,6 +19,7 @@ import javax.swing.JLabel;
 public class Juego extends javax.swing.JPanel {
     private JuegoPrincipal juegoPrincipal;
     private TableroGUI tableroGUI;
+    private TableroGUIHMF tableroGUIHMF;
     private int tipoJuego;
     private int nivel;
     public static final int HUMANOVSHUMANO=1;
@@ -49,9 +50,11 @@ public class Juego extends javax.swing.JPanel {
         this.juegoPrincipal=juegoPrincipal;
         this.tipoJuego=tipoJuego;
         this.nivel=nivel;
-        tableroGUI=new TableroGUI(5,8,true);
-        myInitComponents();
-        juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
+        if(this.tipoJuego==HUMANOVSMAQUINA&&this.nivel==NIVELFACIL){
+            tableroGUIHMF=new TableroGUIHMF(5,8,true);
+            myInitComponents();
+            juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,7 +127,10 @@ public class Juego extends javax.swing.JPanel {
         juegoPrincipal.remove(labelAtras);
         juegoPrincipal.remove(labelReiniciar);
         juegoPrincipal.remove(this);
-        juegoPrincipal.remove(tableroGUI);
+        if(tipoJuego==HUMANOVSHUMANO)
+            juegoPrincipal.remove(tableroGUI);
+        else if(tipoJuego==HUMANOVSMAQUINA)
+            juegoPrincipal.remove(tableroGUIHMF);
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new MenuJuego(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
@@ -135,9 +141,16 @@ public class Juego extends javax.swing.JPanel {
         juegoPrincipal.remove(labelAtras);
         juegoPrincipal.remove(labelReiniciar);
         juegoPrincipal.remove(this);
-        juegoPrincipal.remove(tableroGUI);
+        if(tipoJuego==HUMANOVSHUMANO){
+            juegoPrincipal.remove(tableroGUI);
+        
         juegoPrincipal.setLayout(new FlowLayout());
-        juegoPrincipal.add(new Juego(juegoPrincipal,tipoJuego),BorderLayout.CENTER);
+        juegoPrincipal.add(new Juego(juegoPrincipal,tipoJuego),BorderLayout.CENTER);}
+        else if(tipoJuego==HUMANOVSMAQUINA){
+            juegoPrincipal.remove(tableroGUIHMF);
+            juegoPrincipal.setLayout(new FlowLayout());
+            juegoPrincipal.add(new Juego(juegoPrincipal,tipoJuego,nivel),BorderLayout.CENTER);
+        }
         juegoPrincipal.pack();
         juegoPrincipal.setLocationRelativeTo(null);
         }          
@@ -154,7 +167,10 @@ public class Juego extends javax.swing.JPanel {
         jLabel6.setText("Vida Salvaje");
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16));
         setBackground(new java.awt.Color(0, 255, 153));
-        javax.swing.GroupLayout tableroGUILayout = new javax.swing.GroupLayout(tableroGUI);
+        javax.swing.GroupLayout tableroGUILayout=null;//Maycol Zela
+        if(tipoJuego==HUMANOVSHUMANO){
+             tableroGUILayout= new javax.swing.GroupLayout(tableroGUI);
+       
         tableroGUI.setLayout(tableroGUILayout);
         tableroGUILayout.setHorizontalGroup(
             tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,43 +199,119 @@ public class Juego extends javax.swing.JPanel {
         });
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(juegoPrincipal.getContentPane());
         juegoPrincipal.getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGap(30)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel6)
-                .addContainerGap(30, Short.MAX_VALUE))
-             
-             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(labelReiniciar)
-                .addContainerGap(40, Short.MAX_VALUE)
-                .addComponent(labelAtras)
-                .addContainerGap(40,Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50)
-                .addComponent(jLabel6)//Definimos tamaño del Label
-                .addGap(40)
-                .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup()
-                    .addGap(30)
-                    .addGap(30)
-                    .addComponent(labelReiniciar)
-                    .addGap(30)
-                    .addComponent(labelAtras)
-                    .addGap(50)
-                )
-                )
-        );
-        //juegoPrincipal.pack();
         
-        
+                    tableroGUILayout= new javax.swing.GroupLayout(tableroGUI);
+
+               layout.setHorizontalGroup(
+                   layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                       .addGap(30)
+                   .addGroup(layout.createSequentialGroup()
+                       .addComponent(jLabel6)
+                       .addContainerGap(30, Short.MAX_VALUE))
+
+                    .addGroup(layout.createSequentialGroup()
+                       .addContainerGap()
+                       .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                       .addContainerGap(176, Short.MAX_VALUE))
+
+                   .addGroup(layout.createSequentialGroup()
+                       .addComponent(labelReiniciar)
+                       .addContainerGap(40, Short.MAX_VALUE)
+                       .addComponent(labelAtras)
+                       .addContainerGap(40,Short.MAX_VALUE))
+               );
+
+               layout.setVerticalGroup(
+                   layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                   .addGroup(layout.createSequentialGroup()
+                       .addGap(50)
+                       .addComponent(jLabel6)//Definimos tamaño del Label
+                       .addGap(40)
+                       .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                       .addContainerGap(13, Short.MAX_VALUE)
+                       .addGroup(layout.createParallelGroup()
+                           .addGap(30)
+                           .addGap(30)
+                           .addComponent(labelReiniciar)
+                           .addGap(30)
+                           .addComponent(labelAtras)
+                           .addGap(50)
+                       )
+                       )
+               );
+        }
+        else if(tipoJuego==HUMANOVSMAQUINA && nivel==NIVELFACIL){
+                    tableroGUILayout= new javax.swing.GroupLayout(tableroGUIHMF);
+       
+                tableroGUIHMF.setLayout(tableroGUILayout);
+                tableroGUILayout.setHorizontalGroup(
+                    tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(0,700, Short.MAX_VALUE)
+                );
+                tableroGUILayout.setVerticalGroup(
+                    tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(0, 400, Short.MAX_VALUE)
+                );
+
+
+
+                labelAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.jpg"))); // NOI18N
+                labelAtras.setText("Volver atras");
+                labelAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mousePressed(java.awt.event.MouseEvent evt) {
+                        Juego.this.mousePressed(evt);
+                    }
+                });
+                labelReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recargar.jpg"))); // NOI18N
+                labelReiniciar.setText("Reiniciar Juego");
+                labelReiniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mousePressed(java.awt.event.MouseEvent evt) {
+                        Juego.this.mousePressedReiniciar(evt);
+                    }
+                });
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(juegoPrincipal.getContentPane());
+                juegoPrincipal.getContentPane().setLayout(layout);
+
+                            tableroGUILayout= new javax.swing.GroupLayout(tableroGUIHMF);
+
+                       layout.setHorizontalGroup(
+                           layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                               .addGap(30)
+                           .addGroup(layout.createSequentialGroup()
+                               .addComponent(jLabel6)
+                               .addContainerGap(30, Short.MAX_VALUE))
+
+                            .addGroup(layout.createSequentialGroup()
+                               .addContainerGap()
+                               .addComponent(tableroGUIHMF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                               .addContainerGap(176, Short.MAX_VALUE))
+
+                           .addGroup(layout.createSequentialGroup()
+                               .addComponent(labelReiniciar)
+                               .addContainerGap(40, Short.MAX_VALUE)
+                               .addComponent(labelAtras)
+                               .addContainerGap(40,Short.MAX_VALUE))
+                       );
+
+                       layout.setVerticalGroup(
+                           layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addGroup(layout.createSequentialGroup()
+                               .addGap(50)
+                               .addComponent(jLabel6)//Definimos tamaño del Label
+                               .addGap(40)
+                               .addComponent(tableroGUIHMF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                               .addContainerGap(13, Short.MAX_VALUE)
+                               .addGroup(layout.createParallelGroup()
+                                   .addGap(30)
+                                   .addGap(30)
+                                   .addComponent(labelReiniciar)
+                                   .addGap(30)
+                                   .addComponent(labelAtras)
+                                   .addGap(50)
+                               )
+                               )
+                       );
+                }
+
     }
 }
