@@ -163,19 +163,19 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
                 {
                     provisional.agregarPosibilidades(tablero.obtenerPosibilidadesPollo(i, j, equipo));
                     casillerosPiezasMaquinas.add(provisional);
-                    nroPosibilidades++;
+                    nroPosibilidades=nroPosibilidades+provisional.tamPosibilidades();
                 }
                 if (tabla[i][j] == -2)//Cocodrilo
                 {
                     provisional.agregarPosibilidades(tablero.obtenerPosibilidadesCocodrilo(i, j, equipo));
                     casillerosPiezasMaquinas.add(provisional);
-                    nroPosibilidades++;
+                    nroPosibilidades=nroPosibilidades+provisional.tamPosibilidades();
                 }
                 if (tabla[i][j] == -3)//Humano
                 {
                     provisional.agregarPosibilidades(tablero.obtenerPosibilidadesHumano(i, j, equipo));
                     casillerosPiezasMaquinas.add(provisional);
-                    nroPosibilidades++;
+                    nroPosibilidades=nroPosibilidades+provisional.tamPosibilidades();
                 }
                 if (tabla[i][j] == -4)//Godzilla
                 {
@@ -183,6 +183,8 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
                     casillerosPiezasMaquinas.add(provisional);
                     nroPosibilidades++;
                 }
+                tablero.actualizaMat(true);
+
             }
 
 
@@ -194,13 +196,17 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
         int contador = 0;
         Casillero casilleroElegido=null;
         Casillero casilleroInicial=null;
+        
         for (int a = 0; a < nroPiezasMaquinas; a++) {
+            
             casilleroInicial = casillerosPiezasMaquinas.get(a);
             posibilidades = casilleroInicial.tamPosibilidades();
             for (int b = 0; b < posibilidades; b++) {
                 contador++;
                 if (contador == posibElegida) {
                     casilleroElegido = casilleroInicial.obtenerPosibilidad(b);
+                    a=nroPiezasMaquinas;
+                    
                     break;
                 }
             }
@@ -218,6 +224,7 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
 
         tablero.seleccionar = 1;//vuelve a seleccionar;
         tablero.Equipo = 0;//Turno del humano!
+        tablero.restriccionA=true;
     }
     public void mouseReleased(MouseEvent e){}
     
