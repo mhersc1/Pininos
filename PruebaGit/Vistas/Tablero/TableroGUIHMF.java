@@ -556,7 +556,7 @@ public class TableroGUIHMF extends javax.swing.JPanel {
                 if((a-x)!=0){
                     if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
                         if(tablaPosibilidades[a][b]>=0&&!(a==x&&b==y)){
-                            posible=new Casillero(x,y);
+                            posible=new Casillero(a,b);
                             posibilidades.add(posible);
                         }
                     }
