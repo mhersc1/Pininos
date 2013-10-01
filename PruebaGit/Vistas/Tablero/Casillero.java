@@ -14,6 +14,7 @@ public class Casillero {
     private int i;
     private int j;
     private ArrayList<Casillero> posibilidades;
+    private int puntaje;
     public Casillero(int i,int j){
         this.i=i;
         this.j=j;
@@ -51,4 +52,13 @@ public class Casillero {
     public Casillero obtenerPosibilidad(int nroPosibilidad){
         return posibilidades.get(nroPosibilidad);
     }
+
+    public int getPuntaje() {
+        return puntaje;
+    }
+
+    public void setPuntaje(int puntaje) {
+        this.puntaje = puntaje;
+    }
+    
 }

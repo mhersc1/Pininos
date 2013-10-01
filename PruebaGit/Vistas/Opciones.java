@@ -180,7 +180,11 @@ public class Opciones extends javax.swing.JPanel {
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jRadioButtonMedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMedioActionPerformed
-        // TODO add your handling code here:
+        juegoPrincipal.remove(this);
+        juegoPrincipal.setLayout(new FlowLayout());
+        juegoPrincipal.add(new Juego(juegoPrincipal,Juego.HUMANOVSMAQUINA,Juego.NIVELMEDIO),BorderLayout.CENTER);
+        juegoPrincipal.pack();
+        juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_jRadioButtonMedioActionPerformed
 
     private void jRadioButtonHumanovsHumanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonHumanovsHumanoActionPerformed
