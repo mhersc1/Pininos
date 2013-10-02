@@ -85,6 +85,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
             switch(tablero.seleccionar){//Casilla Selecta       : 0
                                         //Casilla a seleccionar : 1
                 case 1:
+                        
                    
                         //Por convencion empieza equipo humano
                         /*si has escogido una  ficha que corresponde al equipo con turno */
@@ -92,7 +93,8 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             
                             valor=tablero.devolverValorFichaSeleccionada();
                             //
-                            if(valor>0 && tablero.restriccionA){tablero.Equipo=0;
+                            if(valor>0 && tablero.restriccionA){
+                                        tablero.Equipo=0;
                             //JOptionPane.showMessageDialog(null,"  Jugador A");
                                         tablero.restriccionA=false;
                                         tablero.restriccionB=true;
@@ -111,7 +113,8 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                                 }//clave!!
                             
                                   
-                            if(valor<0 && tablero.restriccionB){tablero.Equipo=1;
+                            if(valor<0 && tablero.restriccionB){
+                                        tablero.Equipo=1;
                                        // JOptionPane.showMessageDialog(null,"  Jugador B");
                                         tablero.restriccionB=false;
                                         tablero.restriccionA=true;
@@ -168,7 +171,20 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             tablero.restriccionB=true;
                             tablero.seleccionar=1;
                             }
+                            ////////////////////////////////////////
+                            if(tablero.restriccionA){
+                                tablero.restriccionA=false;
+                                tablero.restriccionB=true;
+                            }else{
+                                tablero.restriccionA=true;
+                                tablero.restriccionB=false;
+                            }
+                            tablero.actualizaMat(true);
+                            tablero.redibujarTablero();
+                            tablero.repaint();
+                            tablero.seleccionar=1;
                         }       
+                        
                         ;break;
                 default: System.out.println("ola k ase?");   
                       

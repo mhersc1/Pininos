@@ -76,6 +76,7 @@ public class Juego extends javax.swing.JPanel {
         labelAtras = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         labelReiniciar = new javax.swing.JLabel();
+        imagenTurno = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 153));
 
@@ -97,6 +98,8 @@ public class Juego extends javax.swing.JPanel {
         labelReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recargar.jpg"))); // NOI18N
         labelReiniciar.setText("Reiniciar Juego");
 
+        imagenTurno.setText("Turno :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,14 +107,16 @@ public class Juego extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(276, 276, 276)
+                        .addComponent(labelReiniciar))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addComponent(jLabel6)
                         .addGap(123, 123, 123)
-                        .addComponent(labelAtras))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addComponent(labelReiniciar)))
-                .addContainerGap(203, Short.MAX_VALUE))
+                        .addComponent(labelAtras)
+                        .addGap(30, 30, 30)
+                        .addComponent(imagenTurno)))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,7 +127,9 @@ public class Juego extends javax.swing.JPanel {
                         .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(labelAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(imagenTurno)
+                            .addComponent(labelAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(32, 32, 32)
                 .addComponent(labelReiniciar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -169,19 +176,31 @@ public class Juego extends javax.swing.JPanel {
         juegoPrincipal.setLocationRelativeTo(null);
         }          
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel imagenTurno;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel labelAtras;
     private javax.swing.JLabel labelReiniciar;
     // End of variables declaration//GEN-END:variables
-
-    private void myInitComponents() {
+    //private javax.swing.JLabel imagenTurno;
+    
+    private void myInitComponents() {//poner  imagen del turno
         jLabel6=new JLabel();
         labelAtras=new JLabel();
         labelReiniciar=new JLabel(); 
         jLabel6.setText("Vida Salvaje");
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 16));
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 20));
         setBackground(new java.awt.Color(0, 255, 153));
+        
+        imagenTurno= new  JLabel(); 
+        imagenTurno.setText("Turno :");
+        imagenTurno.setFont(new java.awt.Font("Tahoma", 0, 20));
+        setBackground(new java.awt.Color(0, 255, 153));
+        
+        
         javax.swing.GroupLayout tableroGUILayout=null;//Maycol Zela
+        
+        
+        
         if(tipoJuego==HUMANOVSHUMANO){
              tableroGUILayout= new javax.swing.GroupLayout(tableroGUI);
        
