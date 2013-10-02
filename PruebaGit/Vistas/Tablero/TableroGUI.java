@@ -5,6 +5,7 @@
 package Vistas.Tablero;
 
 import LogicGame.Equipo;
+import Vistas.Juego;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -24,7 +25,7 @@ public class TableroGUI extends javax.swing.JPanel {
     private ImageIcon agua, tocado, seleccion;
     private boolean tipoTablero;
     private CasillasGUI [][] casillas ;
-    
+    private Juego juegoHumanoHumano;
     private int filas,columnas;
     private final int anchoCasilla=70,alturaCasilla=70;
     Equipo equipoHumano,equipoMaquina;
@@ -91,6 +92,7 @@ public class TableroGUI extends javax.swing.JPanel {
         inicializarEquipoMaquina();
         pintar_tablero(true);
         this.setBackground(new Color(0, 255, 153));
+        
     }
     
     
@@ -482,6 +484,14 @@ public class TableroGUI extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 0, 0));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-    }                      
-                     
+    }
+
+    public Juego getJuegoHumanoHumano() {
+        return juegoHumanoHumano;
+    }
+
+    public void setJuegoHumanoHumano(Juego juegoHumanoHumano) {
+        this.juegoHumanoHumano = juegoHumanoHumano;
+    }
+    
 }

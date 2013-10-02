@@ -34,7 +34,7 @@ public class Juego extends javax.swing.JPanel {
      * Creates new form Juego
      */
     public Juego() {
-       initComponents();
+       //initComponents();
         tableroGUI=new TableroGUI(5,8,true);
         myInitComponents();
     }
@@ -47,6 +47,7 @@ public class Juego extends javax.swing.JPanel {
         myInitComponents();
         this.setBackground(new Color(0, 255, 153));
         juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
+        tableroGUI.setJuegoHumanoHumano(this);
     }
     public Juego(JuegoPrincipal juegoPrincipal,int tipoJuego,int nivel) {
         //initComponents();
@@ -76,7 +77,7 @@ public class Juego extends javax.swing.JPanel {
         labelAtras = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         labelReiniciar = new javax.swing.JLabel();
-        imagenTurno = new javax.swing.JLabel();
+        labelTurno = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(0, 255, 153));
 
@@ -98,25 +99,24 @@ public class Juego extends javax.swing.JPanel {
         labelReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recargar.jpg"))); // NOI18N
         labelReiniciar.setText("Reiniciar Juego");
 
-        imagenTurno.setText("Turno :");
+        labelTurno.setText("Turno :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addComponent(labelReiniciar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(jLabel6)
-                        .addGap(123, 123, 123)
-                        .addComponent(labelAtras)
-                        .addGap(30, 30, 30)
-                        .addComponent(imagenTurno)))
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGap(127, 127, 127)
+                .addComponent(jLabel6)
+                .addGap(123, 123, 123)
+                .addComponent(labelAtras)
+                .addContainerGap(203, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(276, 276, 276)
+                .addComponent(labelReiniciar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(labelTurno)
+                .addGap(88, 88, 88))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,12 +127,16 @@ public class Juego extends javax.swing.JPanel {
                         .addComponent(jLabel6))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(imagenTurno)
-                            .addComponent(labelAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(32, 32, 32)
-                .addComponent(labelReiniciar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(labelAtras, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(labelReiniciar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelTurno)
+                        .addGap(72, 72, 72))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,8 +146,10 @@ public class Juego extends javax.swing.JPanel {
         juegoPrincipal.remove(labelAtras);
         juegoPrincipal.remove(labelReiniciar);
         juegoPrincipal.remove(this);
-        if(tipoJuego==HUMANOVSHUMANO)
+        if(tipoJuego==HUMANOVSHUMANO){
+            juegoPrincipal.remove(labelTurno);
             juegoPrincipal.remove(tableroGUI);
+        }
         else if(tipoJuego==HUMANOVSMAQUINA&& nivel==NIVELFACIL)
             juegoPrincipal.remove(tableroGUIHMF);
          else if(tipoJuego==HUMANOVSMAQUINA&& nivel==NIVELMEDIO)
@@ -159,6 +165,7 @@ public class Juego extends javax.swing.JPanel {
         juegoPrincipal.remove(labelReiniciar);
         juegoPrincipal.remove(this);
         if(tipoJuego==HUMANOVSHUMANO){
+            juegoPrincipal.remove(labelTurno);
             juegoPrincipal.remove(tableroGUI);
             juegoPrincipal.setLayout(new FlowLayout());
             juegoPrincipal.add(new Juego(juegoPrincipal,tipoJuego),BorderLayout.CENTER);}
@@ -176,24 +183,30 @@ public class Juego extends javax.swing.JPanel {
         juegoPrincipal.setLocationRelativeTo(null);
         }          
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel imagenTurno;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel labelAtras;
     private javax.swing.JLabel labelReiniciar;
+    private javax.swing.JLabel labelTurno;
     // End of variables declaration//GEN-END:variables
     //private javax.swing.JLabel imagenTurno;
-    
+    public JLabel getLabelTurno(){
+        return this.labelTurno;
+    }
+    public void setLabelTurno(JLabel labelTurno){
+        this.labelTurno=labelTurno;
+    }
     private void myInitComponents() {//poner  imagen del turno
         jLabel6=new JLabel();
         labelAtras=new JLabel();
         labelReiniciar=new JLabel(); 
+   
         jLabel6.setText("Vida Salvaje");
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 20));
         setBackground(new java.awt.Color(0, 255, 153));
         
-        imagenTurno= new  JLabel(); 
-        imagenTurno.setText("Turno :");
-        imagenTurno.setFont(new java.awt.Font("Tahoma", 0, 20));
+        labelTurno= new  JLabel(); 
+        labelTurno.setText("Turno A");
+        labelTurno.setFont(new java.awt.Font("Tahoma", 0, 20));
         setBackground(new java.awt.Color(0, 255, 153));
         
         
@@ -245,7 +258,10 @@ public class Juego extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                        .addContainerGap()
                        .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addContainerGap(176, Short.MAX_VALUE))
+                       .addGap(10)
+                       .addComponent(labelTurno)
+                       .addContainerGap(10, Short.MAX_VALUE)
+                       )
 
                    .addGroup(layout.createSequentialGroup()
                        .addComponent(labelReiniciar)
@@ -259,9 +275,14 @@ public class Juego extends javax.swing.JPanel {
                    .addGroup(layout.createSequentialGroup()
                        .addGap(50)
                        .addComponent(jLabel6)//Definimos tamaño del Label
-                       .addGap(40)
-                       .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                       .addContainerGap(13, Short.MAX_VALUE)
+                       .addGroup(layout.createParallelGroup()
+                         .addGap(15)
+                         .addComponent(tableroGUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                         .addGap(10)
+                         .addComponent(labelTurno)
+                         .addGap(10)
+                       )
+                       
                        .addGroup(layout.createParallelGroup()
                            .addGap(30)
                            .addGap(30)
@@ -279,7 +300,7 @@ public class Juego extends javax.swing.JPanel {
                 tableroGUIHMF.setLayout(tableroGUILayout);
                 tableroGUILayout.setHorizontalGroup(
                     tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0,700, Short.MAX_VALUE)
+                    .addGap(0,500, Short.MAX_VALUE)
                 );
                 tableroGUILayout.setVerticalGroup(
                     tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

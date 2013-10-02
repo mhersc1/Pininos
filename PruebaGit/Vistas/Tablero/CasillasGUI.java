@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -98,9 +99,9 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             //JOptionPane.showMessageDialog(null,"  Jugador A");
                                         tablero.restriccionA=false;
                                         tablero.restriccionB=true;
-                                        
-                                        
-                              
+                                        JLabel turno=tablero.getJuegoHumanoHumano().getLabelTurno();
+                                        turno.setText("Turno A");
+                                        tablero.getJuegoHumanoHumano().setLabelTurno(turno);
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
                                 casillaMarcadaAnterior[0]=casillaMarcada[0];
@@ -118,7 +119,9 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                                        // JOptionPane.showMessageDialog(null,"  Jugador B");
                                         tablero.restriccionB=false;
                                         tablero.restriccionA=true;
-                                        
+                                        JLabel turno=tablero.getJuegoHumanoHumano().getLabelTurno();
+                                        turno.setText("Turno B");
+                                        tablero.getJuegoHumanoHumano().setLabelTurno(turno);
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
                                 casillaMarcadaAnterior[0]=casillaMarcada[0];
