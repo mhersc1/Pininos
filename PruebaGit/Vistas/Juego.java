@@ -5,6 +5,7 @@
 package Vistas;
 
 import Vistas.Tablero.TableroGUI;
+import Vistas.Tablero.TableroGUIHMD;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -22,6 +23,7 @@ public class Juego extends javax.swing.JPanel {
     private TableroGUI tableroGUI;
     private TableroGUIHMF tableroGUIHMF;
     private TableroGUIHMM tableroGUIHMM;
+    private TableroGUIHMD tableroGUIHMD;
     private int tipoJuego;
     private int nivel;
     public static final int HUMANOVSHUMANO=1;
@@ -61,6 +63,11 @@ public class Juego extends javax.swing.JPanel {
         }
         else if(this.tipoJuego==HUMANOVSMAQUINA&&this.nivel==NIVELMEDIO){
             tableroGUIHMM=new TableroGUIHMM(5,8,true);
+            myInitComponents();
+            juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
+        }
+        else if(this.tipoJuego==HUMANOVSMAQUINA&&this.nivel==NIVELDIFICIL){
+            tableroGUIHMD=new TableroGUIHMD(5,8,true);
             myInitComponents();
             juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
         }
@@ -154,6 +161,8 @@ public class Juego extends javax.swing.JPanel {
             juegoPrincipal.remove(tableroGUIHMF);
          else if(tipoJuego==HUMANOVSMAQUINA&& nivel==NIVELMEDIO)
             juegoPrincipal.remove(tableroGUIHMM);
+        else if(tipoJuego==HUMANOVSMAQUINA&& nivel==NIVELDIFICIL)
+            juegoPrincipal.remove(tableroGUIHMD);
         juegoPrincipal.setLayout(new FlowLayout());
         juegoPrincipal.add(new MenuJuego(juegoPrincipal),BorderLayout.CENTER);
         juegoPrincipal.pack();
@@ -176,6 +185,11 @@ public class Juego extends javax.swing.JPanel {
         }
         else if(tipoJuego==HUMANOVSMAQUINA&& nivel==NIVELMEDIO){
             juegoPrincipal.remove(tableroGUIHMM);
+            juegoPrincipal.setLayout(new FlowLayout());
+            juegoPrincipal.add(new Juego(juegoPrincipal,tipoJuego,nivel),BorderLayout.CENTER);
+        }
+        else if(tipoJuego==HUMANOVSMAQUINA&& nivel==NIVELDIFICIL){
+            juegoPrincipal.remove(tableroGUIHMD);
             juegoPrincipal.setLayout(new FlowLayout());
             juegoPrincipal.add(new Juego(juegoPrincipal,tipoJuego,nivel),BorderLayout.CENTER);
         }
@@ -438,5 +452,79 @@ public class Juego extends javax.swing.JPanel {
                                )
                        );
                 }
+        else if(tipoJuego==HUMANOVSMAQUINA && nivel==NIVELDIFICIL){
+                    tableroGUILayout= new javax.swing.GroupLayout(tableroGUIHMD);
+       
+                tableroGUIHMD.setLayout(tableroGUILayout);
+                tableroGUILayout.setHorizontalGroup(
+                    tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(0,700, Short.MAX_VALUE)
+                );
+                tableroGUILayout.setVerticalGroup(
+                    tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(0, 400, Short.MAX_VALUE)
+                );
+
+
+
+                labelAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/atras.jpg"))); // NOI18N
+                labelAtras.setText("Volver atras");
+                labelAtras.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mousePressed(java.awt.event.MouseEvent evt) {
+                        Juego.this.mousePressed(evt);
+                    }
+                });
+                labelReiniciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/recargar.jpg"))); // NOI18N
+                labelReiniciar.setText("Reiniciar Juego");
+                labelReiniciar.addMouseListener(new java.awt.event.MouseAdapter() {
+                    public void mousePressed(java.awt.event.MouseEvent evt) {
+                        Juego.this.mousePressedReiniciar(evt);
+                    }
+                });
+                javax.swing.GroupLayout layout = new javax.swing.GroupLayout(juegoPrincipal.getContentPane());
+                juegoPrincipal.getContentPane().setLayout(layout);
+
+                            tableroGUILayout= new javax.swing.GroupLayout(tableroGUIHMD);
+
+                       layout.setHorizontalGroup(
+                           layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                               .addGap(30)
+                           .addGroup(layout.createSequentialGroup()
+                               .addComponent(jLabel6)
+                               .addContainerGap(30, Short.MAX_VALUE))
+
+                            .addGroup(layout.createSequentialGroup()
+                               .addContainerGap()
+                               .addComponent(tableroGUIHMD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                               .addContainerGap(176, Short.MAX_VALUE))
+
+                           .addGroup(layout.createSequentialGroup()
+                               .addComponent(labelReiniciar)
+                               .addContainerGap(40, Short.MAX_VALUE)
+                               .addComponent(labelAtras)
+                               .addContainerGap(40,Short.MAX_VALUE))
+                       );
+
+                       layout.setVerticalGroup(
+                           layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addGroup(layout.createSequentialGroup()
+                               .addGap(50)
+                               .addComponent(jLabel6)//Definimos tamaño del Label
+                               .addGap(40)
+                               .addComponent(tableroGUIHMD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                               .addContainerGap(13, Short.MAX_VALUE)
+                               .addGroup(layout.createParallelGroup()
+                                   .addGap(30)
+                                   .addGap(30)
+                                   .addComponent(labelReiniciar)
+                                   .addGap(30)
+                                   .addComponent(labelAtras)
+                                   .addGap(50)
+                               )
+                               )
+                       );
+                }
+    
+    
     }
 }

@@ -94,6 +94,11 @@ public class Opciones extends javax.swing.JPanel {
         jRadioButtonDificil.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jRadioButtonDificil.setText("Dificil");
         jRadioButtonDificil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tresEstrellas.jpg"))); // NOI18N
+        jRadioButtonDificil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonDificilActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 0, 0));
@@ -203,6 +208,15 @@ public class Opciones extends javax.swing.JPanel {
         juegoPrincipal.pack();
         juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_jRadioButtonFacilActionPerformed
+
+    private void jRadioButtonDificilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonDificilActionPerformed
+        // TODO add your handling code here:
+        juegoPrincipal.remove(this);
+        juegoPrincipal.setLayout(new FlowLayout());
+        juegoPrincipal.add(new Juego(juegoPrincipal,Juego.HUMANOVSMAQUINA,Juego.NIVELDIFICIL),BorderLayout.CENTER);
+        juegoPrincipal.pack();
+        juegoPrincipal.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jRadioButtonDificilActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupNiveles;
