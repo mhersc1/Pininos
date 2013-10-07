@@ -234,11 +234,11 @@ public class Juego extends javax.swing.JPanel {
         tableroGUI.setLayout(tableroGUILayout);
         tableroGUILayout.setHorizontalGroup(
             tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0,700, Short.MAX_VALUE)
+            .addGap(0,562, Short.MAX_VALUE)
         );
         tableroGUILayout.setVerticalGroup(
             tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 355, Short.MAX_VALUE)
         );
         
         
@@ -314,11 +314,11 @@ public class Juego extends javax.swing.JPanel {
                 tableroGUIHMF.setLayout(tableroGUILayout);
                 tableroGUILayout.setHorizontalGroup(
                     tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0,500, Short.MAX_VALUE)
+                    .addGap(0,562, Short.MAX_VALUE)
                 );
                 tableroGUILayout.setVerticalGroup(
                     tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 400, Short.MAX_VALUE)
+                    .addGap(0, 355, Short.MAX_VALUE)
                 );
 
 
@@ -386,11 +386,11 @@ public class Juego extends javax.swing.JPanel {
                 tableroGUIHMM.setLayout(tableroGUILayout);
                 tableroGUILayout.setHorizontalGroup(
                     tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0,700, Short.MAX_VALUE)
+                    .addGap(0,562, Short.MAX_VALUE)
                 );
                 tableroGUILayout.setVerticalGroup(
                     tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 400, Short.MAX_VALUE)
+                    .addGap(0, 355, Short.MAX_VALUE)
                 );
 
 
@@ -458,11 +458,11 @@ public class Juego extends javax.swing.JPanel {
                 tableroGUIHMD.setLayout(tableroGUILayout);
                 tableroGUILayout.setHorizontalGroup(
                     tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0,700, Short.MAX_VALUE)
+                    .addGap(0,562, Short.MAX_VALUE)
                 );
                 tableroGUILayout.setVerticalGroup(
                     tableroGUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 400, Short.MAX_VALUE)
+                    .addGap(0, 355, Short.MAX_VALUE)
                 );
 
 
