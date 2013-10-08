@@ -133,8 +133,20 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
                             //tablero.restriccionB=false;
                             tablero.seleccionar=1;//vuelve a seleccionar
                             }
+                            
+                            if(tablero.restriccionA){
+                                tablero.restriccionA=false;
+                                tablero.restriccionB=true;
+                            }else{
+                                tablero.restriccionA=true;
+                                tablero.restriccionB=false;
+                            }
+                            tablero.actualizaMat(true);
+                            tablero.redibujarTablero();
+                            tablero.repaint();
+                            tablero.seleccionar=1;
 
-                        }       
+                            }       
                         ;break;
                 default: System.out.println("ola k ase?");   
                       
