@@ -488,17 +488,17 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                         if (tablaPosibilidades[a][b] >= 0 && !(a == x && b == y)) {
                             posible = new Casillero(a, b);
                             puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                            posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, 0));
+                            posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, tabla[a][b]));
                             posible.setPuntaje(puntaje);
                             posibilidades.add(posible);
-
                         }
                     }
-                } else if (equipo == 0) {
+                }
+                else if (equipo == 0) {
                     if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == 1)) {
                         if (tablaPosibilidades[a][b] <= 0) {
                             posible = new Casillero(a, b);
-                            puntaje=funcion_evaluadora(Equipo,tabla[a][b]);
+                            puntaje=funcion_evaluadora(equipo,tabla[a][b]);
                             posible.setPuntaje(puntaje);
                             posibilidades.add(posible);
                             }
@@ -514,12 +514,18 @@ public class TableroGUIHMD extends javax.swing.JPanel {
         ArrayList<Casillero> posibilidades = new ArrayList();
         Casillero posible;
         int puntaje=0;
-        if(equipo==1){
         for (int a = 0; a < 5; a++) {
             for (int b = 0; b < 8; b++) {
                 double distancia = Math.hypot(Math.abs(a - x), Math.abs(b - y));
                 if ((Math.abs(b - y) == 0 || Math.abs(a - x) == 0) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2)) {
-                    if (tablaPosibilidades[a][b] >= 0&&!(a==x&&b==y)) {
+                    if (tablaPosibilidades[a][b] >= 0&&!(a==x&&b==y)&&equipo==1) {
+                        posible=new Casillero(a,b);
+                        posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y,tabla[a][b] ));
+                        puntaje=funcion_evaluadora(equipo, tabla[a][b]);
+                        posible.setPuntaje(puntaje);
+                        posibilidades.add(posible);
+                    }
+                    else if(tablaPosibilidades[a][b]<=0 && equipo==0){
                         posible=new Casillero(a,b);
                         puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                         posible.setPuntaje(puntaje);
@@ -528,7 +534,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                 }
             }
         }
-        }
+        
         return posibilidades;
     }
 
@@ -536,12 +542,19 @@ public class TableroGUIHMD extends javax.swing.JPanel {
         ArrayList<Casillero> posibilidades = new ArrayList();
         Casillero posible;
         int puntaje=0;
-        if (equipo == 1) {
+        
             for (int a = 0; a < 5; a++) {
                 for (int b = 0; b < 8; b++) {
                     if ((a - x) != 0) {
                         if ((Math.abs((b - y) / (a - x)) == 1) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2 * Math.sqrt(2))) {
-                            if (tablaPosibilidades[a][b] >= 0 &&!(a==x&&b==y)) {
+                            if (tablaPosibilidades[a][b] >= 0 &&!(a==x&&b==y)&&equipo==1) {
+                                posible = new Casillero(a, b);
+                                puntaje=funcion_evaluadora(equipo, tabla[a][b]);
+                                posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, tabla[a][b]));
+                                posible.setPuntaje(puntaje);
+                                posibilidades.add(posible);
+                            }
+                            else if(tablaPosibilidades[a][b]<=0 && Equipo==0){
                                 posible = new Casillero(a, b);
                                 puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                                 posible.setPuntaje(puntaje);
@@ -549,9 +562,8 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                             }
                         }
                     }
-                }
-            }
-        }
+                } 
+             }
         return posibilidades;
     }
 
@@ -559,19 +571,26 @@ public class TableroGUIHMD extends javax.swing.JPanel {
             ArrayList<Casillero> posibilidades = new ArrayList();
             Casillero posible;
             int puntaje=0;
-        if(equipo==1){
             for(int a=0;a<5;a++){
             for(int b=0;b<8;b++){
                 double  distancia=Math.hypot(Math.abs(a-x), Math.abs(b-y));
                 
                 if((Math.abs(b-y)==0 || Math.abs(a-x)==0) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2)){
 
-                    if(tablaPosibilidades[a][b]>=0 &&!(a==x&&b==y)){
+                    if(tablaPosibilidades[a][b]>=0 &&!(a==x&&b==y)&&equipo==1){
+                        posible=new Casillero(a,b);
+                        puntaje=funcion_evaluadora(equipo, tabla[a][b]);
+                        posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, tabla[a][b]));
+                        posible.setPuntaje(puntaje);
+                        posibilidades.add(posible);
+                    }         
+                    else if(tablaPosibilidades[a][b]<=0 && equipo==0){
                         posible=new Casillero(a,b);
                         puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                         posible.setPuntaje(puntaje);
                         posibilidades.add(posible);
-                    }                    
+                    }
+                        
                 }
             }
         }
@@ -579,7 +598,14 @@ public class TableroGUIHMD extends javax.swing.JPanel {
             for(int b=0;b<8;b++){
                 if((a-x)!=0){
                     if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
-                        if(tablaPosibilidades[a][b]>=0&&!(a==x&&b==y)){
+                        if(tablaPosibilidades[a][b]>=0&&!(a==x&&b==y)&&equipo==1){
+                            posible=new Casillero(a,b);
+                            puntaje=funcion_evaluadora(equipo, tabla[a][b]);
+                            posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, tabla[a][b]));
+                            posible.setPuntaje(puntaje);
+                            posibilidades.add(posible);
+                        }
+                        if(tablaPosibilidades[a][b]<=0 && equipo==0){
                             posible=new Casillero(a,b);
                             puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                             posible.setPuntaje(puntaje);
@@ -590,18 +616,20 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                 
             }
         }
-        }
+        
         return posibilidades;
     }
 
     private ArrayList<Casillero> analizarJugadasOponente(int posInicX,int posInicY,int posFinX2, int posFinY2,int jugador) {
        ArrayList<Casillero> oponenteJugadas=new ArrayList<Casillero>();
        int[][] tablaImaginaria = new int[5][8];
-       
        for(int i=0;i<5;i++)
            for(int j=0;j<8;j++)
                tablaImaginaria[i][j]=tabla[i][j];
-       
+       int[][] tablaImaginariaPosibilidades = new int[5][8];
+       for(int i=0;i<5;i++)
+           for(int j=0;j<8;j++)
+               tablaImaginaria[i][j]=tablaPosibilidades[i][j];
        tablaImaginaria[posFinX2][posFinY2]=jugador;
        tablaImaginaria[posInicX][posInicY]=0;//Significa campo vacio
        //Entonces tenemos la tabla imaginaria la cual supondra que la maquina ya ha realizado el movimiento
@@ -611,28 +639,38 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                 provisional = new Casillero(i, j);
                 if (tablaImaginaria[i][j] == -1)//Pollo
                 {
+                    marcarPosibilidades(-1, i, j);
                     provisional.agregarPosibilidades(obtenerPosibilidadesPollo(i, j, 0));
                     oponenteJugadas.add(provisional);
                 }
                 if (tablaImaginaria[i][j] == -2)//Cocodrilo
                 {
+                    marcarPosibilidades(-2, i, j);
                     provisional.agregarPosibilidades(obtenerPosibilidadesCocodrilo(i, j, 0));
                     oponenteJugadas.add(provisional);
                     
                 }
                 if (tablaImaginaria[i][j] == -3)//Humano
                 {
+                    marcarPosibilidades(-3, i, j);
                     provisional.agregarPosibilidades(obtenerPosibilidadesHumano(i, j,0));
                     oponenteJugadas.add(provisional);
                 }
                 if (tablaImaginaria[i][j] == -4)//Godzilla
                 {
+                    marcarPosibilidades(-4, i, j);
                     provisional.agregarPosibilidades(obtenerPosibilidadesGodzilla(i, j, 0));
                     oponenteJugadas.add(provisional);
                 }
-                //actualizaMat(true);
+                actualizaMat(true);
             }
         }
+       for(int i=0;i<5;i++)
+           for(int j=0;j<8;j++)
+               tabla[i][j]=tablaImaginaria[i][j];
+       for(int i=0;i<5;i++)
+           for(int j=0;j<8;j++)
+               tablaPosibilidades[i][j]=tablaImaginariaPosibilidades[i][j];
        return oponenteJugadas;
     }
 
@@ -661,7 +699,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
             } else if (pieza==-4) {
                 return -50;
             } else {
-                return 5;
+                return -5;
             }
             
         }

@@ -207,7 +207,7 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
         int nroPiezasMaquinas = casillerosPiezasMaquinas.size();
         int posibilidades = 0;
         int contador = 0;
-        int puntajeMaximo=-100;
+        int puntajeMaximo=Integer.MIN_VALUE;
         Casillero casilleroElegido=null;
         Casillero casilleroInicial=null;
         Casillero casilleroInicialMaximo=null;
@@ -219,9 +219,10 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                 System.out.println("Nro de posibilidades "+posibilidades);
             for (int b = 0; b < posibilidades; b++) {
                 contador++;
-                if(puntajeMaximo<casilleroInicial.obtenerPosibilidad(b).getPuntaje()){
+                Casillero casilleroPosible=casilleroInicial.obtenerPosibilidad(b);
+                if(puntajeMaximo<casilleroPosible.obtenerPuntajeFraccionadoMaquinas()){
                     casilleroInicialMaximo=casilleroInicial;
-                    puntajeMaximo=casilleroInicialMaximo.obtenerPosibilidad(b).getPuntaje();
+                    puntajeMaximo=casilleroInicialMaximo.obtenerPuntajeFraccionadoMaquinas();
                     casilleroElegido = casilleroInicialMaximo.obtenerPosibilidad(b);
                     System.out.println("Casillero Inicial : "+casilleroInicialMaximo.getI()+" y "+casilleroInicial.getJ());
                     System.out.println("Casillero Elegido : "+casilleroElegido.getI()+" y "+casilleroElegido.getJ());

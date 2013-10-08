@@ -6,7 +6,7 @@ package Vistas.Tablero;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.lang.NullPointerException;
 /**
  *
  * @author OMAR
@@ -16,7 +16,7 @@ public class Casillero {
     private int j;
     private ArrayList<Casillero> posibilidades;
     private ArrayList<Casillero> posibilidadesOponente;
-        private int puntaje;
+    private int puntaje;
     public Casillero(int i,int j){
         this.i=i;
         this.j=j;
@@ -70,16 +70,31 @@ public class Casillero {
     public void setPosibilidadesOponente(ArrayList<Casillero> posibilidadesOponente) {
         this.posibilidadesOponente = posibilidadesOponente;
     }
+    public int obtenerPuntajeFraccionadoMaquinas(){
+        //Divide al beneficio de la maquina contra la perdida
+        return getPuntaje()/obtenerMaxPuntajeHumanos();
+    }
+    
     public int obtenerMaxPuntajeHumanos(){
+        //El maximo puntaje para los humanos va a ser negativo OJO!!!
+        
         Iterator<Casillero> iterador=posibilidadesOponente.iterator();
         int puntajeMayor=1000000;
+        
        while(iterador.hasNext()){
+           System.out.println("Entro aca");
            Casillero casillero=iterador.next();
-            if(puntajeMayor<casillero.getPuntaje()){
-                puntajeMayor=casillero.getPuntaje();
+           Iterator<Casillero> iterador2=casillero.posibilidades.iterator();
+           while(iterador2.hasNext()){
+               System.out.println("Hola que hace");
+                Casillero casiElegiPorHumano=iterador2.next();
+               if(puntajeMayor>casiElegiPorHumano.getPuntaje()){
+                 puntajeMayor=casiElegiPorHumano.getPuntaje();
             }
+           }
         }
-       System.out.println("El puntaje mayor es: "+puntajeMayor);
+       
+       System.out.println("El puntaje mayor para el humano es: "+puntajeMayor);
         return puntajeMayor;
     }
 }
