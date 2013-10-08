@@ -23,6 +23,8 @@ public class TableroGUI extends javax.swing.JPanel {
     private ImageIcon cocodriloA,gozillaA,hombreA,polloA;
     private ImageIcon cocodriloB,gozillaB,hombreB,polloB;
     private ImageIcon agua, tocado, seleccion;
+    private ImageIcon comerCocodriloA,comerGozillaA,comerHombreA,
+                        comerPolloA,comerCocodriloB,comerGozillaB,comerHombreB,comerPolloB;
     private boolean tipoTablero;
     private CasillasGUI [][] casillas ;
     private Juego juegoHumanoHumano;
@@ -303,16 +305,35 @@ public class TableroGUI extends javax.swing.JPanel {
                     casillas[i][j].setFondo(seleccion);
                     valor=tablaPosibilidades[i][j];
                         switch( valor){
-                        case -1: casillas[i][j].setFondo(polloB); break;
-                        case -2: casillas[i][j].setFondo(cocodriloB);break;
-                        case -3: casillas[i][j].setFondo(hombreB);break;
-                        case -4: casillas[i][j].setFondo(gozillaB);break;
-                        case 1: casillas[i][j].setFondo(polloA);break; 
-                        case 2: casillas[i][j].setFondo(cocodriloA);break;
-                        case 3: casillas[i][j].setFondo(hombreA);break;
-                        case 4: casillas[i][j].setFondo(gozillaA);break;
-                        case 10: casillas[i][j].setFondo(seleccion);break;
-                        case 20:casillas[i][j].setFondo(seleccion);break;
+                        //case -1: casillas[i][j].setFondo(polloB); break;
+                        //case -2: casillas[i][j].setFondo(cocodriloB);break;
+                        //case -3: casillas[i][j].setFondo(hombreB);break;
+                        //case -4: casillas[i][j].setFondo(gozillaB);break;
+                        //case 1: casillas[i][j].setFondo(polloA);break; 
+                        //case 2: casillas[i][j].setFondo(cocodriloA);break;
+                        //case 3: casillas[i][j].setFondo(hombreA);break;
+                        //case 4: casillas[i][j].setFondo(gozillaA);break;
+                        case 10: casillas[i][j].setFondo(seleccion);
+                                int  valor_tablero = tabla[i][j];
+                                System.out.println("Tabla: "+valor_tablero);
+                                switch(valor_tablero){
+                                    case -1: casillas[i][j].setFondo(comerPolloB);break; 
+                                    case -2: casillas[i][j].setFondo(comerCocodriloB);break;
+                                    case -3: casillas[i][j].setFondo(comerHombreB);break;
+                                    case -4: casillas[i][j].setFondo(comerGozillaB);break;
+                                    case 0: casillas[i][j].setFondo(seleccion);break; 
+                                }
+                                break;
+                        case 20:casillas[i][j].setFondo(seleccion);
+                                int  valor_tabla = tabla[i][j];
+                                switch(valor_tabla){
+                                    case 1: casillas[i][j].setFondo(comerPolloA);break; 
+                                    case 2: casillas[i][j].setFondo(comerCocodriloA);break;
+                                    case 3: casillas[i][j].setFondo(comerHombreA);break;
+                                    case 4: casillas[i][j].setFondo(comerGozillaA);break;
+                                    case 0: casillas[i][j].setFondo(seleccion);break; 
+                                }
+                                break;
                         default : casillas[i][j].setFondo(tocado);break;
                     
                     }
@@ -433,6 +454,14 @@ public class TableroGUI extends javax.swing.JPanel {
         this.polloB=this.cargarFondo("../../imagenes_jugadores/polloB.jpg");
         this.seleccion=this.cargarFondo("../../imagenes_jugadores/seleccion.jpg");
         
+        this.comerPolloA=this.cargarFondo("../../imagenes/comerPolloA.png");
+        this.comerPolloB=this.cargarFondo("../../imagenes/comerPolloB.png");
+        this.comerCocodriloA=this.cargarFondo("../../imagenes/comerCocodriloA.png");
+        this.comerCocodriloB=this.cargarFondo("../../imagenes/comerCocodriloB.png");
+        this.comerHombreA=this.cargarFondo("../../imagenes/comerHumanoA.png");
+        this.comerHombreB=this.cargarFondo("../../imagenes/comerHumanoB.png");
+        this.comerGozillaA=this.cargarFondo("../../imagenes/comerGozillaA.png");
+        this.comerGozillaB=this.cargarFondo("../../imagenes/comerGozillaB.png");
     }
     
     protected static ImageIcon cargarFondo(String ruta) {
