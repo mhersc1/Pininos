@@ -5,6 +5,7 @@
 package Vistas.Tablero;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -14,7 +15,8 @@ public class Casillero {
     private int i;
     private int j;
     private ArrayList<Casillero> posibilidades;
-    private int puntaje;
+    private ArrayList<Casillero> posibilidadesOponente;
+        private int puntaje;
     public Casillero(int i,int j){
         this.i=i;
         this.j=j;
@@ -60,5 +62,24 @@ public class Casillero {
     public void setPuntaje(int puntaje) {
         this.puntaje = puntaje;
     }
-    
+
+    public ArrayList<Casillero> getPosibilidadesOponente() {
+        return posibilidadesOponente;
+    }
+
+    public void setPosibilidadesOponente(ArrayList<Casillero> posibilidadesOponente) {
+        this.posibilidadesOponente = posibilidadesOponente;
+    }
+    public int obtenerMaxPuntajeHumanos(){
+        Iterator<Casillero> iterador=posibilidadesOponente.iterator();
+        int puntajeMayor=1000000;
+       while(iterador.hasNext()){
+           Casillero casillero=iterador.next();
+            if(puntajeMayor<casillero.getPuntaje()){
+                puntajeMayor=casillero.getPuntaje();
+            }
+        }
+       System.out.println("El puntaje mayor es: "+puntajeMayor);
+        return puntajeMayor;
+    }
 }

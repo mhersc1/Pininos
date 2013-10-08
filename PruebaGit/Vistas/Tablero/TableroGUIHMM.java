@@ -612,16 +612,32 @@ public class TableroGUIHMM extends javax.swing.JPanel {
         }
         return posibilidades;
     }
-    public int funcion_evaluadora(boolean comer_pollo, boolean comer_humano,boolean comer_cocodrilo, boolean comer_godzilla){
-        if(comer_pollo)
-            return 10;
-        else if(comer_humano)
-            return 20;
-        else if(comer_cocodrilo)
-            return 25;
-        else if(comer_godzilla)
-            return 50;
-        else 
-            return 5;
+    public int funcion_evaluadora(boolean comer_pollo, boolean comer_humano, boolean comer_cocodrilo, boolean comer_godzilla) {
+        if (!restriccionA) {
+            if (comer_pollo) {
+                return 10;
+            } else if (comer_humano) {
+                return 20;
+            } else if (comer_cocodrilo) {
+                return 25;
+            } else if (comer_godzilla) {
+                return 50;
+            } else {
+                return 5;
+            }
+        } else {
+            System.out.println("No debe entrar aqui =D");
+            if (comer_pollo) {
+                return -10;
+            } else if (comer_humano) {
+                return -20;
+            } else if (comer_cocodrilo) {
+                return -25;
+            } else if (comer_godzilla) {
+                return -50;
+            } else {
+                return 5;
+            }
+        }
     }
 }

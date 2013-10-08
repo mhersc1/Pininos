@@ -181,7 +181,7 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                 {
                     provisional.agregarPosibilidades(tablero.obtenerPosibilidadesGodzilla(i, j, equipo));
                     casillerosPiezasMaquinas.add(provisional);
-                    nroPosibilidades++;
+                    nroPosibilidades=nroPosibilidades+provisional.tamPosibilidades();
                 }
                 tablero.actualizaMat(true);
 
