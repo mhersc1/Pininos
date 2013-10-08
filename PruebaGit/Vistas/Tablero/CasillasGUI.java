@@ -164,6 +164,9 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             tablero.repaint();                         
                             tablero.restriccionA=true;
                             tablero.restriccionB=false;
+                            if(valor==5){
+                            tablero.dibujarPosibilidades();
+                            }
                             tablero.seleccionar=1;//vuelve a seleccionar
                             }
                             if(tablero.tablaPosibilidades[casillaMarcada[0]][casillaMarcada[1]]==20 && tablero.restriccionB){
@@ -172,6 +175,9 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             tablero.repaint();                         
                             tablero.restriccionA=false;
                             tablero.restriccionB=true;
+                            if(valor==-5){
+                            tablero.dibujarPosibilidades();
+                            }
                             tablero.seleccionar=1;
                             }
                             ////////////////////////////////////////

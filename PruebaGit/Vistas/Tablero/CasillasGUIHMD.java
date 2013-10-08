@@ -195,6 +195,9 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                     casillerosPiezasMaquinas.add(provisional);
                     nroPosibilidades++;
                 }
+                if(tabla[i][j]==-5){
+                //por implementar ...
+                }
                 tablero.actualizaMat(true);
 
             }

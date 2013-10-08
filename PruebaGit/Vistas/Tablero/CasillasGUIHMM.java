@@ -4,7 +4,7 @@
  */
 package Vistas.Tablero;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
+
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -193,6 +193,9 @@ public class CasillasGUIHMM extends javax.swing.JPanel implements MouseListener 
                     provisional.agregarPosibilidades(tablero.obtenerPosibilidadesGodzilla(i, j, equipo));
                     casillerosPiezasMaquinas.add(provisional);
                     nroPosibilidades++;
+                }
+                if(tabla[i][j]==-5){
+                //por implementar
                 }
                 tablero.actualizaMat(true);
 
