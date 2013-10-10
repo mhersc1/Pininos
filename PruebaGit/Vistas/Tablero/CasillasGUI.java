@@ -100,10 +100,11 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                                         tablero.restriccionA=false;
                                         tablero.restriccionB=true;
                                         JLabel turno=tablero.getJuegoHumanoHumano().getLabelTurno();
-                                        turno.setText("Turno A");
+                                        //turno.setText("Turno A");
                                         tablero.getJuegoHumanoHumano().setLabelTurno(turno);
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
+                                
                                 casillaMarcadaAnterior[0]=casillaMarcada[0];
                                 casillaMarcadaAnterior[1]=casillaMarcada[1];
                                 tablero.dibujarPosibilidades();
@@ -120,7 +121,7 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                                         tablero.restriccionB=false;
                                         tablero.restriccionA=true;
                                         JLabel turno=tablero.getJuegoHumanoHumano().getLabelTurno();
-                                        turno.setText("Turno B");
+                                        //turno.setText("Turno B");
                                         tablero.getJuegoHumanoHumano().setLabelTurno(turno);
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
                                 tablero.pintar_tablero(false);
@@ -155,6 +156,16 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             tablero.pintar_tablero(true);
 
                             tablero.pintar_tablero(false);
+                            if(tablero.restriccionA==true &&tablero.restriccionB==false){
+                                JLabel turno=tablero.getJuegoHumanoHumano().getLabelTurno();
+                                        turno.setText("Turno A");
+                                        tablero.getJuegoHumanoHumano().setLabelTurno(turno);
+                            }
+                            if(tablero.restriccionB==true&&tablero.restriccionA==false){
+                                JLabel turno=tablero.getJuegoHumanoHumano().getLabelTurno();
+                                        turno.setText("Turno B");
+                                        tablero.getJuegoHumanoHumano().setLabelTurno(turno);
+                            }
                             
                             tablero.seleccionar=1;//vuelve a seleccionar;
                         }else{

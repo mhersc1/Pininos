@@ -26,6 +26,7 @@ public class Pollo extends Personaje {
                  System.out.println("Muevete derecha");
                 }else{
                  System.out.println("Sin movimiento");
+                 
                     }
             
         }
