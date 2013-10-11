@@ -193,7 +193,7 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                 {
                     provisional.agregarPosibilidades(tablero.obtenerPosibilidadesGodzilla(i, j, equipo));
                     casillerosPiezasMaquinas.add(provisional);
-                    nroPosibilidades++;
+                    nroPosibilidades=nroPosibilidades+provisional.tamPosibilidades();
                 }
                 if(tabla[i][j]==-5){
                 //por implementar ...
@@ -210,21 +210,20 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
         int nroPiezasMaquinas = casillerosPiezasMaquinas.size();
         int posibilidades = 0;
         int contador = 0;
-        int puntajeMaximo=-100;
+        int puntajeMaximo=Integer.MIN_VALUE;
         Casillero casilleroElegido=null;
         Casillero casilleroInicial=null;
         Casillero casilleroInicialMaximo=null;
-        System.out.println("Nro de maquinass"+nroPiezasMaquinas);
-        //System.out.println("Posibilidad Elegida"+posibElegida);
         for (int a = 0; a < nroPiezasMaquinas; a++) {
             casilleroInicial = casillerosPiezasMaquinas.get(a);
             posibilidades = casilleroInicial.tamPosibilidades();
-                System.out.println("Nro de posibilidades "+posibilidades);
             for (int b = 0; b < posibilidades; b++) {
                 contador++;
-                if(puntajeMaximo<casilleroInicial.obtenerPosibilidad(b).getPuntaje()){
+                System.out.println("Jugador :  "+a+" Posiilidad:"+b);
+                Casillero casilleroPosible=casilleroInicial.obtenerPosibilidad(b);
+                if(puntajeMaximo<casilleroPosible.obtenerPuntajeFraccionadoMaquinas()){
                     casilleroInicialMaximo=casilleroInicial;
-                    puntajeMaximo=casilleroInicialMaximo.obtenerPosibilidad(b).getPuntaje();
+                    puntajeMaximo=casilleroInicialMaximo.obtenerPuntajeFraccionadoMaquinas();
                     casilleroElegido = casilleroInicialMaximo.obtenerPosibilidad(b);
                     System.out.println("Casillero Inicial : "+casilleroInicialMaximo.getI()+" y "+casilleroInicial.getJ());
                     System.out.println("Casillero Elegido : "+casilleroElegido.getI()+" y "+casilleroElegido.getJ());
@@ -234,6 +233,7 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
         }
         System.out.println("casilleroInicial:"+casilleroInicialMaximo.getI()+","+casilleroInicialMaximo.getJ());
         System.out.println("casilleroInicial:"+casilleroElegido.getI()+","+casilleroElegido.getJ());
+        System.out.println("El puntaje maximo es :"+puntajeMaximo);
         tablero.establecer_nueva_posicion(casilleroInicialMaximo.getI(), casilleroInicialMaximo.getJ(), casilleroElegido.getI(), casilleroElegido.getJ());
         tablero.redibujarTablero();
         tablero.repaint();
