@@ -21,6 +21,8 @@ public class Casillero {
         this.i=i;
         this.j=j;
         posibilidades=new ArrayList();
+        posibilidadesOponente=new ArrayList();
+        
     }
 
     public int getI() {

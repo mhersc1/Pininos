@@ -564,7 +564,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                         if (tablaPosibilidades[a][b] >= 0 && !(a == x && b == y)) {
                             posible = new Casillero(a, b);
                             puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                            posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, tabla[a][b]));
+                            posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
                             posible.setPuntaje(puntaje);
                             posibilidades.add(posible);
                         }
@@ -596,7 +596,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                 if ((Math.abs(b - y) == 0 || Math.abs(a - x) == 0) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2)) {
                     if (tablaPosibilidades[a][b] >= 0&&!(a==x&&b==y)&&equipo==1) {
                         posible=new Casillero(a,b);
-                        posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y,tabla[a][b] ));
+                        posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b,tabla[a][b] ));
                         puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                         posible.setPuntaje(puntaje);
                         posibilidades.add(posible);
@@ -626,7 +626,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                             if (tablaPosibilidades[a][b] >= 0 &&!(a==x&&b==y)&&equipo==1) {
                                 posible = new Casillero(a, b);
                                 puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                                posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, tabla[a][b]));
+                                posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
                                 posible.setPuntaje(puntaje);
                                 posibilidades.add(posible);
                             }
@@ -656,7 +656,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                     if(tablaPosibilidades[a][b]>=0 &&!(a==x&&b==y)&&equipo==1){
                         posible=new Casillero(a,b);
                         puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                        posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, tabla[a][b]));
+                        posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
                         posible.setPuntaje(puntaje);
                         posibilidades.add(posible);
                     }         
@@ -677,7 +677,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                         if(tablaPosibilidades[a][b]>=0&&!(a==x&&b==y)&&equipo==1){
                             posible=new Casillero(a,b);
                             puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                            posible.setPosibilidadesOponente(analizarJugadasOponente(a, b, x, y, tabla[a][b]));
+                            posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
                             posible.setPuntaje(puntaje);
                             posibilidades.add(posible);
                         }
