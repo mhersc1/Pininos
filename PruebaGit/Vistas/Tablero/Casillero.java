@@ -72,10 +72,6 @@ public class Casillero {
     public void setPosibilidadesOponente(ArrayList<Casillero> posibilidadesOponente) {
         this.posibilidadesOponente = posibilidadesOponente;
     }
-    public int obtenerPuntajeFraccionadoMaquinas(){
-        //Divide al beneficio de la maquina contra la perdida
-        return getPuntaje()+obtenerMaxPuntajeHumanos();
-    }
     
     public int obtenerMaxPuntajeHumanos(){
         //El maximo puntaje para los humanos va a ser negativo OJO!!!

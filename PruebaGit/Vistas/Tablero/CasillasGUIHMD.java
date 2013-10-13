@@ -4,7 +4,6 @@
  */
 package Vistas.Tablero;
 
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -27,7 +26,10 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
     //private int seleccionar=1;
     private static int [] casillaMarcadaAnterior = new int[2];
     private  int  turno= 100 ;// -100 equipo  B
-    
+    public static final int casillaSelecta =1;
+    public static final int casillaASeleccionar =2;
+    public static final int turnoHumano =0;
+    public static final int turnoMaquina =1;
     public CasillasGUIHMD() {        
         // este constructor no se usar&aacute;, se deja para poder crear el bean.        
     }
@@ -85,18 +87,11 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
              
             if(tablero.hayGanador()==0){
             
-            switch(tablero.seleccionar){//Casilla Selecta       : 1
-                                        //Casilla a seleccionar : 2
-                case 1:
-                   
-                        //Por convencion empieza equipo humano
-                        /*si has escogido una  ficha que corresponde al equipo con turno */
-                        /*movimiento valido*/ 
-                            
+            switch(tablero.seleccionar){
+                case casillaSelecta:
                             valor=tablero.devolverValorFichaSeleccionada();
-                            //
                             if(valor>0 && tablero.restriccionA){
-                                tablero.Equipo=0;
+                                tablero.Equipo=turnoHumano;
                                 tablero.restriccionA=false;
                                 tablero.restriccionB=true;
                                 tablero.marcarPosibilidades(valor,casillaMarcada[0],casillaMarcada[1]); 
@@ -105,12 +100,11 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                                 casillaMarcadaAnterior[1]=casillaMarcada[1];
                                 tablero.dibujarPosibilidades();
                                 tablero.repaint();
-                                tablero.seleccionar=2;//tiene que elegir sgte posicion
-                                
-                                }//clave!
+                                tablero.seleccionar=casillaASeleccionar;//tiene que elegir sgte posicion
+                                }
                          ;break;
                     
-                case 2:  
+                case casillaASeleccionar:  
                     
                         if(tablero.evaluarMovimiento(casillaMarcada[0],casillaMarcada[1],tablero.Equipo)){
                             tablero.establecer_nueva_posicion(casillaMarcadaAnterior[0],casillaMarcadaAnterior[1], casillaMarcada[0],casillaMarcada[1]);
@@ -119,9 +113,8 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                             tablero.actualizaMat(true);//copiar a la posibilidades
                             tablero.pintar_tablero(true);
                             tablero.pintar_tablero(false);
-                            tablero.seleccionar=1;//vuelve a seleccionar;
-                            //Cambia Al estado maquina
-                            tablero.Equipo=1;
+                            tablero.seleccionar=casillaSelecta;//vuelve a seleccionar;
+                            tablero.Equipo=turnoMaquina;
                             movimientoMaquina(tablero.Equipo);
                         }else{
                             //Hace que se mantenga en el mismo turno
@@ -131,7 +124,7 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                             tablero.repaint();                         
                             tablero.restriccionA=true;
                             //tablero.restriccionB=false;
-                            tablero.seleccionar=1;//vuelve a seleccionar
+                            tablero.seleccionar=casillaSelecta;//vuelve a seleccionar
                             }
                             
                            if(tablero.restriccionA){
@@ -144,8 +137,7 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                             tablero.actualizaMat(true);
                             tablero.redibujarTablero();
                             tablero.repaint();
-                            tablero.seleccionar=1;
-
+                            tablero.seleccionar=casillaSelecta;
                         }       
                         ;break;
                 default: System.out.println("ola k ase?");   
@@ -206,8 +198,8 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
         }
         System.out.println("Nro Posibilidades: " + nroPosibilidades);
         int posibElegida;
-        //int posibElegida = (int) (Math.random() * nroPosibilidades + 1);//Entre 1 y el nro de posibilidades
         int nroPiezasMaquinas = casillerosPiezasMaquinas.size();
+        System.out.println("Nro de Piezas maquinas: "+nroPiezasMaquinas);
         int posibilidades = 0;
         int contador = 0;
         int puntajeMaximo=Integer.MIN_VALUE;
@@ -217,22 +209,23 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
         for (int a = 0; a < nroPiezasMaquinas; a++) {
             casilleroInicial = casillerosPiezasMaquinas.get(a);
             posibilidades = casilleroInicial.tamPosibilidades();
+                System.out.println("Nro de posibilidades "+posibilidades);
             for (int b = 0; b < posibilidades; b++) {
                 contador++;
-                System.out.println("Jugador :  "+a+" Posiilidad:"+b);
-                Casillero casilleroPosible=casilleroInicial.obtenerPosibilidad(b);
-                if(puntajeMaximo<casilleroPosible.obtenerPuntajeFraccionadoMaquinas()){
+                if(puntajeMaximo<casilleroInicial.obtenerPosibilidad(b).getPuntaje()){
                     casilleroInicialMaximo=casilleroInicial;
-                    puntajeMaximo=casilleroInicialMaximo.obtenerPuntajeFraccionadoMaquinas();
+                    puntajeMaximo=casilleroInicialMaximo.obtenerPosibilidad(b).getPuntaje();
                     casilleroElegido = casilleroInicialMaximo.obtenerPosibilidad(b);
+                    System.out.println("************Posibilidad nro "+b+"*** Pieza"+a);
                     System.out.println("Casillero Inicial : "+casilleroInicialMaximo.getI()+" y "+casilleroInicial.getJ());
                     System.out.println("Casillero Elegido : "+casilleroElegido.getI()+" y "+casilleroElegido.getJ());
+                    System.out.println("*************************************************");
                 }
-            
             }
         }
-        System.out.println("casilleroInicial:"+casilleroInicialMaximo.getI()+","+casilleroInicialMaximo.getJ());
-        System.out.println("casilleroInicial:"+casilleroElegido.getI()+","+casilleroElegido.getJ());
+        System.out.println("***********************************");
+        System.out.println("casilleroInicial: "+casilleroInicialMaximo.getI()+","+casilleroInicialMaximo.getJ());
+        System.out.println("casilleroElegio: "+casilleroElegido.getI()+","+casilleroElegido.getJ());
         System.out.println("El puntaje maximo es :"+puntajeMaximo);
         tablero.establecer_nueva_posicion(casilleroInicialMaximo.getI(), casilleroInicialMaximo.getJ(), casilleroElegido.getI(), casilleroElegido.getJ());
         tablero.redibujarTablero();

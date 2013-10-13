@@ -37,6 +37,8 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     
     private int[][] tabla;
     public int [][] tablaPosibilidades;
+    private final int turnoMaquina=1;
+    private final int turnoHumano=1;
     
     public int getTurno_actual() {
         return turno_actual;
@@ -559,18 +561,19 @@ public class TableroGUIHMD extends javax.swing.JPanel {
 
         for (int a = 0; a < 5; a++) {
             for (int b = 0; b < 8; b++) {
-                if (equipo == 1) {
+                if (equipo == turnoMaquina) {
                     if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == -1)) {
                         if (tablaPosibilidades[a][b] >= 0 && !(a == x && b == y)) {
                             posible = new Casillero(a, b);
                             puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                             posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
+                            puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
                             posible.setPuntaje(puntaje);
                             posibilidades.add(posible);
                         }
                     }
                 }
-                else if (equipo == 0) {
+                else if (equipo == turnoHumano) {
                     if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == 1)) {
                         if (tablaPosibilidades[a][b] <= 0) {
                             posible = new Casillero(a, b);
@@ -597,6 +600,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                     if (tablaPosibilidades[a][b] >= 0&&!(a==x&&b==y)&&equipo==1) {
                         posible=new Casillero(a,b);
                         posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b,tabla[a][b] ));
+                        puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
                         puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                         posible.setPuntaje(puntaje);
                         posibilidades.add(posible);
@@ -627,6 +631,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                                 posible = new Casillero(a, b);
                                 puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                                 posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
+                                puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
                                 posible.setPuntaje(puntaje);
                                 posibilidades.add(posible);
                             }
@@ -657,6 +662,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                         posible=new Casillero(a,b);
                         puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                         posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
+                        puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
                         posible.setPuntaje(puntaje);
                         posibilidades.add(posible);
                     }         
@@ -678,6 +684,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                             posible=new Casillero(a,b);
                             puntaje=funcion_evaluadora(equipo, tabla[a][b]);
                             posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
+                            puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
                             posible.setPuntaje(puntaje);
                             posibilidades.add(posible);
                         }
@@ -705,12 +712,12 @@ public class TableroGUIHMD extends javax.swing.JPanel {
        int[][] tablaImaginariaPosibilidades = new int[5][8];
        for(int i=0;i<5;i++)
            for(int j=0;j<8;j++)
-               tablaImaginaria[i][j]=tablaPosibilidades[i][j];
-       tablaImaginaria[posFinX2][posFinY2]=jugador;
-       tablaImaginaria[posInicX][posInicY]=0;//Significa campo vacio
+               tablaImaginariaPosibilidades[i][j]=tablaPosibilidades[i][j];
+       tabla[posFinX2][posFinY2]=jugador;
+       tabla[posInicX][posInicY]=0;//Significa campo vacio
        //Entonces tenemos la tabla imaginaria la cual supondra que la maquina ya ha realizado el movimiento
        Casillero provisional;
-        for (int i = 0; i < 5; i++) {
+       for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 8; j++) {
                 provisional = new Casillero(i, j);
                 if (tablaImaginaria[i][j] == 1)//Pollo
