@@ -5,6 +5,7 @@
 package Vistas.Tablero;
 
 import LogicGame.Equipo;
+import Vistas.Juego;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -39,6 +40,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     public int [][] tablaPosibilidades;
     private final int turnoMaquina=1;
     private final int turnoHumano=0;
+    public Juego juegoPrinc;
     
     public int getTurno_actual() {
         return turno_actual;
@@ -74,7 +76,8 @@ public class TableroGUIHMD extends javax.swing.JPanel {
         initComponents();
     }
 
-    public TableroGUIHMD(int filas,int columnas, boolean tipo) {
+    public TableroGUIHMD(int filas,int columnas, boolean tipo,Juego juegoPrinc) {
+        this.juegoPrinc=juegoPrinc;
         initComponents();
         tabla=new int[5][8];//El tablero actual!!
         tablaPosibilidades=new int[5][8];//indica las posibilidaddes de movimiento
@@ -477,35 +480,36 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     }
     
     private void cargarImagenes() {
-        this.agua = this.cargarFondo("../../imagenes/fondo.jpg");
-            this.tocado = this.cargarFondo("../../imagenes/tocado.jpg");
+        this.agua = this.cargarFondo("/imagenes/fondo.jpg");
+            this.tocado = this.cargarFondo("/imagenes/tocado.jpg");
         
-            this.gozillaA=this.cargarFondo("../../imagenes_jugadores/godzillaA.jpg");
-            this.hombreA=this.cargarFondo("../../imagenes_jugadores/hombreA.jpg");
-        this.cocodriloA=this.cargarFondo("../../imagenes_jugadores/cocodriloA.jpg");
-        this.polloA=this.cargarFondo("../../imagenes_jugadores/polloA.jpg");
-        this.polloAinmortal=this.cargarFondo("../../imagenes_jugadores/polloAinmortal.jpg");
+            this.gozillaA=this.cargarFondo("/imagenes_jugadores/godzillaA.jpg");
+            this.hombreA=this.cargarFondo("/imagenes_jugadores/hombreA.jpg");
+        this.cocodriloA=this.cargarFondo("/imagenes_jugadores/cocodriloA.jpg");
+        this.polloA=this.cargarFondo("/imagenes_jugadores/polloA.jpg");
+        this.polloAinmortal=this.cargarFondo("/imagenes_jugadores/polloAinmortal.jpg");
         
-        this.gozillaB=this.cargarFondo("../../imagenes_jugadores/godzillaB.jpg");
-        this.hombreB=this.cargarFondo("../../imagenes_jugadores/hombreB.jpg");
-        this.cocodriloB=this.cargarFondo("../../imagenes_jugadores/cocodriloB.jpg");
-        this.polloB=this.cargarFondo("../../imagenes_jugadores/polloB.jpg");
-        this.polloBinmortal=this.cargarFondo("../../imagenes_jugadores/polloBinmortal.jpg");
-        this.seleccion=this.cargarFondo("../../imagenes_jugadores/seleccion.jpg");
+        this.gozillaB=this.cargarFondo("/imagenes_jugadores/godzillaB.jpg");
+        this.hombreB=this.cargarFondo("/imagenes_jugadores/hombreB.jpg");
+        this.cocodriloB=this.cargarFondo("/imagenes_jugadores/cocodriloB.jpg");
+        this.polloB=this.cargarFondo("/imagenes_jugadores/polloB.jpg");
+        this.polloBinmortal=this.cargarFondo("/imagenes_jugadores/polloBinmortal.jpg");
+        this.seleccion=this.cargarFondo("/imagenes_jugadores/seleccion.jpg");
         
-        this.comerPolloA=this.cargarFondo("../../imagenes/comerPolloA.png");
-        this.comerPolloB=this.cargarFondo("../../imagenes/comerPolloB.png");
-        this.comerCocodriloA=this.cargarFondo("../../imagenes/comerCocodriloA.png");
-        this.comerCocodriloB=this.cargarFondo("../../imagenes/comerCocodriloB.png");
-        this.comerHombreA=this.cargarFondo("../../imagenes/comerHumanoA.png");
-        this.comerHombreB=this.cargarFondo("../../imagenes/comerHumanoB.png");
-        this.comerGozillaA=this.cargarFondo("../../imagenes/comerGozillaA.png");
-        this.comerGozillaB=this.cargarFondo("../../imagenes/comerGozillaB.png");
+        this.comerPolloA=this.cargarFondo("/imagenes/comerPolloA.png");
+        this.comerPolloB=this.cargarFondo("/imagenes/comerPolloB.png");
+        this.comerCocodriloA=this.cargarFondo("/imagenes/comerCocodriloA.png");
+        this.comerCocodriloB=this.cargarFondo("/imagenes/comerCocodriloB.png");
+        this.comerHombreA=this.cargarFondo("/imagenes/comerHumanoA.png");
+        this.comerHombreB=this.cargarFondo("/imagenes/comerHumanoB.png");
+        this.comerGozillaA=this.cargarFondo("/imagenes/comerGozillaA.png");
+        this.comerGozillaB=this.cargarFondo("/imagenes/comerGozillaB.png");
        
     }
     
-    protected static ImageIcon cargarFondo(String ruta) {
-        java.net.URL localizacion = TableroGUIHMD.class.getResource(ruta);
+    public ImageIcon cargarFondo(String ruta) {
+        java.net.URL localizacion;
+        localizacion = juegoPrinc.getClass().getResource(ruta);
         if (localizacion != null) {
             return new ImageIcon(localizacion);
         } else {
@@ -788,6 +792,10 @@ public class TableroGUIHMD extends javax.swing.JPanel {
             }
             
         }
+    }
+
+    public void setJuego(Juego juego) {
+        juegoPrinc=juego;
     }
 
 

@@ -37,7 +37,7 @@ public class Juego extends javax.swing.JPanel {
      */
     public Juego() {
        //initComponents();
-        tableroGUI=new TableroGUI(5,8,true);
+        tableroGUI=new TableroGUI(5,8,true,this);
         myInitComponents();
     }
     public Juego(JuegoPrincipal juegoPrincipal,int tipoJuego) {
@@ -45,7 +45,7 @@ public class Juego extends javax.swing.JPanel {
         //Entra aqui si es humano
         this.juegoPrincipal=juegoPrincipal;
         this.tipoJuego=tipoJuego;
-        tableroGUI=new TableroGUI(5,8,true);
+        tableroGUI=new TableroGUI(5,8,true,this);
         myInitComponents();
         this.setBackground(new Color(0, 255, 153));
         juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
@@ -57,17 +57,18 @@ public class Juego extends javax.swing.JPanel {
         this.tipoJuego=tipoJuego;
         this.nivel=nivel;
         if(this.tipoJuego==HUMANOVSMAQUINA&&this.nivel==NIVELFACIL){
-            tableroGUIHMF=new TableroGUIHMF(5,8,true);
+            tableroGUIHMF=new TableroGUIHMF(5,8,true,this);
             myInitComponents();
             juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
         }
         else if(this.tipoJuego==HUMANOVSMAQUINA&&this.nivel==NIVELMEDIO){
-            tableroGUIHMM=new TableroGUIHMM(5,8,true);
+            tableroGUIHMM=new TableroGUIHMM(5,8,true,this);
             myInitComponents();
             juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
         }
         else if(this.tipoJuego==HUMANOVSMAQUINA&&this.nivel==NIVELDIFICIL){
-            tableroGUIHMD=new TableroGUIHMD(5,8,true);
+            
+            tableroGUIHMD=new TableroGUIHMD(5,8,true,this);
             myInitComponents();
             juegoPrincipal.getContentPane().setBackground(new Color(0, 255, 153));
         }
