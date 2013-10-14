@@ -38,7 +38,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     private int[][] tabla;
     public int [][] tablaPosibilidades;
     private final int turnoMaquina=1;
-    private final int turnoHumano=1;
+    private final int turnoHumano=0;
     
     public int getTurno_actual() {
         return turno_actual;
@@ -230,54 +230,54 @@ public class TableroGUIHMD extends javax.swing.JPanel {
 
         }
     }
-    void  posibilidad_Pollo(int x, int y, int Equipo,int estado_pollo){
-    //        estado_pollo mortal:0 
+    void posibilidad_Pollo(int x, int y, int Equipo, int estado_pollo) {
+        //        estado_pollo mortal:0 
 //        estado_pollo inmortal:1
-        if(estado_pollo==0){//mortal
-            for(int a=0;a<5;a++){
-            for(int b=0;b<8;b++){
-                if(Equipo==0){
-                if((b-y==0 && Math.abs(a-x)==1)||(a-x==0 && b-y==1)){
-                if(tablaPosibilidades[a][b]>=-4&&tablaPosibilidades[a][b]<=0){
-            tablaPosibilidades[a][b]=10;
+        if (estado_pollo == 0) {//mortal
+            for (int a = 0; a < 5; a++) {
+                for (int b = 0; b < 8; b++) {
+                    if (Equipo == 0) {
+                        if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == 1)) {
+                            if (tablaPosibilidades[a][b] <= 0) {
+                                tablaPosibilidades[a][b] = 10;
+                            }
+                        }
+                    }
+                    if (Equipo == 1) {
+                        if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == -1)) {
+                            if (tablaPosibilidades[a][b] >= 0) {
+                                tablaPosibilidades[a][b] = 20;
+                            }
+                        }
+                    }
+
                 }
-           }
-        }
-       if(Equipo==1){
-       if((b-y==0 && Math.abs(a-x)==1)||(a-x==0 && b-y==-1)){
-            if(tablaPosibilidades[a][b]<=4&&tablaPosibilidades[a][b]>=0){
-            tablaPosibilidades[a][b]=20;
-                }       
-       }
-       }
-            
-          }
-       
+
             }
         }
-        if(estado_pollo==1){//inmortal
-            for(int a=0;a<5;a++){
-            for(int b=0;b<8;b++){
-       if(Equipo==0){
-       if((b-y==0 && Math.abs(a-x)==1)||(a-x==0 && Math.abs(b-y)==1)){
-            if(tablaPosibilidades[a][b]<=0){
-            tablaPosibilidades[a][b]=10;
-                }       
-       }
-        }
-       if(Equipo==1){
-        if((b-y==0 && Math.abs(a-x)==1)||(a-x==0 && Math.abs(b-y)==1)){
-         if(tablaPosibilidades[a][b]>=0){
-            tablaPosibilidades[a][b]=20;
+        if (estado_pollo == 1) {//inmortal
+            for (int a = 0; a < 5; a++) {
+                for (int b = 0; b < 8; b++) {
+                    if (Equipo == 0) {
+                        if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && Math.abs(b - y) == 1)) {
+                            if (tablaPosibilidades[a][b] <= 0) {
+                                tablaPosibilidades[a][b] = 10;
+                            }
+                        }
+                    }
+                    if (Equipo == 1) {
+                        if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && Math.abs(b - y) == 1)) {
+                            if (tablaPosibilidades[a][b] >= 0) {
+                                tablaPosibilidades[a][b] = 20;
+                            }
+                        }
+
+                    }
+
+                }
+
             }
-       }
-            
-          }
-       
-            }
-        
         }
-        }        
     }
     void  posibilidad_cocodrilo(int x,int y,int Equipo){//se  mueve  1  o dos casillasHM
         
@@ -287,8 +287,8 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                 if(distancia==1){
                 }
                 if((Math.abs(b-y)==0 || Math.abs(a-x)==0) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2)){
-                    if(tablaPosibilidades[a][b]>=-4&&tablaPosibilidades[a][b]<=0 && Equipo==0){tablaPosibilidades[a][b]=10;}
-                    if(tablaPosibilidades[a][b]<=4&&tablaPosibilidades[a][b]>=0 && Equipo==1){tablaPosibilidades[a][b]=20;}
+                    if(tablaPosibilidades[a][b]<=0 && Equipo==0){tablaPosibilidades[a][b]=10;}
+                    if(tablaPosibilidades[a][b]>=0 && Equipo==1){tablaPosibilidades[a][b]=20;}
                 }
             }
         }
@@ -299,8 +299,8 @@ public class TableroGUIHMD extends javax.swing.JPanel {
             for(int b=0;b<8;b++){
                 if((a-x)!=0){
                     if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
-                        if(tablaPosibilidades[a][b]>=-4&&tablaPosibilidades[a][b]<=0 && Equipo==0){tablaPosibilidades[a][b]=10;}
-                        if(tablaPosibilidades[a][b]<=4&&tablaPosibilidades[a][b]>=0&& Equipo==1){tablaPosibilidades[a][b]=20;}
+                        if(tablaPosibilidades[a][b]<=0 && Equipo==0){tablaPosibilidades[a][b]=10;}
+                        if(tablaPosibilidades[a][b]>=0&& Equipo==1){tablaPosibilidades[a][b]=20;}
                     
                     }
                 }
@@ -314,10 +314,10 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                 double  distancia=Math.hypot(Math.abs(a-x), Math.abs(b-y));
                 
                 if((Math.abs(b-y)==0 || Math.abs(a-x)==0) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2)){
-                    if(tablaPosibilidades[a][b]>=-4&&tablaPosibilidades[a][b]<=0  && Equipo==0){
+                    if(tablaPosibilidades[a][b]<=0  && Equipo==0){
                         tablaPosibilidades[a][b]=10;
                     }
-                    if(tablaPosibilidades[a][b]<=4&&tablaPosibilidades[a][b]>=0 && Equipo==1){
+                    if(tablaPosibilidades[a][b]>=0 && Equipo==1){
                         tablaPosibilidades[a][b]=20;
                     }                    
                 }
@@ -327,8 +327,8 @@ public class TableroGUIHMD extends javax.swing.JPanel {
             for(int b=0;b<8;b++){
                 if((a-x)!=0){
                     if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
-                        if(tablaPosibilidades[a][b]>=-4&&tablaPosibilidades[a][b]<=0  && Equipo==0){tablaPosibilidades[a][b]=10;}
-                        if(tablaPosibilidades[a][b]<=4&&tablaPosibilidades[a][b]>=0 && Equipo==1){tablaPosibilidades[a][b]=20;}
+                        if(tablaPosibilidades[a][b]<=0  && Equipo==0){tablaPosibilidades[a][b]=10;}
+                        if(tablaPosibilidades[a][b]>=0 && Equipo==1){tablaPosibilidades[a][b]=20;}
                     }
                 }
                 
@@ -350,7 +350,6 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                         switch( valor){
                         case 10: casillasHM[i][j].setFondo(seleccion);
                                 int  valor_tablero = tabla[i][j];
-                                System.out.println("Tabla: "+valor_tablero);
                                 switch(valor_tablero){
                                     case -1: casillasHM[i][j].setFondo(comerPolloB);break; 
                                     case -2: casillasHM[i][j].setFondo(comerCocodriloB);break;
@@ -475,12 +474,11 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     }
     
     private void cargarImagenes() {
-        
         this.agua = this.cargarFondo("../../imagenes/fondo.jpg");
-        this.tocado = this.cargarFondo("../../imagenes/tocado.jpg");
+            this.tocado = this.cargarFondo("../../imagenes/tocado.jpg");
         
-        this.gozillaA=this.cargarFondo("../../imagenes_jugadores/godzillaA.jpg");
-        this.hombreA=this.cargarFondo("../../imagenes_jugadores/hombreA.jpg");
+            this.gozillaA=this.cargarFondo("../../imagenes_jugadores/godzillaA.jpg");
+            this.hombreA=this.cargarFondo("../../imagenes_jugadores/hombreA.jpg");
         this.cocodriloA=this.cargarFondo("../../imagenes_jugadores/cocodriloA.jpg");
         this.polloA=this.cargarFondo("../../imagenes_jugadores/polloA.jpg");
         this.polloAinmortal=this.cargarFondo("../../imagenes_jugadores/polloAinmortal.jpg");
@@ -500,7 +498,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
         this.comerHombreB=this.cargarFondo("../../imagenes/comerHumanoB.png");
         this.comerGozillaA=this.cargarFondo("../../imagenes/comerGozillaA.png");
         this.comerGozillaB=this.cargarFondo("../../imagenes/comerGozillaB.png");
-        
+       
     }
     
     protected static ImageIcon cargarFondo(String ruta) {
@@ -557,7 +555,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     public ArrayList<Casillero> obtenerPosibilidadesPollo(int x, int y, int equipo) {
         ArrayList<Casillero> posibilidades = new ArrayList();
         Casillero posible;
-        int puntaje = 0;
+        double puntajeAdvanced = 0;
 
         for (int a = 0; a < 5; a++) {
             for (int b = 0; b < 8; b++) {
@@ -565,20 +563,25 @@ public class TableroGUIHMD extends javax.swing.JPanel {
                     if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == -1)) {
                         if (tablaPosibilidades[a][b] >= 0 && !(a == x && b == y)) {
                             posible = new Casillero(a, b);
-                            puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                            posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
-                            puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
-                            posible.setPuntaje(puntaje);
+                            puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                            System.out.println("El puntajeAdvanced de la funcion evaluadora con equipo :"+equipo+"y "+tabla[a][b]+" es: "+puntajeAdvanced);
+                            posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[x][y]));
+                            puntajeAdvanced=Math.abs(puntajeAdvanced/posible.obtenerMaxPuntajeHumanos());
+                            System.out.println("Maximo puntajeAdvanced de humanos movimiento pollo:"+posible.obtenerMaxPuntajeHumanos());
+                            System.out.println("El puntajeAdvanced de mover al pollo es: "+puntajeAdvanced);
+                            posible.setPuntajeAdvanced(puntajeAdvanced);
                             posibilidades.add(posible);
                         }
                     }
                 }
+                
                 else if (equipo == turnoHumano) {
                     if ((b - y == 0 && Math.abs(a - x) == 1) || (a - x == 0 && b - y == 1)) {
                         if (tablaPosibilidades[a][b] <= 0) {
                             posible = new Casillero(a, b);
-                            puntaje=funcion_evaluadora(equipo,tabla[a][b]);
-                            posible.setPuntaje(puntaje);
+                            puntajeAdvanced=funcion_evaluadora(equipo,tabla[a][b]);
+                            System.out.println("El puntajeAdvanced de mover el pollo(humano) es"+puntajeAdvanced);
+                            posible.setPuntajeAdvanced(puntajeAdvanced);
                             posibilidades.add(posible);
                             }
                         }
@@ -592,24 +595,29 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     public ArrayList<Casillero> obtenerPosibilidadesCocodrilo(int x, int y, int equipo) {
         ArrayList<Casillero> posibilidades = new ArrayList();
         Casillero posible;
-        int puntaje=0;
+        double puntajeAdvanced=0;
         for (int a = 0; a < 5; a++) {
             for (int b = 0; b < 8; b++) {
                 double distancia = Math.hypot(Math.abs(a - x), Math.abs(b - y));
                 if ((Math.abs(b - y) == 0 || Math.abs(a - x) == 0) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2)) {
-                    if (tablaPosibilidades[a][b] >= 0&&!(a==x&&b==y)&&equipo==1) {
+                    if (tablaPosibilidades[a][b] >= 0&&!(a==x&&b==y)&&equipo==turnoMaquina) {
                         posible=new Casillero(a,b);
-                        posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b,tabla[a][b] ));
-                        puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
-                        puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                        posible.setPuntaje(puntaje);
+                        posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b,tabla[x][y] ));
+                        puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                        System.out.println("El puntajeAdvanced de la funcion evaluadora con equipo :"+equipo+"y "+tabla[a][b]+" es: "+puntajeAdvanced);
+                        puntajeAdvanced=Math.abs(puntajeAdvanced/posible.obtenerMaxPuntajeHumanos());
+                        posible.setPuntajeAdvanced(puntajeAdvanced);
+                        System.out.println("Maximo puntajeAdvanced de turno humanos:"+posible.obtenerMaxPuntajeHumanos());
+                            System.out.println("El puntajeAdvanced de mover al cocodrilo es: "+puntajeAdvanced);
                         posibilidades.add(posible);
                     }
-                    else if(tablaPosibilidades[a][b]<=0 && equipo==0){
+                    else if(tablaPosibilidades[a][b]<=0 && equipo==turnoHumano){
                         posible=new Casillero(a,b);
-                        puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                        posible.setPuntaje(puntaje);
+                        puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                        System.out.println("Puntaje del cocodrilo(humano):"+puntajeAdvanced);
+                        posible.setPuntajeAdvanced(puntajeAdvanced);
                         posibilidades.add(posible);
+                        
                     }
                 }
             }
@@ -621,24 +629,26 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     public ArrayList obtenerPosibilidadesHumano(int x, int y, int equipo) {
         ArrayList<Casillero> posibilidades = new ArrayList();
         Casillero posible;
-        int puntaje=0;
+        double puntajeAdvanced=0;
         
             for (int a = 0; a < 5; a++) {
                 for (int b = 0; b < 8; b++) {
                     if ((a - x) != 0) {
                         if ((Math.abs((b - y) / (a - x)) == 1) && (Math.hypot(Math.abs(a - x), Math.abs(b - y)) <= 2 * Math.sqrt(2))) {
-                            if (tablaPosibilidades[a][b] >= 0 &&!(a==x&&b==y)&&equipo==1) {
+                            if (tablaPosibilidades[a][b] >= 0 &&!(a==x&&b==y)&&equipo==turnoMaquina) {
                                 posible = new Casillero(a, b);
-                                puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                                posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
-                                puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
-                                posible.setPuntaje(puntaje);
+                                puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                                posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[x][y]));
+                                puntajeAdvanced=Math.abs(puntajeAdvanced/posible.obtenerMaxPuntajeHumanos());
+                                System.out.println("Maximo puntajeAdvanced de turno humano:"+posible.obtenerMaxPuntajeHumanos());
+                                System.out.println("El puntajeAdvanced de mover al humano es: "+puntajeAdvanced);
+                                posible.setPuntajeAdvanced(puntajeAdvanced);
                                 posibilidades.add(posible);
                             }
-                            else if(tablaPosibilidades[a][b]<=0 && Equipo==0){
+                            else if(tablaPosibilidades[a][b]<=0 && equipo==turnoHumano){
                                 posible = new Casillero(a, b);
-                                puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                                posible.setPuntaje(puntaje);
+                                puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                                posible.setPuntajeAdvanced(puntajeAdvanced);
                                 posibilidades.add(posible);
                             }
                         }
@@ -651,25 +661,25 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     public ArrayList obtenerPosibilidadesGodzilla(int x, int y, int equipo) {
             ArrayList<Casillero> posibilidades = new ArrayList();
             Casillero posible;
-            int puntaje=0;
+            double puntajeAdvanced=0;
             for(int a=0;a<5;a++){
             for(int b=0;b<8;b++){
                 double  distancia=Math.hypot(Math.abs(a-x), Math.abs(b-y));
                 
                 if((Math.abs(b-y)==0 || Math.abs(a-x)==0) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2)){
 
-                    if(tablaPosibilidades[a][b]>=0 &&!(a==x&&b==y)&&equipo==1){
+                    if(tablaPosibilidades[a][b]>=0 &&!(a==x&&b==y)&&equipo==turnoMaquina){
                         posible=new Casillero(a,b);
-                        puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                        posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
-                        puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
-                        posible.setPuntaje(puntaje);
+                        puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                        posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[x][y]));
+                        puntajeAdvanced=Math.abs(puntajeAdvanced/posible.obtenerMaxPuntajeHumanos());
+                        posible.setPuntajeAdvanced(puntajeAdvanced);
                         posibilidades.add(posible);
                     }         
-                    else if(tablaPosibilidades[a][b]<=0 && equipo==0){
+                    else if(tablaPosibilidades[a][b]<=0 && equipo==turnoHumano){
                         posible=new Casillero(a,b);
-                        puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                        posible.setPuntaje(puntaje);
+                        puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                        posible.setPuntajeAdvanced(puntajeAdvanced);
                         posibilidades.add(posible);
                     }
                         
@@ -680,18 +690,18 @@ public class TableroGUIHMD extends javax.swing.JPanel {
             for(int b=0;b<8;b++){
                 if((a-x)!=0){
                     if(( Math.abs((b-y)/(a-x))==1) && (Math.hypot(Math.abs(a-x),Math.abs(b-y))<=2*Math.sqrt(2))){
-                        if(tablaPosibilidades[a][b]>=0&&!(a==x&&b==y)&&equipo==1){
+                        if(tablaPosibilidades[a][b]>=0&&!(a==x&&b==y)&&equipo==turnoMaquina){
                             posible=new Casillero(a,b);
-                            puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                            posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[a][b]));
-                            puntaje=Math.abs(puntaje/posible.obtenerMaxPuntajeHumanos());
-                            posible.setPuntaje(puntaje);
+                            puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                            posible.setPosibilidadesOponente(analizarJugadasOponente(x, y, a, b, tabla[x][y]));
+                            puntajeAdvanced=Math.abs(puntajeAdvanced/posible.obtenerMaxPuntajeHumanos());
+                            posible.setPuntajeAdvanced(puntajeAdvanced);
                             posibilidades.add(posible);
                         }
-                        if(tablaPosibilidades[a][b]<=0 && equipo==0){
+                        if(tablaPosibilidades[a][b]<=0 && equipo==turnoHumano){
                             posible=new Casillero(a,b);
-                            puntaje=funcion_evaluadora(equipo, tabla[a][b]);
-                            posible.setPuntaje(puntaje);
+                            puntajeAdvanced=funcion_evaluadora(equipo, tabla[a][b]);
+                            posible.setPuntajeAdvanced(puntajeAdvanced);
                             posibilidades.add(posible);
                         }
                     }
@@ -703,7 +713,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
         return posibilidades;
     }
 
-    private ArrayList<Casillero> analizarJugadasOponente(int posInicX,int posInicY,int posFinX2, int posFinY2,int jugador) {
+    private ArrayList<Casillero> analizarJugadasOponente(int posInicX,int posInicY,int posFinX2, int posFinY2,int movimiento) {
        ArrayList<Casillero> oponenteJugadas=new ArrayList<Casillero>();
        int[][] tablaImaginaria = new int[5][8];
        for(int i=0;i<5;i++)
@@ -713,38 +723,46 @@ public class TableroGUIHMD extends javax.swing.JPanel {
        for(int i=0;i<5;i++)
            for(int j=0;j<8;j++)
                tablaImaginariaPosibilidades[i][j]=tablaPosibilidades[i][j];
-       tabla[posFinX2][posFinY2]=jugador;
+       tabla[posFinX2][posFinY2]=movimiento;
        tabla[posInicX][posInicY]=0;//Significa campo vacio
        //Entonces tenemos la tabla imaginaria la cual supondra que la maquina ya ha realizado el movimiento
        Casillero provisional;
+       actualizaMat(true);
+        System.out.println("Nuevo Tablero: ");
        for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 8; j++) {
                 provisional = new Casillero(i, j);
-                if (tablaImaginaria[i][j] == 1)//Pollo
+                if (tabla[i][j] == 1)//Pollo
                 {
-                    marcarPosibilidades(1, i, j);
-                    provisional.agregarPosibilidades(obtenerPosibilidadesPollo(i, j, 0));
+                    System.out.println("***************Pollo del humano******************");
+                    pintar_tablero(false);
+                    provisional.agregarPosibilidades(obtenerPosibilidadesPollo(i, j, turnoHumano));
+                    oponenteJugadas.add(provisional);
+                    System.out.println("*********************************");
+                }
+                if (tabla[i][j] == 2)//Cocodrilo
+                {
+                    System.out.println("*******************Cocodrilo del Humano**************");
+                    pintar_tablero(false);
+                    provisional.agregarPosibilidades(obtenerPosibilidadesCocodrilo(i, j, turnoHumano));
                     oponenteJugadas.add(provisional);
                 }
-                if (tablaImaginaria[i][j] == 2)//Cocodrilo
+                if (tabla[i][j] == 3)//Humano
                 {
-                    marcarPosibilidades(2, i, j);
-                    provisional.agregarPosibilidades(obtenerPosibilidadesCocodrilo(i, j, 0));
+                    System.out.println("*******************Humano del Humano**************");                    
+                    pintar_tablero(false);
+                    provisional.agregarPosibilidades(obtenerPosibilidadesHumano(i, j,turnoHumano));
                     oponenteJugadas.add(provisional);
-                    
+
                 }
-                if (tablaImaginaria[i][j] == 3)//Humano
+                if (tabla[i][j] == 4)//Godzilla
                 {
-                    marcarPosibilidades(3, i, j);
-                    provisional.agregarPosibilidades(obtenerPosibilidadesHumano(i, j,0));
-                    oponenteJugadas.add(provisional);
-                }
-                if (tablaImaginaria[i][j] == 4)//Godzilla
-                {
-                    marcarPosibilidades(4, i, j);
-                    provisional.agregarPosibilidades(obtenerPosibilidadesGodzilla(i, j, 0));
+                    System.out.println("*******************Godzilla del Humano**************");
+                    pintar_tablero(false);
+                    provisional.agregarPosibilidades(obtenerPosibilidadesGodzilla(i, j, turnoHumano));
                     oponenteJugadas.add(provisional);
                 }
+                
                 actualizaMat(true);
             }
         }

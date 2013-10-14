@@ -202,19 +202,18 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
         System.out.println("Nro de Piezas maquinas: "+nroPiezasMaquinas);
         int posibilidades = 0;
         int contador = 0;
-        int puntajeMaximo=Integer.MIN_VALUE;
+        Double puntajeAdvancedMaximo=Double.MIN_VALUE;
         Casillero casilleroElegido=null;
         Casillero casilleroInicial=null;
         Casillero casilleroInicialMaximo=null;
         for (int a = 0; a < nroPiezasMaquinas; a++) {
             casilleroInicial = casillerosPiezasMaquinas.get(a);
             posibilidades = casilleroInicial.tamPosibilidades();
-                System.out.println("Nro de posibilidades "+posibilidades);
             for (int b = 0; b < posibilidades; b++) {
                 contador++;
-                if(puntajeMaximo<casilleroInicial.obtenerPosibilidad(b).getPuntaje()){
+                if(puntajeAdvancedMaximo<casilleroInicial.obtenerPosibilidad(b).getPuntajeAdvanced()){
                     casilleroInicialMaximo=casilleroInicial;
-                    puntajeMaximo=casilleroInicialMaximo.obtenerPosibilidad(b).getPuntaje();
+                    puntajeAdvancedMaximo=casilleroInicialMaximo.obtenerPosibilidad(b).getPuntajeAdvanced();
                     casilleroElegido = casilleroInicialMaximo.obtenerPosibilidad(b);
                     System.out.println("************Posibilidad nro "+b+"*** Pieza"+a);
                     System.out.println("Casillero Inicial : "+casilleroInicialMaximo.getI()+" y "+casilleroInicial.getJ());
@@ -226,7 +225,7 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
         System.out.println("***********************************");
         System.out.println("casilleroInicial: "+casilleroInicialMaximo.getI()+","+casilleroInicialMaximo.getJ());
         System.out.println("casilleroElegio: "+casilleroElegido.getI()+","+casilleroElegido.getJ());
-        System.out.println("El puntaje maximo es :"+puntajeMaximo);
+        System.out.println("El puntajeAdvanced maximo es :"+puntajeAdvancedMaximo);
         tablero.establecer_nueva_posicion(casilleroInicialMaximo.getI(), casilleroInicialMaximo.getJ(), casilleroElegido.getI(), casilleroElegido.getJ());
         tablero.redibujarTablero();
         tablero.repaint();

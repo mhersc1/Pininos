@@ -17,6 +17,7 @@ public class Casillero {
     private ArrayList<Casillero> posibilidades;
     private ArrayList<Casillero> posibilidadesOponente;
     private int puntaje;
+    private double puntajeAdvanced;
     public Casillero(int i,int j){
         this.i=i;
         this.j=j;
@@ -65,6 +66,18 @@ public class Casillero {
         this.puntaje = puntaje;
     }
 
+    public ArrayList<Casillero> getPosibilidades() {
+        return posibilidades;
+    }
+
+    public double getPuntajeAdvanced() {
+        return puntajeAdvanced;
+    }
+
+    public void setPuntajeAdvanced(double puntajeAdvanced) {
+        this.puntajeAdvanced = puntajeAdvanced;
+    }
+
     public ArrayList<Casillero> getPosibilidadesOponente() {
         return posibilidadesOponente;
     }
@@ -73,20 +86,23 @@ public class Casillero {
         this.posibilidadesOponente = posibilidadesOponente;
     }
     
-    public int obtenerMaxPuntajeHumanos(){
+    public double obtenerMaxPuntajeHumanos(){
         //El maximo puntaje para los humanos va a ser negativo OJO!!!
         
         Iterator<Casillero> iterador=posibilidadesOponente.iterator();
-        int puntajeMayor=1000000;
-        
-       while(iterador.hasNext()){
+        double puntajeMayor=1000000;
+        while(iterador.hasNext()){
+           //Cada uno de las piezas de juego del humano
            Casillero casillero=iterador.next();
-           Iterator<Casillero> iterador2=casillero.posibilidades.iterator();
+           Iterator<Casillero> iterador2;
+            iterador2 = casillero.getPosibilidades().iterator();
+            //NoGraba aquiiiiiiiiiiiiiii
            while(iterador2.hasNext()){
                 Casillero casiElegiPorHumano=iterador2.next();
-               if(puntajeMayor>casiElegiPorHumano.getPuntaje())
+              System.out.println("Entre al primer iterador 2!!!");
+                if(puntajeMayor>casiElegiPorHumano.getPuntajeAdvanced())
                {
-                 puntajeMayor=casiElegiPorHumano.getPuntaje();
+                 puntajeMayor=casiElegiPorHumano.getPuntajeAdvanced();
                 }
            }
         }
