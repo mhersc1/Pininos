@@ -183,9 +183,7 @@ public class TableroGUIHMD extends javax.swing.JPanel {
     }
     public int devolverValorFichaSeleccionada(){
         System.out.println("Ficha seleccionada"+tabla[this.fila_actual][this.columna_actual]);
-        if(this.columna_actual==7 || this.columna_actual==0){
-        promocionPollo();
-        }
+
         return tabla[this.fila_actual][this.columna_actual];
         
     }
@@ -406,7 +404,12 @@ public class TableroGUIHMD extends javax.swing.JPanel {
         void  establecer_nueva_posicion(int x,int y , int a , int  b){//a y b fila  y columna actuales
             this.tabla[a][b]=this.tabla[x][y];
             this.tabla[x][y]=0;
-            
+            if(tabla[a][7]==1){
+                tabla[a][7]=5;
+            }
+            if(tabla[a][0]==-1){
+                tabla[a][0]=-5;
+            }
         }
         void redibujarTablero(){
             int x,y,valor=0;
@@ -788,16 +791,5 @@ public class TableroGUIHMD extends javax.swing.JPanel {
         }
     }
 
-    private void promocionPollo() {
-        for(int i=0;i<5;i++){
-        if(tablaPosibilidades[i][7]==1){
-            tablaPosibilidades[i][7]=5;//Estado inmortal
-            tabla[i][7]=5;
-            }
-        if(tablaPosibilidades[i][0]==-1){
-            tablaPosibilidades[i][0]=-5;//Estado inmortal
-            tabla[i][0]=-5;
-            }
-        }    
-    }
+
 }
