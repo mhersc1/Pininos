@@ -140,7 +140,6 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                             tablero.seleccionar=casillaSelecta;
                         }       
                         ;break;
-                default: System.out.println("ola k ase?");   
                       
         }
         }else{
@@ -199,7 +198,6 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
         System.out.println("Nro Posibilidades: " + nroPosibilidades);
         int posibElegida;
         int nroPiezasMaquinas = casillerosPiezasMaquinas.size();
-        System.out.println("Nro de Piezas maquinas: "+nroPiezasMaquinas);
         int posibilidades = 0;
         int contador = 0;
         Double puntajeAdvancedMaximo=Double.MIN_VALUE;
@@ -215,17 +213,9 @@ public class CasillasGUIHMD extends javax.swing.JPanel implements MouseListener 
                     casilleroInicialMaximo=casilleroInicial;
                     puntajeAdvancedMaximo=casilleroInicialMaximo.obtenerPosibilidad(b).getPuntajeAdvanced();
                     casilleroElegido = casilleroInicialMaximo.obtenerPosibilidad(b);
-                    System.out.println("************Posibilidad nro "+b+"*** Pieza"+a);
-                    System.out.println("Casillero Inicial : "+casilleroInicialMaximo.getI()+" y "+casilleroInicial.getJ());
-                    System.out.println("Casillero Elegido : "+casilleroElegido.getI()+" y "+casilleroElegido.getJ());
-                    System.out.println("*************************************************");
                 }
             }
         }
-        System.out.println("***********************************");
-        System.out.println("casilleroInicial: "+casilleroInicialMaximo.getI()+","+casilleroInicialMaximo.getJ());
-        System.out.println("casilleroElegio: "+casilleroElegido.getI()+","+casilleroElegido.getJ());
-        System.out.println("El puntajeAdvanced maximo es :"+puntajeAdvancedMaximo);
         tablero.establecer_nueva_posicion(casilleroInicialMaximo.getI(), casilleroInicialMaximo.getJ(), casilleroElegido.getI(), casilleroElegido.getJ());
         tablero.redibujarTablero();
         tablero.repaint();
