@@ -23,6 +23,11 @@ public class Opciones extends javax.swing.JPanel {
 
     public Opciones(JuegoPrincipal juegoPrincipal) {
         initComponents();
+        labelNiveles.setVisible(false);
+        jRadioButtonFacil.setVisible(false);
+        jRadioButtonMedio.setVisible(false);
+        jRadioButtonDificil.setVisible(false);
+        panelNiveles.setVisible(false);
         this.juegoPrincipal=juegoPrincipal;
     }
 
@@ -37,14 +42,15 @@ public class Opciones extends javax.swing.JPanel {
 
         buttonGroupNiveles = new javax.swing.ButtonGroup();
         jLabel7 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        labelNiveles = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jRadioButtonFacil = new javax.swing.JRadioButton();
-        jRadioButtonMedio = new javax.swing.JRadioButton();
-        jRadioButtonDificil = new javax.swing.JRadioButton();
         jLabel10 = new javax.swing.JLabel();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButtonHumanovsHumano = new javax.swing.JRadioButton();
+        panelNiveles = new javax.swing.JPanel();
+        jRadioButtonFacil = new javax.swing.JRadioButton();
+        jRadioButtonMedio = new javax.swing.JRadioButton();
+        jRadioButtonDificil = new javax.swing.JRadioButton();
 
         setBackground(new java.awt.Color(0, 255, 153));
         setForeground(new java.awt.Color(153, 153, 0));
@@ -59,13 +65,41 @@ public class Opciones extends javax.swing.JPanel {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel9.setText("Niveles");
+        labelNiveles.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        labelNiveles.setForeground(new java.awt.Color(255, 0, 0));
+        labelNiveles.setText("Niveles");
 
+        jLabel1.setBackground(new java.awt.Color(102, 0, 255));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(153, 0, 0));
         jLabel1.setText("OPCIONES");
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel10.setText("Elegir Tipo de Juego");
+
+        jRadioButton1.setBackground(new java.awt.Color(0, 255, 153));
+        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButton1.setText("Humano vs Maquina");
+        jRadioButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/humanovsmaquina.jpg"))); // NOI18N
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonHumanovsHumano.setBackground(new java.awt.Color(0, 255, 153));
+        jRadioButtonHumanovsHumano.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jRadioButtonHumanovsHumano.setText("Humano vs Humano");
+        jRadioButtonHumanovsHumano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/humanovshumano.jpg"))); // NOI18N
+        jRadioButtonHumanovsHumano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonHumanovsHumanoActionPerformed(evt);
+            }
+        });
+
+        panelNiveles.setBackground(new java.awt.Color(0, 255, 153));
+        panelNiveles.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jRadioButtonFacil.setBackground(new java.awt.Color(0, 255, 153));
         buttonGroupNiveles.add(jRadioButtonFacil);
@@ -100,24 +134,30 @@ public class Opciones extends javax.swing.JPanel {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel10.setText("Elegir Tipo de Juego");
-
-        jRadioButton1.setBackground(new java.awt.Color(0, 255, 153));
-        jRadioButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRadioButton1.setText("Humano vs Maquina");
-        jRadioButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/humanovsmaquina.jpg"))); // NOI18N
-
-        jRadioButtonHumanovsHumano.setBackground(new java.awt.Color(0, 255, 153));
-        jRadioButtonHumanovsHumano.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jRadioButtonHumanovsHumano.setText("Humano vs Humano");
-        jRadioButtonHumanovsHumano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/humanovshumano.jpg"))); // NOI18N
-        jRadioButtonHumanovsHumano.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonHumanovsHumanoActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout panelNivelesLayout = new javax.swing.GroupLayout(panelNiveles);
+        panelNiveles.setLayout(panelNivelesLayout);
+        panelNivelesLayout.setHorizontalGroup(
+            panelNivelesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNivelesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jRadioButtonFacil, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jRadioButtonMedio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jRadioButtonDificil)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+        panelNivelesLayout.setVerticalGroup(
+            panelNivelesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNivelesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelNivelesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jRadioButtonFacil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelNivelesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jRadioButtonMedio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jRadioButtonDificil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -132,24 +172,20 @@ public class Opciones extends javax.swing.JPanel {
                         .addGap(42, 42, 42)
                         .addComponent(jRadioButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel9))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jRadioButtonFacil)
-                        .addGap(32, 32, 32)
-                        .addComponent(jRadioButtonMedio)
-                        .addGap(31, 31, 31)
-                        .addComponent(jRadioButtonDificil))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addComponent(jLabel7))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel1)
-                            .addComponent(jRadioButtonHumanovsHumano))))
-                .addGap(29, 29, 29))
+                            .addComponent(jRadioButtonHumanovsHumano)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(labelNiveles)
+                        .addGap(38, 38, 38)
+                        .addComponent(panelNiveles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(175, 175, 175))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,17 +198,16 @@ public class Opciones extends javax.swing.JPanel {
                 .addComponent(jRadioButtonHumanovsHumano)
                 .addGap(3, 3, 3)
                 .addComponent(jRadioButton1)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel9)
-                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRadioButtonFacil)
-                    .addComponent(jRadioButtonMedio)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jRadioButtonDificil)))
-                .addGap(9, 9, 9)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(labelNiveles))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panelNiveles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(33, 33, 33)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,16 +253,27 @@ public class Opciones extends javax.swing.JPanel {
         juegoPrincipal.setLocationRelativeTo(null);
     }//GEN-LAST:event_jRadioButtonDificilActionPerformed
 
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        labelNiveles.setVisible(true);
+        jRadioButtonFacil.setVisible(true);
+        jRadioButtonMedio.setVisible(true);
+        jRadioButtonDificil.setVisible(true);
+        panelNiveles.setVisible(true);
+        juegoPrincipal.pack();
+        juegoPrincipal.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupNiveles;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButtonDificil;
     private javax.swing.JRadioButton jRadioButtonFacil;
     private javax.swing.JRadioButton jRadioButtonHumanovsHumano;
     private javax.swing.JRadioButton jRadioButtonMedio;
+    private javax.swing.JLabel labelNiveles;
+    private javax.swing.JPanel panelNiveles;
     // End of variables declaration//GEN-END:variables
 }

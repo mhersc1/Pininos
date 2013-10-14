@@ -99,7 +99,6 @@ public class Casillero {
             //NoGraba aquiiiiiiiiiiiiiii
            while(iterador2.hasNext()){
                 Casillero casiElegiPorHumano=iterador2.next();
-              System.out.println("Entre al primer iterador 2!!!");
                 if(puntajeMayor>casiElegiPorHumano.getPuntajeAdvanced())
                {
                  puntajeMayor=casiElegiPorHumano.getPuntajeAdvanced();
