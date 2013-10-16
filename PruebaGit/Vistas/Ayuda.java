@@ -41,7 +41,7 @@ public class Ayuda extends javax.swing.JFrame {
         jtextAreaInformacionAyuda = new javax.swing.JTextArea();
         jLabelAyuda = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 255, 153));
 
         jPanel1.setBackground(new java.awt.Color(0, 255, 153));
@@ -77,14 +77,14 @@ public class Ayuda extends javax.swing.JFrame {
         panelOpcionesAyuda.setLayout(panelOpcionesAyudaLayout);
         panelOpcionesAyudaLayout.setHorizontalGroup(
             panelOpcionesAyudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabelMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
             .addGroup(panelOpcionesAyudaLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelOpcionesAyudaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelOpcionesAyudaLayout.setVerticalGroup(
@@ -114,8 +114,8 @@ public class Ayuda extends javax.swing.JFrame {
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelAyuda))
                 .addGap(34, 34, 34)
-                .addComponent(panelOpcionesAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(panelOpcionesAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +127,7 @@ public class Ayuda extends javax.swing.JFrame {
                         .addComponent(jLabelAyuda)
                         .addGap(34, 34, 34)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

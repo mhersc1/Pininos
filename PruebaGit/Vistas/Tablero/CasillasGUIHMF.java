@@ -122,7 +122,23 @@ public class CasillasGUIHMF extends javax.swing.JPanel implements MouseListener 
                             tablero.seleccionar=1;//vuelve a seleccionar;
                             //Cambia Al estado maquina
                             tablero.Equipo=1;
-                            movimientoMaquina(tablero.Equipo);
+                            if(tablero.hayGanador()!=0){
+                                if(tablero.hayGanador()==4){
+                                    JOptionPane.showMessageDialog(null,"Gana  Jugador A");
+                                        }else{
+                                    JOptionPane.showMessageDialog(null,"Gana  Jugador B");
+                                }
+                            }else{
+                                movimientoMaquina(tablero.Equipo);
+                                if(tablero.hayGanador()!=0){
+                                    if(tablero.hayGanador()==4){
+                                        JOptionPane.showMessageDialog(null,"Gana  Jugador A");
+                                    }else{
+                                        JOptionPane.showMessageDialog(null,"Gana  Jugador B");
+                                    }
+                                }
+                            }
+                            //movimientoMaquina(tablero.Equipo);
                         }else{
                             //Hace que se mantenga en el mismo turno
                             if(tablero.tablaPosibilidades[casillaMarcada[0]][casillaMarcada[1]]==10 && tablero.restriccionA){

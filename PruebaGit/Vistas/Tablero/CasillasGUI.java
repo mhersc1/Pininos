@@ -156,6 +156,13 @@ public class CasillasGUI extends javax.swing.JPanel implements MouseListener {
                             tablero.pintar_tablero(true);
 
                             tablero.pintar_tablero(false);
+                            if(tablero.hayGanador()!=0){
+                                if(tablero.hayGanador()==4){
+                                    JOptionPane.showMessageDialog(null,"Gana  Jugador A");
+                                        }else{
+                                    JOptionPane.showMessageDialog(null,"Gana  Jugador B");
+                                }
+                            }
                             if(tablero.restriccionA==true &&tablero.restriccionB==false){
                                 JLabel turno=tablero.getJuegoHumanoHumano().getLabelTurno();
                                         turno.setText("Turno A");
