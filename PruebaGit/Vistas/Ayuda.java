@@ -36,9 +36,9 @@ public class Ayuda extends javax.swing.JFrame {
         listaAyuda = new javax.swing.JList();
         panelOpcionesAyuda = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jLabelMovimiento = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtextAreaInformacionAyuda = new javax.swing.JTextArea();
+        jLabelMovimiento = new javax.swing.JLabel();
         jLabelAyuda = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -65,38 +65,44 @@ public class Ayuda extends javax.swing.JFrame {
         panelOpcionesAyuda.setBackground(new java.awt.Color(255, 204, 153));
         panelOpcionesAyuda.setPreferredSize(new java.awt.Dimension(100, 100));
 
-        jLabelMovimiento.setText("imagen de movimiento de jugadores");
+        jScrollPane1.setAutoscrolls(true);
 
         jtextAreaInformacionAyuda.setEditable(false);
         jtextAreaInformacionAyuda.setBackground(new java.awt.Color(204, 204, 204));
         jtextAreaInformacionAyuda.setColumns(20);
         jtextAreaInformacionAyuda.setRows(5);
+        jtextAreaInformacionAyuda.setAutoscrolls(false);
         jScrollPane1.setViewportView(jtextAreaInformacionAyuda);
+
+        jLabelMovimiento.setText("imagen de movimiento de jugadores");
 
         javax.swing.GroupLayout panelOpcionesAyudaLayout = new javax.swing.GroupLayout(panelOpcionesAyuda);
         panelOpcionesAyuda.setLayout(panelOpcionesAyudaLayout);
         panelOpcionesAyudaLayout.setHorizontalGroup(
             panelOpcionesAyudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-            .addGroup(panelOpcionesAyudaLayout.createSequentialGroup()
-                .addGap(62, 62, 62)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelOpcionesAyudaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                .addGroup(panelOpcionesAyudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelOpcionesAyudaLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(jLabel2)))
                 .addContainerGap())
         );
         panelOpcionesAyudaLayout.setVerticalGroup(
             panelOpcionesAyudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesAyudaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(48, 48, 48)
-                .addComponent(jLabelMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(20, 20, 20))
+                .addGroup(panelOpcionesAyudaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelOpcionesAyudaLayout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel2))
+                    .addGroup(panelOpcionesAyudaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelMovimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabelAyuda.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
@@ -109,25 +115,30 @@ public class Ayuda extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelAyuda))
-                .addGap(34, 34, 34)
-                .addComponent(panelOpcionesAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabelAyuda))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelOpcionesAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelOpcionesAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelAyuda)
-                        .addGap(34, 34, 34)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabelAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panelOpcionesAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -135,8 +146,8 @@ public class Ayuda extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 743, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,9 +160,9 @@ public class Ayuda extends javax.swing.JFrame {
     private void listaAyudaValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_listaAyudaValueChanged
         boolean adjust=evt.getValueIsAdjusting();
         jLabelMovimiento.setIcon(null);
-        
+        jLabelMovimiento.setVisible(true);
         jtextAreaInformacionAyuda.setText("");
-        jtextAreaInformacionAyuda.setSize(0,0);
+        
         this.repaint();
         this.pack();
         if (!adjust) {
@@ -159,11 +170,17 @@ public class Ayuda extends javax.swing.JFrame {
             int seleccionado=lsm.getSelectedIndex();
             switch(seleccionado){
                 case 0:
-                   
+                    jLabelMovimiento.setVisible(false);
+                   jScrollPane1.setVisible(true);
+                    jtextAreaInformacionAyuda.setVisible(true);
                     jtextAreaInformacionAyuda.setText("REGLAS\n-------------------------\n"
-                  + "GANADOR: El jugador que coma a godzilla del otro oponente sera el ganador\n" );
-                   jtextAreaInformacionAyuda.setSize(panelOpcionesAyuda.getWidth()-5,panelOpcionesAyuda.getHeight()-5);
-                   this.repaint();
+                  + "GANADOR: El jugador que coma a godzilla del otro oponente sera el ganador\n"
+                  + "Jugadores: Pollo, Godzilla, Humano, Cocodrilo\n"
+                  + "Empieza el juego con el jugador A");
+                    
+                   //jtextAreaInformacionAyuda.setSize(panelOpcionesAyuda.getWidth()-5,panelOpcionesAyuda.getHeight()-5);
+                   //jScrollPane1.setSize(panelOpcionesAyuda.getWidth()-5,panelOpcionesAyuda.getHeight()-5);
+
                    this.pack();
 //                    + "Hay 2 formas de ingresar las fechas\n"
 //                    + "\t1.Se debe escribir en el campo de las fechas\n"
@@ -175,14 +192,20 @@ public class Ayuda extends javax.swing.JFrame {
                 case 1:
                      
                    jLabelMovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/movimiento_pollo.jpg")));
-                    this.pack();
+                   
                      //txtAreaAyuda.setText("AYUDA ADMINISTRAR RESERVA\n-------------------------\n"
 //                    + "En esta opcion se podra seleccionar la fecha en la cual se verá\n"
 //                    + "el listado de reservas cada una de estas puede ser modificada\n"
 //                    + "como tambbien cancelada(eliminada)\n");
+                    jScrollPane1.setVisible(false);
+                    
+                    jtextAreaInformacionAyuda.setVisible(false);
+                    this.pack();
                 break;
                 case 2:
                     jLabelMovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/movimiento_pollo_inmortal.jpg")));
+                    jScrollPane1.setVisible(false);
+                    jtextAreaInformacionAyuda.setVisible(false);
                     this.pack();
                     
 //                    txtAreaAyuda.setText("CONSULTAS Y/O DUDAS\n-------------------------\n"
@@ -191,14 +214,20 @@ public class Ayuda extends javax.swing.JFrame {
                 break;
                 case 3:
                     jLabelMovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/movimiento_cocodrilo.jpg")));
+                    jScrollPane1.setVisible(false);
+                    jtextAreaInformacionAyuda.setVisible(false);
                     this.pack();
                     break;    
                 case 4:
                     jLabelMovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/movimiento_humano.jpg")));
+                    jScrollPane1.setVisible(false);
+                    jtextAreaInformacionAyuda.setVisible(false);
                     this.pack();
                     break;   
                 case 5:
                     jLabelMovimiento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/movimiento_godzilla.jpg")));
+                    jScrollPane1.setVisible(false);
+                    jtextAreaInformacionAyuda.setVisible(false);
                     this.pack();
                     break; 
                 default: break;
