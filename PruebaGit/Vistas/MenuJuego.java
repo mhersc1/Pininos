@@ -76,7 +76,7 @@ public class MenuJuego extends javax.swing.JPanel {
         });
 
         jButton2.setText("Instrucciones");
-
+        jButton2.setBackground(new java.awt.Color(0, 255, 153));
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,6 +110,11 @@ public class MenuJuego extends javax.swing.JPanel {
                 .addComponent(jButton4)
                 .addGap(101, 101, 101))
         );
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instruccionesActionPerformed(evt);
+            }
+        });
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
@@ -120,7 +125,10 @@ public class MenuJuego extends javax.swing.JPanel {
         juegoPrincipal.setLocationRelativeTo(null);
         
     }                                        
-
+     private void instruccionesActionPerformed(java.awt.event.ActionEvent evt) {                                         
+       Ayuda ayuda=new Ayuda();
+        ayuda.setVisible(true);
+    }                
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         juegoPrincipal.dispose();
     }                                        
